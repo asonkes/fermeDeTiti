@@ -8,8 +8,16 @@
     position: fixed;
     z-index: 99999;
 
+    &:hover {
+        background-color: var(--vertSpecial);
+    }
+
     &.active {
-        background-color: var(--orangeSpecial);
+        background-color: var(--vertSpecial);
+    }
+
+    @include mixins.lg {
+        display: none;
     }
 
     .menu__link,
@@ -19,18 +27,19 @@
         display: block;
         font-family: var(--font-family1);
         font-size: 20px;
-        color: var(--black);
+        color: var(--white);
         font-weight: 600;
         text-decoration-line: none;
         padding: 20px;
 
         &:hover {
-            text-decoration: underline solid var(--vert);
-            text-decoration-thickness: 3px;
+            text-decoration: underline solid var(--white);
+            text-decoration-thickness: 2px;
             text-underline-offset: 7px;
-            background-color: var(--orangeSpecial);
+            background-color: var(--vertSpecial);
             font-size: larger;
             padding: 21px;
+            transition: transform 0.1s ease-in-out;
 
         }
     }
@@ -62,7 +71,7 @@
 
                 &.active {
                     display: block;
-                    background-color: var(--orangeSpecial);
+                    background-color: var(--vertSpecial);
                 }
             }
         }
@@ -88,9 +97,5 @@
                 }
             }
         }
-    }
-
-    @include mixins.lg {
-        display: none;
     }
 }

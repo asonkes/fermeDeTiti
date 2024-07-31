@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.toggle('active');
         } 
     })
-
+    
     window.addEventListener('click', (event) => {
         // Si le menu est actif et que le clic ne vient ni du menu ni du lien, on ferme le menu
         if (menu.classList.contains('active') && !menu.contains(event.target) && !link.contains(event.target)) {

@@ -4,10 +4,14 @@
     width: 100%;
     position: fixed;
     z-index: 999999;
+    background-color: var(--vertSpecial);
 
+    @include mixins.lg-lt {
+        display: none;
+    }
 
     &.active {
-        background-color: var(--orangeSpecial);
+        background-color: var(--vertSpecial);
     }
 
     &__link {
@@ -31,7 +35,7 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                background-color: black;
+                background-color: var(--white);
                 transition: background-color 0.2s ease-in-out;
 
                 &.active {
@@ -45,7 +49,7 @@
                     height: 4px;
                     display: block;
                     position: absolute;
-                    background-color: black;
+                    background-color: var(--white);
                     transition: transform 0.2s ease-in-out;
                 }
 
@@ -74,6 +78,7 @@
         display: flex;
         flex-direction: column;
         display: none;
+        padding-bottom: 15px;
 
         &.active {
             display: block;
@@ -90,22 +95,18 @@
                 font-size: 22px;
                 font-weight: 600;
                 padding: 20px;
-                color: var(--black);
+                color: var(--white);
                 text-decoration: none;
 
                 &:hover {
-                    text-decoration: underline solid var(--vert);
-                    text-decoration-thickness: 3px;
+                    text-decoration: underline solid var(--white);
+                    text-decoration-thickness: 2px;
                     text-underline-offset: 7px;
                     font-size: larger;
-                    border: 1px solid var(--vert);
-                    color: var(--black);
+                    border: 1px solid var(--white);
+                    color: var(--white);
                 }
             }
         }
-    }
-
-    @include mixins.lg-lt {
-        display: none;
     }
 }
