@@ -3,5 +3,6 @@ import '../styles/index.scss';
 
 // Import des fichiers JS
 import './header/header';
+import "./burger/burger";
 
 

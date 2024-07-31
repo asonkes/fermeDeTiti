@@ -1,5 +1,10 @@
 @use "./base";
 @use "./variables";
+
+@use "./mixins/mixins";
+
 @use "./sections/home";
-@use "./partials/header.scss";
+
+@use "./partials/burger";
 @use "./partials/footer.scss";
+@use "./partials/header.scss";

@@ -22,6 +22,14 @@ Encore
      */
     .addEntry('app', './assets/JS/app.js')
 
+    .enablePostCssLoader((options) => {
+        options.postcssOptions = {
+            plugins: [
+                require('autoprefixer')()
+            ]
+        };
+    })
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
@@ -29,13 +37,6 @@ Encore
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
 
-    /*
-     * FEATURE CONFIG
-     *
-     * Enable & configure other features below. For a full
-     * list of features, see:
-     * https://symfony.com/doc/current/frontend.html#adding-more-features
-     */
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())

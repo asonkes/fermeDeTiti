@@ -1,7 +1,72 @@
+@use "../mixins/mixins";
+
 .home {
+    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-image: url('../../../public/images/backgroundImages/recolter-du-ble-dans-pre-tranquille-au-coucher-du-soleil-genere-par-ia_24640-80628.webp');
     background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
+    font-family: var(--font-family1);
+
+    &__logo {
+        max-width: 100%;
+        padding: 50px;
+
+        & .home__logo-image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__language {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        &-options {
+            width: 35%;
+            display: flex;
+            justify-content: space-around;
+
+            .home__language-option {
+                width: 45px;
+                height: 45px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: var(--white);
+                border-radius: 25px;
+                border: 2px solid var(--white);
+                font-size: 22px;
+            }
+        }
+    }
+
+    &__button {
+        width: 278px;
+        height: 46px;
+        margin-top: 80px;
+        display: flex;
+        justify-content: center;
+
+        &-link {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: var(--black);
+            background-color: var(--vert);
+            border-radius: 20px;
+            font-weight: 600;
+            text-decoration-line: none;
+        }
+    }
 }
 
 .home1 {

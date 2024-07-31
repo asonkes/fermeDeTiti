@@ -1,0 +1,111 @@
+@use "../mixins/mixins";
+
+.burger {
+    width: 100%;
+    position: fixed;
+    z-index: 999999;
+
+
+    &.active {
+        background-color: var(--orangeSpecial);
+    }
+
+    &__link {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin: 10px 0 10px 20px;
+
+        & .burger__icon {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: relative;
+
+            & .span {
+                width: 100%;
+                height: 4px;
+                display: block;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: black;
+                transition: background-color 0.2s ease-in-out;
+
+                &.active {
+                    background-color: transparent;
+                }
+
+                &::before,
+                &::after {
+                    content: '';
+                    width: 100%;
+                    height: 4px;
+                    display: block;
+                    position: absolute;
+                    background-color: black;
+                    transition: transform 0.2s ease-in-out;
+                }
+
+                &::before {
+                    transform: translateY(-10px);
+                }
+
+                &.active::before {
+                    transform: translateY(0px) rotateZ(45deg);
+                }
+
+                &::after {
+                    transform: translateY(10px);
+                }
+
+                &.active::after {
+                    transform: translateY(0px) rotateZ(-45deg);
+                }
+
+            }
+        }
+    }
+
+    &__menu {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        display: none;
+
+        &.active {
+            display: block;
+        }
+
+        &-item {
+            width: 100%;
+            text-align: center;
+
+            & .burger__menu-link {
+                width: 100%;
+                display: block;
+                font-family: var(--font-family1);
+                font-size: 22px;
+                font-weight: 600;
+                padding: 20px;
+                color: var(--black);
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline solid var(--vert);
+                    text-decoration-thickness: 3px;
+                    text-underline-offset: 7px;
+                    font-size: larger;
+                    border: 1px solid var(--vert);
+                    color: var(--black);
+                }
+            }
+        }
+    }
+
+    @include mixins.lg-lt {
+        display: none;
+    }
+}

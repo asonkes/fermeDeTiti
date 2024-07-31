@@ -4,10 +4,19 @@
 {% endblock %}
 
 {% block body %}
-	<section
-		class="home"><!--
-					<h1>Bonjour page Home</h1>
-					-->
+	<section class="home">
+		<div class="home__logo">
+			<img class="home__logo-image" src="{{ asset('images/logo/Logo.png')}}" alt="logo de la ferme avec une fermière et le nom de la ferme">
+		</div>
+		<div class="home__language">
+			<div class="home__language-options">
+				<p class="home__language-option">FR</p>
+				<p class="home__language-option">NL</p>
+			</div>
+		</div>
+		<div class="home__button">
+			<a href="#" class="home__button-link">Contactez-nous</a>
+		</div>
 	</section>
 	<section class="home1">
 		<h1>Bonjour section nos produits</h1>
