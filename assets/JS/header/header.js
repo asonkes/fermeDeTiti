@@ -21,15 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if(header) {
             header.classList.add('active2');
             menu.classList.add('active2');  
-            linkMenu.forEach((e) => {
-                e.classList.add('active');
-            });      
+           
         } else {
             header.classList.remove('active2');
             menu.classList.remove('active2');
-            linkMenu.forEach((e) => {
-                e.classList.remove('active');
-            });  
+     
         }
     })
     

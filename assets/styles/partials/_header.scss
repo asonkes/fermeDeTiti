@@ -17,7 +17,7 @@
     }
 
     &.active2 {
-        background-color: var(--brun);
+        background-color: var(--vert2);
     }
 
     @include mixins.lg {
@@ -48,12 +48,6 @@
             font-size: larger;
             padding: 21px;
             transition: transform 0.1s ease-in-out;
-        }
-
-        &.active:hover {
-            background-color: transparent;
-            font-weight: 400;
-            text-decoration-thickness: 1px;
         }
 
         & .menu__link-icon {
@@ -97,7 +91,7 @@
                 }
 
                 &.active2 {
-                    background-color: var(--brun);
+                    background-color: var(--vert2);
                 }
             }
         }
