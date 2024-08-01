@@ -1,0 +1,46 @@
+.home__products {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: url('../../../public/images/backgroundImages/champ-ble-ondulant-dans-fond-du-champ-vent_1268-30616.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: 4px solid red;
+    z-index: 2;
+
+    & .overlay {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1;
+    }
+
+    & .home__title-h2,
+    & .home__grid {
+        position: relative;
+        z-index: 2;
+    }
+
+    & .home__title-h2 {
+        width: 100%;
+        text-align: center;
+        font-family: var(--font-family2);
+        font-size: 48px;
+        padding: 20px 0;
+        border: 4px solid blue;
+    }
+
+    & .home__grid {
+        width: 100%;
+        //height: 100%;
+        grid-template-columns: 4 (1fr 1fr 1fr 1fr);
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 20px;
+        border: 4px solid green;
+    }
+}

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     burgerLink.addEventListener('click', (e) => {
         e.preventDefault();
 
-        const span = document.querySelector('.span');
+        const span = document.querySelector('.burger__span');
         const burgerMenu = document.querySelector('.burger__menu');
         const burger = document.querySelector('.burger');
         const home = document.querySelector('.home');

@@ -16,6 +16,10 @@
         background-color: var(--vertSpecial);
     }
 
+    &.active2 {
+        background-color: var(--brun);
+    }
+
     @include mixins.lg {
         display: none;
     }
@@ -26,11 +30,15 @@
         height: 100%;
         display: block;
         font-family: var(--font-family1);
-        font-size: 20px;
+        font-size: 22px;
         color: var(--white);
         font-weight: 600;
         text-decoration-line: none;
         padding: 20px;
+
+        &.active {
+            font-weight: 400;
+        }
 
         &:hover {
             text-decoration: underline solid var(--white);
@@ -40,7 +48,21 @@
             font-size: larger;
             padding: 21px;
             transition: transform 0.1s ease-in-out;
+        }
 
+        &.active:hover {
+            background-color: transparent;
+            font-weight: 400;
+            text-decoration-thickness: 1px;
+        }
+
+        & .menu__link-icon {
+            transform: rotate(90deg);
+            padding: 5px;
+
+            &.active {
+                transform: rotate(270deg);
+            }
         }
     }
 
@@ -56,7 +78,7 @@
         align-items: center;
 
         &__item {
-            width: 200px;
+            width: 210px;
             height: fit-content;
             text-align: center;
 
@@ -65,13 +87,17 @@
             }
 
             & .menu__submenu {
-                width: 200px;
+                width: 210px;
                 position: absolute;
                 display: none;
 
                 &.active {
                     display: block;
                     background-color: var(--vertSpecial);
+                }
+
+                &.active2 {
+                    background-color: var(--brun);
                 }
             }
         }
@@ -87,8 +113,8 @@
             padding: 0 10px;
 
             &-image {
-                width: 35px;
-                height: 35px;
+                width: 32px;
+                height: 32px;
                 transform: scale(1);
                 transition: 0.3s ease-in-out;
 

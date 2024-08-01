@@ -18,9 +18,25 @@
         transition: 0.3s ease-in-out;
     }
 
+    &__title-h1 {
+        color: transparent;
+    }
+
     &__logo {
         max-width: 100%;
+        width: 380px;
+        height: 450px;
         padding: 50px;
+
+        @include mixins.md {
+            width: 360px;
+            height: 430px;
+        }
+
+        @include mixins.s {
+            width: 340px;
+            height: 410px;
+        }
 
         & .home__logo-image {
             width: 100%;
@@ -32,13 +48,19 @@
         width: 100%;
         display: flex;
         justify-content: center;
+        margin-top: -40px;
+
+        @include mixins.s {
+            margin-top: -50px;
+        }
 
         &-options {
-            width: 35%;
+            width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
 
-            .home__language-option {
+            & .home__language-option1,
+            & .home__language-option2 {
                 width: 45px;
                 height: 45px;
                 display: flex;
@@ -48,6 +70,22 @@
                 border-radius: 25px;
                 border: 2px solid var(--white);
                 font-size: 22px;
+
+                @include mixins.lg {
+                    font-size: 20px;
+                }
+
+                @include mixins.s {
+                    font-size: 17px;
+                }
+            }
+
+            & .home__language-option1 {
+                margin-right: 70px;
+            }
+
+            & .home__language-option2 {
+                margin-left: 70px;
             }
         }
     }
@@ -58,6 +96,10 @@
         margin-top: 80px;
         display: flex;
         justify-content: center;
+
+        @include mixins.lg {
+            width: 200px;
+        }
 
         &-link {
             width: 100%;
@@ -70,14 +112,14 @@
             border-radius: 20px;
             font-weight: 600;
             text-decoration-line: none;
+
+            @include mixins.s {
+                font-size: 17px;
+            }
         }
     }
 }
 
-.home1 {
-    background-color: green;
-}
-
 .home2 {
-    background-color: red;
+    background-color: orange;
 }

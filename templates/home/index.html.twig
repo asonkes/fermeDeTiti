@@ -5,23 +5,35 @@
 
 {% block body %}
 	<section class="home">
+		<h1 class="home__title-h1">La ferme de titi</h1>
 		<div class="home__logo">
 			<img class="home__logo-image" src="{{ asset('images/logo/Logo.png')}}" alt="logo de la ferme avec une fermière et le nom de la ferme">
 		</div>
 		<div class="home__language">
 			<div class="home__language-options">
-				<p class="home__language-option">FR</p>
-				<p class="home__language-option">NL</p>
+				<p class="home__language-option1 ">FR</p>
+				<p class="home__language-option2">NL</p>
 			</div>
 		</div>
 		<div class="home__button">
 			<a href="#" class="home__button-link">Contactez-nous</a>
 		</div>
 	</section>
-	<section class="home1">
-		<h1>Bonjour section nos produits</h1>
+
+
+	<section class="home__products">
+		<div class="overlay"></div>
+		<h2 class="home__title-h2">Nos Produits</h2>
+		<div class="home__grid">
+			<div class="home__card1"></div>
+			<div class="home__card2"></div>
+			<div class="home__card3"></div>
+			<div class="home__card4"></div>
+		</div>
 	</section>
 </section>
+
+
 <section class="home2">
 	<h1>Bonjour section notre histoire</h1>
 </section></section>{% endblock %}
