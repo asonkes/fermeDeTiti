@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const linkMenu = document.querySelectorAll('.menu__link, .menu__submenu-link');
     const linkSpecial = document.querySelector('.menu__link--special');
     const linkIcon = document.querySelector('.menu__link-icon');
     const menu = document.querySelector('.menu__submenu');
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             header.classList.remove('active2');
             menu.classList.remove('active2');
-     
         }
     })
     
