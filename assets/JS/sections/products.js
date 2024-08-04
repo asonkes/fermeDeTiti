@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (cardContent) {
                         cardContent.classList.add('active');
                     }
-                }, index * 250); // délai de 250ms entre chaque carte
+                }, index * 200); // délai de 200ms entre chaque carte
             });
         }
     }

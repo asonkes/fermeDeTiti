@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('scroll', (e) => {
         e.preventDefault();
+
+        const { scrollTop } = document.documentElement;
+
         if(header) {
             header.classList.add('active2');
             menu.classList.add('active2');  
@@ -25,6 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('active2');
             menu.classList.remove('active2');
         }
+
+        if(scrollTop === 0) {
+            header.classList.add('active');
+            header.classList.remove('active2');
+        }
+
+        
     })
     
     window.addEventListener('click', (event) => {
