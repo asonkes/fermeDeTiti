@@ -4,7 +4,8 @@
 @use "./mixins/mixins";
 
 @use "./sections/home";
-@use "./sections/products";
+@use "./sections/categories";
+@use "./sections/history";
 
 @use "./partials/burger";
 @use "./partials/footer.scss";

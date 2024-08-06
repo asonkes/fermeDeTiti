@@ -1,6 +1,6 @@
 @use "../mixins/mixins";
 
-.home__products {
+.home__categories {
     width: 100%;
     position: relative;
     background-image: url('../../../public/images/backgroundImages/champ-ble-ondulant-dans-fond-du-champ-vent_1268-30616.webp');
@@ -9,7 +9,7 @@
     background-size: cover;
     z-index: 2;
 
-    & .home__overlay {
+    & .categories__overlay {
         content: '';
         position: absolute;
         top: 0;
@@ -20,13 +20,13 @@
         z-index: 1;
     }
 
-    & .home__title-h2,
-    & .home__grid-container {
+    & .categories__title-h2,
+    & .categories__grid-container {
         position: relative;
         z-index: 2;
     }
 
-    & .home__title-h2 {
+    & .categories__title-h2 {
         width: 100%;
         text-align: center;
         font-family: var(--font-family2);
@@ -38,13 +38,15 @@
         }
     }
 
-    & .home__grid-container {
+    & .categories__grid-container {
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
+        padding: 40px;
 
-        & .home__grid {
+        & .categories__grid {
+            max-width: 100%;
             height: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -71,7 +73,7 @@
                 grid-template-columns: 1fr;
             }
 
-            & .home__card {
+            & .category__card {
                 width: 275px;
                 height: 330px;
 

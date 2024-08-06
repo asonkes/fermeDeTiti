@@ -7,5 +7,5 @@ import './burger/burger';
 
 // Import des fichiers JS (sections)
 import './sections/home';
-import './sections/products';
-
+import './sections/categories';
+import './sections/history';
