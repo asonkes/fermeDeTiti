@@ -46,26 +46,26 @@
         padding: 80px;
 
         @include mixins.lg {
-            padding: 0;
-        }
-
-        @include mixins.md-lt {
             padding: 40px;
         }
 
         & .history__grid {
-            max-width: 75%;
+            width: 75%;
             height: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
 
-            @include mixins.xxl {
-                max-width: 90%;
+            @include mixins.xl {
+                width: 85%;
             }
 
             @include mixins.lg {
                 gap: 40px;
+            }
+
+            @include mixins.md-lt-lt {
+                width: 90%;
             }
 
             @include mixins.md-lt {
@@ -95,15 +95,15 @@
                     align-items: center;
                     text-decoration: underline;
                     text-underline-offset: 8px;
-                    font-size: 35px;
+                    font-size: 32px;
                     font-family: var(--font-family3);
 
-                    @include mixins.md {
+                    @include mixins.md-lt-lt {
                         font-size: 30px;
                     }
 
                     @include mixins.xs {
-                        font-size: 28px;
+                        font-size: 25px;
                     }
                 }
 

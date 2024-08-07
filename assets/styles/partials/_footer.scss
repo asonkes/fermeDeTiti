@@ -1,0 +1,23 @@
+@use "../mixins/mixins";
+
+.footer {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--vert2);
+
+    &__text {
+        font-family: var(--font-family1);
+        font-size: 14px;
+        color: var(--white);
+        font-weight: 600;
+        text-align: center;
+        padding: 0 15px;
+
+        @include mixins.s {
+            font-size: 12px;
+        }
+    }
+}
