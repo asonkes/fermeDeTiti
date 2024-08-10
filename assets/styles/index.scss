@@ -1,13 +1,26 @@
 @use "./base";
 @use "./variables";
 
+// use des mixins
 @use "./mixins/mixins";
 
-@use "./sections/home";
-@use "./sections/categories";
-@use "./sections/history";
-@use "./sections/contact";
-
+//use des fichiers liés au header et menu burger
 @use "./partials/burger";
 @use "./partials/footer.scss";
 @use "./partials/header.scss";
+
+// use des fichiers de "home" et page par défault
+@use "./sections/section";
+@use "./sections/home";
+
+// use des fichiers de grid par défault
+@use "./sections/categories";
+
+// use des autres "Controller"
+@use "./article/article.scss";
+
+// use des composants
+@use "./components/dualbox.scss";
+@use "./components/swiper";
+@use "./components/form";
+@use "./components/banneryHead";

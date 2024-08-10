@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Warelles - Article
+{% endblock %}
+
+{% block body %}
+	<section class="article h-warelles">
+		<div class="article__overlay"></div>
+		<h2 class="article__title-h2">Détails du produit</h2>
+		<div class="article__grid-container">
+			<div class="article__grid">
+				<div class="article__card-left">
+					<img class="card__left-image " src="{{ asset('images/articles/vue-face-jus-pomme-frais-pommes-fraiches-bureau-bois-marron-photo-cocktail-fruits-couleur-boisson_140725-92833.webp')}}" alt="image représentant l'image d'un jus de fruit">
+				</div>
+				<div class="article__card-right">
+					<p class="article__card-title">Jus de pommes</p>
+					<div class="article__card-content">
+						<div class="card__text-container">
+							<p class="card__text">Nom de l'entreprise et producteur</p>
+							<i class="fa-solid fa-chevron-right card__icon"></i>
+						</div>
+						<div class="card__text-container">
+							<p class="card__text">Description du produit</p>
+							<i class="fa-solid fa-chevron-right card__icon"></i>
+						</div>
+						<div class="card__text-container">
+							<p class="card__text">Localisation de l'entreprise</p>
+							<i class="fa-solid fa-chevron-right card__icon"></i>
+						</div>
+						<div class="card__text-container">
+							<p class="card__text">Autres produits de ce producteur</p>
+							<i class="fa-solid fa-chevron-right card__icon"></i>
+						</div>
+
+						<div class="card__button-container">
+							<button class="card__button">
+								<a class="card__button-link" href="#">Ajouter au panier</a>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,66 @@
+@use "../mixins/mixins";
+
+.banneryHead {
+    width: 100%;
+    position: relative;
+    z-index: 4;
+    background-color: var(--vert);
+    border: 1px dashed var(--black);
+
+    &__grid {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        @include mixins.md-lt {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        &-left {
+            @include mixins.md-lt {
+                grid-column: span 2;
+            }
+        }
+
+        &-right,
+        &-center,
+        &-left {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+    }
+
+    &__icon {
+        width: 35px;
+        height: 35px;
+
+        @include mixins.s {
+            width: 30px;
+            height: 30px;
+        }
+
+        & .banneryHead__icon-image {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__text {
+        font-family: var(--font-family1);
+        font-size: 18px;
+
+        @include mixins.md {
+            font-size: 16px;
+        }
+
+        @include mixins.s {
+            font-size: 12px;
+        }
+    }
+}

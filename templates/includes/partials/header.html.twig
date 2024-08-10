@@ -2,39 +2,39 @@
 	<nav class="header__nav">
 		<ul class="menu">
 			<li class="menu__item">
-				<a href="#" class="menu__link">Accueil</a>
+				<a href="{{ path('home')}}" class="menu__link">Accueil</a>
 			</li>
 			<li class="menu__item">
-				<a href="#" class="menu__link menu__link--special">
+				<a href="{{ path('home')}}#history" class="menu__link menu__link--special">
 					Nos Produits
 					<i class="fa-solid fa-chevron-right menu__link-icon"></i>
 				</a>
 				<ul class="menu__submenu">
 					<li class="menu__submenu-item">
-						<a href="#" class="menu__submenu-link">Boissons</a>
+						<a href="{{ path('products')}}" class="menu__submenu-link">Boissons</a>
 					</li>
 					<li class="menu__submenu-item">
-						<a href="#" class="menu__submenu-link">Fruits</a>
+						<a href="{{ path('products')}}" class="menu__submenu-link">Fruits</a>
 					</li>
 					<li class="menu__submenu-item">
-						<a href="#" class="menu__submenu-link">Légumes</a>
+						<a href="{{ path('products')}}" class="menu__submenu-link">Légumes</a>
 					</li>
 					<li class="menu__submenu-item">
-						<a href="#" class="menu__submenu-link">Boulangerie</a>
+						<a href="{{ path('products')}}" class="menu__submenu-link">Boulangerie</a>
 					</li>
 					<li class="menu__submenu-item">
-						<a href="#" class="menu__submenu-link">Crèmerie</a>
+						<a href="{{ path('products')}}" class="menu__submenu-link">Crèmerie</a>
 					</li>
 					<li class="menu__submenu-item">
-						<a href="#" class="menu__submenu-link">Bières</a>
+						<a href="{{ path('products')}}" class="menu__submenu-link">Bières</a>
 					</li>
 				</ul>
 			</li>
 			<li class="menu__item">
-				<a href="{{path('home')}}#home__history" class="menu__link">Notre Histoire</a>
+				<a href="{{ path('home')}}#history" class="menu__link">Notre Histoire</a>
 			</li>
 			<li class="menu__item">
-				<a href="{{ path('home') }}#home__contact" class="menu__link">Contact</a>
+				<a href="{{ path('home') }}#contact" class="menu__link">Contact</a>
 			</li>
 		</ul>
 	</nav>
@@ -67,7 +67,7 @@
 	<nav class="burger__nav">
 		<ul class="burger__menu">
 			<li class="burger__menu-item">
-				<a href="#" class="burger__menu-link">Accueil</a>
+				<a href=" {{ path('home')}}" class="burger__menu-link">Accueil</a>
 			</li>
 			<li class="burger__menu-item">
 				<a href="#" class="burger__menu-link">Nos Produits</a>
@@ -91,10 +91,10 @@
 				<a href="#" class="burger__menu-link">Bières</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="{{ path('home')}}#home__history" class="burger__menu-link">Notre Histoire</a>
+				<a href="{{ path('home')}}#history" class="burger__menu-link">Notre Histoire</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="{{ path('home')}}#home__contact" class="burger__menu-link">Contact</a>
+				<a href="{{ path('home')}}#contact" class="burger__menu-link">Contact</a>
 			</li>
 			<li class="burger__menu-item">
 				<a href="#" class="burger__menu-link">Mon compte</a>

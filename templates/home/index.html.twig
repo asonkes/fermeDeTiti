@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<section class="home">
+	<section class="home h-warelles homeWindow">
 		<h1 class="home__title-h1">La ferme de titi</h1>
 		<div class="home__logo">
 			<img class="home__logo-image" src="{{ asset('images/logo/Logo.png')}}" alt="logo de la ferme avec une fermière et le nom de la ferme">
@@ -16,14 +16,14 @@
 			</div>
 		</div>
 		<div class="home__button">
-			<a href="{{ path('home') }}#home__contact" class="home__button-link">
+			<a href="{{ path('home') }}#contact" class="home__button-link">
 				Contactez-nous
 				<i class="fa-solid fa-chevron-right home__button-icon"></i>
 			</a>
 		</div>
 	</section>
 
-	<section class="home__categories">
+	<section class="home__categories" id="categories">
 		<div class="categories__overlay"></div>
 		<h2 class="categories__title-h2">Nos Produits</h2>
 		<div class="categories__grid-container">
@@ -92,21 +92,18 @@
 		</div>
 	</section>
 
-	<section class="home__history" id="home__history">
-		<div class="history__overlay"></div>
-		<h2 class="history__title-h2">Notre Histoire</h2>
-		<div class="history__grid-container">
-			<div class="history__grid">
-				<div class="history__card-left">
-					<p class="history__card-title">La Ferme de Warelles</p>
-					<div class="history__card-content">
-						<p class="history__card-text">Nichée à Enghien, dans le Hainaut, la ferme de Warelles est un modèle de durabilité écologique.</p>
-						<br>
-						<p class="history__card-text">Fondée en 2020, elle utilise la permaculture et des techniques naturelles pour préserver le sol.</p>
-						<br>
-						<p class="history__card-text">Les poules, chèvres et abeilles de la ferme contribuent à l'écosystème, tandis que l'irrigation goutte-à-goutte et l'énergie solaire réduisent l'empreinte écologique.</p>
-						<br>
-						<p class="history__card-text">La ferme propose également des ateliers éducatifs et vend des produits, favorisant une agriculture respectueuse de l'environnement.</p>
+	<section class="section" id="history">
+		<div class="section__bg-overlay"></div>
+		<h2 class="section__title-h2">Notre Histoire</h2>
+		<div class="dualbox">
+			<div class="dualbox__container history__grid-container">
+				<div class="dualbox__item-left dualbox__item-left--history">
+					<p class="dualbox__title">La Ferme de Warelles</p>
+					<div class="dualbox__content">
+						<p class="dualbox__content-text">Nichée à Enghien, dans le Hainaut, la ferme de Warelles est un modèle de durabilité écologique.</p>
+						<p class="dualbox__content-text">Fondée en 2020, elle utilise la permaculture et des techniques naturelles pour préserver le sol.</p>
+						<p class="dualbox__content-text">Les poules, chèvres et abeilles de la ferme contribuent à l'écosystème, tandis que l'irrigation goutte-à-goutte et l'énergie solaire réduisent l'empreinte écologique.</p>
+						<p class="dualbox__content-text">La ferme propose également des ateliers éducatifs et vend des produits, favorisant une agriculture respectueuse de l'environnement.</p>
 					</div>
 				</div>
 				<div class="swiper">
@@ -135,33 +132,33 @@
 			</div>
 		</div>
 	</section>
-	<section class="home__contact" id="home__contact">
-		<div class="contact__overlay"></div>
-		<h2 class="contact__title-h2">Nous Contacter</h2>
-		<div class="contact__grid-container">
-			<div class="contact__grid">
-				<div class="contact__card-left">
-					<form class="card__form" action="contact" method="post">
-						<ul class="card__form-ul">
-							<li class="card__form-li">
-								<label class="card__form-label" for="firstName">Nom:</label>
-								<input class="card__form-input" type="text" placeholder="Entrez votre nom" id="firstname" name="user_name">
+	<section class="section section--padding" id="contact">
+		<div class="section__bg-overlay"></div>
+		<h2 class="section__title-h2">Nous Contacter</h2>
+		<div class="dualbox">
+			<div class="dualbox__container dualbox__container--resize">
+				<div class="dualbox__item-left">
+					<form class="form" action="contact" method="post">
+						<ul class="form-ul">
+							<li class="form-li">
+								<label class="form-label" for="firstName">Nom:</label>
+								<input class="form-input" type="text" placeholder="Entrez votre nom" id="firstname" name="user_name">
 							</li>
-							<li class="card__form-li">
-								<label class="card__form-label" for="lastName">Prénom :</label>
-								<input class="card__form-input" type="text" placeholder="Entrez votre nom" id="lastName" name="user_lastName">
+							<li class="form-li">
+								<label class="form-label" for="lastName">Prénom :</label>
+								<input class="form-input" type="text" placeholder="Entrez votre nom" id="lastName" name="user_lastName">
 							</li>
-							<li class="card__form-li">
-								<label class="card__form-label" for="mail">E-mail:</label>
-								<input class="card__form-input" type="text" placeholder="Entrez votre addresse mail" id="mail" name="user_mail">
+							<li class="form-li">
+								<label class="form-label" for="mail">E-mail :</label>
+								<input class="form-input" type="text" placeholder="Entrez votre addresse mail" id="mail" name="user_mail">
 							</li>
-							<li class="card__form-li">
-								<label class="card__form-label" for="adress">Adresse:</label>
-								<input class="card__form-input" type="text" placeholder="Entrez votre addresse" id="address" name="user_address">
+							<li class="form-li">
+								<label class="form-label" for="adress">Adresse :</label>
+								<input class="form-input" type="text" placeholder="Entrez votre addresse" id="address" name="user_address">
 							</li>
-							<li class="card__form-li">
-								<label class="card__form-label" for="message">Message:</label>
-								<textarea class="card__form-textarea" placeholder="Entrez votre addresse" name="user_message" id="message"></textarea>
+							<li class="form-li">
+								<label class="form-label" for="message">Message :</label>
+								<textarea class="form-textarea" placeholder="Entrez votre addresse" name="user_message" id="message"></textarea>
 							</li>
 						</ul>
 
@@ -172,33 +169,33 @@
 						</div>
 					</form>
 				</div>
-				<div class="contact__card-right">
-					<iframe class="card__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12741.12678008157!2d4.045140484686441!3d50.67985695246992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3b3e64ef7ccd1%3A0xa73a34d132379dc6!2sLa%20Ferme%20de%20Warelles!5e0!3m2!1sfr!2sbe!4v1722945582588!5m2!1sfr!2sbe" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+				<div class="dualbox__item-right">
+					<iframe class="dualbox__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12741.12678008157!2d4.045140484686441!3d50.67985695246992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3b3e64ef7ccd1%3A0xa73a34d132379dc6!2sLa%20Ferme%20de%20Warelles!5e0!3m2!1sfr!2sbe!4v1722945582588!5m2!1sfr!2sbe" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
 		</div>
-		<div class="grid__informations-container">
-			<div class="grid__informations">
-				<div class="grid__information-left">
-					<div class="grid__icon-container">
-						<img class="grid__icon-image" src="{{ asset('images/icons/Telephone-01-256.png')}}" alt="">
+		<div class="banneryHead">
+			<div class="banneryHead__grid">
+				<div class="banneryHead__grid-right">
+					<div class="banneryHead__icon">
+						<img class="banneryHead__icon-image" src="{{ asset('images/icons/Telephone-01-256.png')}}" alt="image représentant l'icône d'un téléphone">
 					</div>
-					<p class="grid__text">Service Client</p>
-					<p class="grid__text">+32477/36.39.71</p>
+					<p class="banneryHead__text">Service Client</p>
+					<p class="banneryHead__text">+32477/36.39.71</p>
 				</div>
-				<div class="grid__information-center">
-					<div class="grid__icon-container">
-						<img class="grid__icon-image" src="{{ asset('images/icons/Message-Mail-256.png')}}" alt="">
+				<div class="banneryHead__grid-center">
+					<div class="banneryHead__icon">
+						<img class="banneryHead__icon-image" src="{{ asset('images/icons/Message-Mail-256.png')}}" alt="image représentant l'icône d'un mail(enveloppe)">
 					</div>
-					<p class="grid__text">E-mail</p>
-					<p class="grid__text">infos_warelles@gmail.com</p>
+					<p class="banneryHead__text">E-mail</p>
+					<p class="banneryHead__text">infos_warelles@gmail.com</p>
 				</div>
-				<div class="grid__information-right">
-					<div class="grid__icon-container">
-						<img class="grid__icon-image" src="{{ asset('images/icons/Alarm-Clock-256.png')}}" alt="">
+				<div class="banneryHead__grid-left">
+					<div class="banneryHead__icon">
+						<img class="banneryHead__icon-image" src="{{ asset('images/icons/Alarm-Clock-256.png')}}" alt="image représentant l'icône d'une horloge">
 					</div>
-					<p class="grid__text">Du Lundi au Samedi</p>
-					<p class="grid__text">de 10h00 à 18h00</p>
+					<p class="banneryHead__text">Du Lundi au Samedi</p>
+					<p class="banneryHead__text">de 10h00 à 18h00</p>
 				</div>
 			</div>
 		</div>

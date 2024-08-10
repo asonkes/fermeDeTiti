@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sélectionner le conteneur de la grille et toutes les cartes
     const grid = document.querySelector('.categories__grid-container');
     const cards = document.querySelectorAll('.category__card');
+    const homeWindow = document.querySelector('.homeWindow');
     
     // Fonction pour ajouter les classes `active` aux éléments progressivement
     function addActiveClassToElements() {
@@ -13,26 +14,28 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Vérifier si le conteneur de la grille est visible à plus de 50% dans la fenêtre
         if (scrollTop > (scrollTop + topWindow - clientHeight * 0.50)) {
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    const cardTitle = card.querySelector('.category__card-title');
-                    const cardContent = card.querySelector('.category__card-content');
-                    
-                    // Ajouter la classe `active` au titre et au contenu de la carte
-                    if (cardTitle) {
-                        cardTitle.classList.add('active');
-                    }
-                    if (cardContent) {
-                        cardContent.classList.add('active');
-                    }
-                }, index * 200); // délai de 200ms entre chaque carte
-            });
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        const cardTitle = card.querySelector('.category__card-title');
+                        const cardContent = card.querySelector('.category__card-content');
+                        
+                        // Ajouter la classe `active` au titre et au contenu de la carte
+                        if (cardTitle) {
+                            cardTitle.classList.add('active');
+                        }
+                        if (cardContent) {
+                            cardContent.classList.add('active');
+                        }
+                    }, index * 200); // délai de 200ms entre chaque carte
+                });
         }
     }
 
+    if (homeWindow) {
     // Écouter l'événement de défilement
     window.addEventListener('scroll', (e) => {
         e.preventDefault();
         addActiveClassToElements();
     });
+    }
 });

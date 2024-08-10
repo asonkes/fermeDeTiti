@@ -1,0 +1,151 @@
+@use "../mixins/mixins";
+
+.dualbox {
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 80px;
+
+    @include mixins.lg {
+        padding: 40px;
+    }
+
+    &__container {
+        width: 75%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+
+        @include mixins.xl {
+            width: 85%;
+        }
+
+        @include mixins.lg {
+            gap: 40px;
+        }
+
+        @include mixins.md-lt-lt {
+            width: 90%;
+        }
+
+        @include mixins.md-lt {
+            max-width: 70%;
+            grid-template-columns: 1fr;
+        }
+
+        @include mixins.md {
+            max-width: 90%;
+        }
+
+        @include mixins.s {
+            max-width: 100%;
+        }
+
+        .dualbox__item-left {
+            max-width: 100%;
+            height: 610px;
+
+            .dualbox__title {
+                max-width: 100%;
+                height: 15%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: underline;
+                text-underline-offset: 8px;
+                font-size: 32px;
+                font-family: var(--font-family3);
+
+                @include mixins.md-lt-lt {
+                    font-size: 30px;
+                }
+
+                @include mixins.xs {
+                    font-size: 25px;
+                }
+            }
+
+            .dualbox__content {
+                max-width: 100%;
+                height: 80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0 20px;
+
+                &-text {
+                    font-family: var(--font-family3);
+                    font-size: 22px;
+                    padding: 10px;
+
+                    @include mixins.xl {
+                        font-size: 20px;
+                        padding: 5px;
+                    }
+
+                    @include mixins.md-lt-lt {
+                        font-size: 19px;
+                    }
+
+                    @include mixins.md-lt {
+                        padding: 10px;
+                    }
+
+                    @include mixins.md {
+                        padding: 5px;
+                    }
+
+                    @include mixins.s {
+                        font-size: 17px;
+                    }
+
+                    @include mixins.xs {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+        .dualbox__item-left--history {
+            background-image: url('../../../public/images/backgroundImages/fond-papier-grunge_1048-10849.webp');
+            border-radius: 20px;
+        }
+
+        .dualbox__item-left--contact {
+            display: flex;
+            align-items: center;
+        }
+
+        .dualbox__item-right {
+            max-width: 100%;
+            height: 610px;
+
+            .dualbox__iframe {
+                width: 100%;
+                height: 610px;
+            }
+        }
+    }
+
+    &__container--resize {
+
+        @include mixins.xl {
+            width: 90%;
+        }
+
+        @include mixins.md-lt-lt {
+            width: 96%;
+        }
+
+        @include mixins.md-lt {
+            max-width: 75%;
+        }
+
+        @include mixins.md {
+            max-width: 95%;
+        }
+    }
+}

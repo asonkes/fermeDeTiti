@@ -33,8 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.add('active');
             header.classList.remove('active2');
         }
-
-        
     })
     
     window.addEventListener('click', (event) => {

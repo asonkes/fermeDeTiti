@@ -1,0 +1,198 @@
+@use "../mixins/mixins";
+
+.article {
+    max-width: 100%;
+    position: relative;
+    background-image: url('../../../public/images/backgroundImages/champ-ble-ondulant-dans-fond-du-champ-vent_1268-30616.webp');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 2;
+
+    & .article__overlay {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1;
+    }
+
+    & .article__title-h2,
+    & .article__grid-container {
+        position: relative;
+        z-index: 2;
+    }
+
+    & .article__title-h2 {
+        max-width: 100%;
+        text-align: center;
+        font-family: var(--font-family2);
+        font-size: 48px;
+        padding: 90px 0 30px 0;
+
+        @include mixins.lg {
+            font-size: 40px;
+        }
+    }
+
+    & .article__grid-container {
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 80px;
+
+        @include mixins.lg {
+            padding: 40px;
+        }
+
+        & .article__grid {
+            width: 75%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+
+            @include mixins.xl {
+                width: 85%;
+            }
+
+            @include mixins.lg {
+                gap: 40px;
+            }
+
+            @include mixins.md-lt-lt {
+                width: 90%;
+            }
+
+            @include mixins.md-lt {
+                max-width: 70%;
+                grid-template-columns: 1fr;
+            }
+
+            @include mixins.md {
+                max-width: 90%;
+            }
+
+            @include mixins.s {
+                max-width: 100%;
+            }
+
+            & .article__card-left {
+                max-width: 100%;
+                height: 610px;
+
+                & .card__left-image {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 20px;
+                    object-fit: cover;
+                }
+            }
+
+            & .article__card-right {
+                max-width: 100%;
+                height: 610px;
+                border-radius: 20px;
+                border: 4px solid blue;
+
+                & .article__card-title {
+                    max-width: 100%;
+                    height: 20%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 30px;
+                    font-family: var(--font-family1);
+                    font-weight: 600;
+
+                    @include mixins.xs {
+                        font-size: 25px;
+                    }
+                }
+
+                & .article__card-content {
+                    max-width: 100%;
+                    height: 80%;
+                    display: flex;
+                    flex-direction: column;
+
+                    & .card__text-container {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border: 4px solid orange;
+
+                        & .card__text {
+                            font-family: var(--font-family1);
+                            font-size: 22px;
+                            font-weight: 600;
+                            padding: 10px;
+                            border: 4px solid green;
+
+                            @include mixins.xl {
+                                font-size: 20px;
+                                padding: 5px;
+                            }
+
+                            @include mixins.md-lt-lt {
+                                font-size: 19px;
+                            }
+
+                            @include mixins.md-lt {
+                                padding: 10px;
+                            }
+
+                            @include mixins.md {
+                                padding: 5px;
+                            }
+
+                            @include mixins.s {
+                                font-size: 17px;
+                            }
+
+                            @include mixins.xs {
+                                font-size: 16px;
+                            }
+                        }
+
+                        & .card__icon {
+                            transform: rotate(90deg);
+                        }
+                    }
+
+                    & .card__button-container {
+                        width: 100%;
+                        //height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        border: 4px solid blue;
+
+                        & .card__button {
+                            width: 240px;
+                            border-radius: 30px;
+                            padding: 10px;
+                            border: 4px solid orange;
+
+                            &-link {
+                                font-family: var(--font-family1);
+                                font-size: 20px;
+                                font-weight: 600;
+                                text-decoration: none;
+                                color: var(--black);
+
+                                :hover {
+                                    font-size: x-large;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

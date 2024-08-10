@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const span = document.querySelector('.burger__span');
         const burgerMenu = document.querySelector('.burger__menu');
         const burger = document.querySelector('.burger');
-        const home = document.querySelector('.home');
+        const home = document.querySelector('.h-warelles');
 
         if(span) {
             span.classList.toggle('active');

@@ -1,0 +1,101 @@
+@use "../mixins/mixins";
+
+.form {
+    width: 100%;
+    font-family: var(--font-family1);
+    font-size: 22px;
+    font-weight: 600;
+
+    &-ul {
+        width: 100%;
+        list-style: none;
+        padding: 10px;
+
+        & .form-li {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 12px 0;
+
+            & .form-input,
+            & .form-textarea {
+                font-family: var(--font-family1);
+                font-size: 18px;
+                font-style: italic;
+                border: none;
+                outline: none;
+                background-color: transparent;
+                padding: 10px 0;
+                text-decoration: underline;
+                text-decoration-thickness: 3px;
+                text-underline-offset: 4px;
+            }
+
+            & .form-label {
+                width: 100%;
+                font-family: var(--font-family1);
+                font-size: 22px;
+
+                @include mixins.md {
+                    font-size: 20px;
+                }
+
+                @include mixins.s {
+                    font-size: 17px;
+                }
+            }
+
+            & .form-input {
+                width: 100%;
+                font-size: 17px;
+
+                @include mixins.s {
+                    font-size: 14px;
+                }
+            }
+
+            & .form-textarea {
+                width: 100%;
+                resize: none;
+
+                @include mixins.s {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+
+    & .form__button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        & .form__button {
+            width: 200px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            border: none;
+            background-color: var(--vert);
+
+            &-link {
+                width: 100%;
+                font-family: var(--font-family1);
+                font-size: 18px;
+                font-weight: 600;
+                text-decoration: none;
+                color: var(--black);
+
+                &:hover {
+                    font-size: x-large;
+                }
+
+                @include mixins.s {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+}
