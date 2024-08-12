@@ -13,14 +13,11 @@
 @use "./sections/section";
 @use "./sections/home";
 
-// use des fichiers de grid par défault
-@use "./sections/categories";
-
-// use des autres "Controller"
-@use "./article/article.scss";
-
 // use des composants
-@use "./components/dualbox.scss";
-@use "./components/swiper";
-@use "./components/form";
+@use "./components/accordion";
 @use "./components/banneryHead";
+@use "./components/button";
+@use "./components/dualbox.scss";
+@use "./components/form";
+@use "./components/grid";
+@use "./components/swiper";

@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Sélectionner le conteneur de la grille et toutes les cartes
-    const grid = document.querySelector('.categories__grid-container');
-    const cards = document.querySelectorAll('.category__card');
-    const homeWindow = document.querySelector('.homeWindow');
+    const grid = document.querySelector('.grid');
+    const cards = document.querySelectorAll('.card__circle');
+    const home = document.querySelector('.home');
     
     // Fonction pour ajouter les classes `active` aux éléments progressivement
     function addActiveClassToElements() {
@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (scrollTop > (scrollTop + topWindow - clientHeight * 0.50)) {
                 cards.forEach((card, index) => {
                     setTimeout(() => {
-                        const cardTitle = card.querySelector('.category__card-title');
-                        const cardContent = card.querySelector('.category__card-content');
+                        const cardTitle = card.querySelector('.card__circle-title');
+                        const cardContent = card.querySelector('.card__circle-content');
                         
                         // Ajouter la classe `active` au titre et au contenu de la carte
                         if (cardTitle) {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (homeWindow) {
+    if (home) {
     // Écouter l'événement de défilement
     window.addEventListener('scroll', (e) => {
         e.preventDefault();

@@ -26,8 +26,8 @@
         color: var(--white);
     }
 
-    & .swiper-button-prev::after,
-    & .swiper-button-next::after {
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
         font-size: 35px;
 
         @include mixins.s {
@@ -35,11 +35,11 @@
         }
     }
 
-    & .swiper-pagination {
+    &-pagination {
         width: 100%;
         height: 30px;
 
-        & .swiper-pagination-bullet {
+        &-bullet {
             width: 20px;
             height: 20px;
             opacity: 1;
@@ -49,67 +49,10 @@
                 width: 15px;
                 height: 15px;
             }
-        }
 
-        & .swiper-pagination-bullet-active {
-            background-color: var(--vert);
-        }
-    }
-}
-
-.swiper {
-    max-width: 100%;
-    height: 610px;
-    border-radius: 20px;
-
-    &-wrapper {
-        width: 100%;
-        height: 100%;
-
-        & .swiper-slide {
-            width: 100%;
-            height: 100%;
-
-            & .swiper__slide-image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+            &-active {
+                background-color: var(--vert);
             }
-        }
-    }
-
-    &-button-prev,
-    &-button-next {
-        color: var(--white);
-    }
-
-    & .swiper-button-prev::after,
-    & .swiper-button-next::after {
-        font-size: 35px;
-
-        @include mixins.s {
-            font-size: 25px;
-        }
-    }
-
-    & .swiper-pagination {
-        width: 100%;
-        height: 30px;
-
-        & .swiper-pagination-bullet {
-            width: 20px;
-            height: 20px;
-            opacity: 1;
-            background-color: var(--white2);
-
-            @include mixins.s {
-                width: 15px;
-                height: 15px;
-            }
-        }
-
-        & .swiper-pagination-bullet-active {
-            background-color: var(--vert);
         }
     }
 }

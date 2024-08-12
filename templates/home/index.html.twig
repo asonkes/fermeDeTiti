@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home
+{% block title %}
+	Ferme de Warelles
 {% endblock %}
 
 {% block body %}
-	<section class="home h-warelles homeWindow">
+	<section class="home burgerEffect homeWindow">
 		<h1 class="home__title-h1">La ferme de titi</h1>
 		<div class="home__logo">
 			<img class="home__logo-image" src="{{ asset('images/logo/Logo.png')}}" alt="logo de la ferme avec une fermière et le nom de la ferme">
@@ -23,65 +24,65 @@
 		</div>
 	</section>
 
-	<section class="home__categories" id="categories">
-		<div class="categories__overlay"></div>
-		<h2 class="categories__title-h2">Nos Produits</h2>
-		<div class="categories__grid-container">
-			<div class="categories__grid">
-				<div class="category__card">
-					<p class="category__card-title">Boissons</p>
-					<div class="category__card-content">
-						<div class="category__card-image">
+	<section class="section" id="categories">
+		<div class="section__bg-overlay"></div>
+		<h2 class="section__title-h2">Nos Produits</h2>
+		<div class="grid">
+			<div class="grid__container">
+				<div class="card__circle">
+					<p class="card__circle-title">Boissons</p>
+					<div class="card__circle-content">
+						<div class="card__circle-image">
 							<a href="#">
 								<img class="image" src=" {{ asset('images/categories/smoothies-aux-fruits-frais-fond-bois_23-2148227524.webp')}}" alt="image représentant différentes bouteilles de jus de fruits">
 							</a>
 						</div>
 					</div>
 				</div>
-				<div class="category__card">
-					<p class="category__card-title">Fruits</p>
-					<div class="category__card-content">
-						<div class="category__card-image">
+				<div class="card__circle">
+					<p class="card__circle-title">Fruits</p>
+					<div class="card__circle-content">
+						<div class="card__circle-image">
 							<a href="#">
 								<img class="image" src=" {{ asset('images/categories/arrangement-fruits-savoureux-sous-angle-eleve_23-2148545917.webp')}}" alt="image représentant différentes sortes de fruits">
 							</a>
 						</div>
 					</div>
 				</div>
-				<div class="category__card">
-					<p class="category__card-title">Légumes</p>
-					<div class="category__card-content">
-						<div class="category__card-image">
+				<div class="card__circle">
+					<p class="card__circle-title">Légumes</p>
+					<div class="card__circle-content">
+						<div class="card__circle-image">
 							<a href="#">
 								<img class="image" src=" {{ asset('images/categories/legume-vue-face_140725-103355-1.webp')}}" alt="image représentant différentes sortes de légumes">
 							</a>
 						</div>
 					</div>
 				</div>
-				<div class="category__card">
-					<p class="category__card-title">Boulangerie</p>
-					<div class="category__card-content">
-						<div class="category__card-image">
+				<div class="card__circle">
+					<p class="card__circle-title">Boulangerie</p>
+					<div class="card__circle-content">
+						<div class="card__circle-image">
 							<a href="#">
 								<img class="image" src=" {{ asset('images/categories/boulangerie_23-2148011544.webp')}}" alt="image représentant différentes sortes de pain">
 							</a>
 						</div>
 					</div>
 				</div>
-				<div class="category__card">
-					<p class="category__card-title">Crèmerie</p>
-					<div class="category__card-content">
-						<div class="category__card-image">
+				<div class="card__circle">
+					<p class="card__circle-title">Crèmerie</p>
+					<div class="card__circle-content">
+						<div class="card__circle-image">
 							<a href="#">
 								<img class="image" src=" {{ asset('images/categories/delicieux-morceaux-fromage_144627-43352.webp')}}" alt="image représentant différentes sorte de fromage">
 							</a>
 						</div>
 					</div>
 				</div>
-				<div class="category__card">
-					<p class="category__card-title">Bières</p>
-					<div class="category__card-content">
-						<div class="category__card-image">
+				<div class="card__circle">
+					<p class="card__circle-title">Bières</p>
+					<div class="card__circle-content">
+						<div class="card__circle-image">
 							<a href="#">
 								<img class="image" src=" {{ asset('images/categories/biere-aux-epis-ble-chips-dans-verre-table-bois-high-angle-view_176474-5888.webp')}}" alt="image représentant une bière dans un verre">
 							</a>
@@ -139,32 +140,32 @@
 			<div class="dualbox__container dualbox__container--resize">
 				<div class="dualbox__item-left">
 					<form class="form" action="contact" method="post">
-						<ul class="form-ul">
-							<li class="form-li">
-								<label class="form-label" for="firstName">Nom:</label>
-								<input class="form-input" type="text" placeholder="Entrez votre nom" id="firstname" name="user_name">
+						<ul class="form__ul">
+							<li class="form__li">
+								<label class="form__label" for="firstName">Nom:</label>
+								<input class="form__input" type="text" placeholder="Entrez votre nom" id="firstname" name="user_name">
 							</li>
-							<li class="form-li">
-								<label class="form-label" for="lastName">Prénom :</label>
-								<input class="form-input" type="text" placeholder="Entrez votre nom" id="lastName" name="user_lastName">
+							<li class="form__li">
+								<label class="form__label" for="lastName">Prénom :</label>
+								<input class="form__input" type="text" placeholder="Entrez votre nom" id="lastName" name="user_lastName">
 							</li>
-							<li class="form-li">
-								<label class="form-label" for="mail">E-mail :</label>
-								<input class="form-input" type="text" placeholder="Entrez votre addresse mail" id="mail" name="user_mail">
+							<li class="form__li">
+								<label class="form__label" for="mail">E-mail :</label>
+								<input class="form__input" type="text" placeholder="Entrez votre addresse mail" id="mail" name="user_mail">
 							</li>
-							<li class="form-li">
-								<label class="form-label" for="adress">Adresse :</label>
-								<input class="form-input" type="text" placeholder="Entrez votre addresse" id="address" name="user_address">
+							<li class="form__li">
+								<label class="form__label" for="adress">Adresse :</label>
+								<input class="form__input" type="text" placeholder="Entrez votre addresse" id="address" name="user_address">
 							</li>
-							<li class="form-li">
-								<label class="form-label" for="message">Message :</label>
-								<textarea class="form-textarea" placeholder="Entrez votre addresse" name="user_message" id="message"></textarea>
+							<li class="form__li">
+								<label class="form__label" for="message">Message :</label>
+								<textarea class="form__textarea" placeholder="Entrez votre addresse" name="user_message" id="message"></textarea>
 							</li>
 						</ul>
 
-						<div class="form__button-container">
-							<button class="form__button">
-								<a class="form__button-link" href="#">Envoyer</a>
+						<div class="button">
+							<button class="button__container button__container--small">
+								<a class="button__link button__link--textSmall" href="#">Envoyer</a>
 							</button>
 						</div>
 					</form>

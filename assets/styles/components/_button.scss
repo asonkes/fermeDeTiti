@@ -1,0 +1,50 @@
+@use "../mixins/mixins";
+
+.button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 4px solid blue;
+
+    &__container {
+        background-color: var(--vert);
+        border: none;
+        border: 4px solid orange;
+
+        &--medium {
+            width: 240px;
+            padding: 10px;
+            border-radius: 30px;
+
+        }
+
+        &--small {
+            width: 200px;
+            height: 50px;
+            border-radius: 20px;
+        }
+    }
+
+    &__link {
+        font-family: var(--font-family1);
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--black);
+
+        &--textMedium {
+            font-size: 20px;
+        }
+
+        &--textSmall {
+            font-size: 18px;
+
+            @include mixins.s {
+                font-size: 17px;
+            }
+        }
+
+        &:hover {
+            font-size: x-large;
+        }
+    }
+}

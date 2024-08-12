@@ -5,10 +5,11 @@ import '../styles/index.scss';
 import './header/header';
 import './burger/burger';
 
-// Import des fichiers JS ("HomeController" + sections liées au HomeController)
-import './sections/home';
-import './sections/categories';
-import './sections/history';
+// Import des fichiers JS faisant partie de la page "home"
+import './sections/moveLogo';
 
-// Import des fichiers JS (controllers)
-import './article/article';
+// Import des fichiers JS faisant partie de la page "categories"
+import './sections/appearCard';
+
+// Import des fichiers JS pour utiliser le swiper pour la page "history"
+import './sections/swiper';
