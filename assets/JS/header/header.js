@@ -1,11 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
     const linkSpecial = document.querySelector('.menu__link--special');
+    console.log(linkSpecial, 'linkSpecial');
+
     const linkIcon = document.querySelector('.menu__link-icon');
     const menu = document.querySelector('.menu__submenu');
     const header = document.querySelector('.header');
+    const article = document.querySelector('.article');
+    const menuLink = document.querySelectorAll('.menu__link');
 
-    console.log(linkSpecial, 'linkSpecial');
+    const headerCartImage = document.querySelector('.header__cart-image');
+    const headerAccountImage = document.querySelector('.header__account-image');
+
+    const headerCartImage2 = document.querySelector('.header__cart-image2');
+    const headerAccountImage2 = document.querySelector('.header__account-image2');
+
+    if(article) {
+        menuLink.forEach((e) => {
+            e.classList.add('active2');
+
+            headerCartImage.classList.add('active');
+            headerAccountImage.classList.add('active');
     
+            headerCartImage2.classList.add('active');
+            headerAccountImage2.classList.add('active');
+
+            document.addEventListener('scroll', () => {
+                e.classList.remove('active2');
+                e.classList.add('active');
+
+                headerCartImage.classList.remove('active');
+                headerAccountImage.classList.remove('active');
+    
+                headerCartImage2.classList.remove('active');
+                headerAccountImage2.classList.remove('active');
+            })
+        }) 
+    }
+
     linkSpecial.addEventListener('click', (e) => {
         e.preventDefault();
         if(menu) {
@@ -30,8 +61,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if(scrollTop === 0) {
-            header.classList.add('active');
             header.classList.remove('active2');
+            header.classList.remove('active');
+            menu.classList.remove('active');
+            menu.classList.remove('active2');
+
+            if(article) {
+                menuLink.forEach((e) => {
+                    e.classList.add('active2');
+                }) 
+
+                headerCartImage.classList.add('active');
+                headerAccountImage.classList.add('active');
+    
+                headerCartImage2.classList.add('active');
+                headerAccountImage2.classList.add('active');
+            }
         }
     })
     

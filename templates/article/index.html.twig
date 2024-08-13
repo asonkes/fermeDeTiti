@@ -4,9 +4,15 @@
 {% endblock %}
 
 {% block body %}
-	<section class="section burgerEffect">
+	<section class="section burgerEffect article">
 		<div class="section__bg-overlay"></div>
 		<h2 class="section__title-h2">Détails du produit</h2>
+		<div class="section__link">
+			<a class="section__link-container" href="#">
+				<i class="fa-solid fa-chevron-right section__link-icon"></i>
+				Retour
+			</a>
+		</div>
 		<div class="dualbox">
 			<div class="dualbox__container">
 				<div class="dualbox__item-left">
@@ -14,34 +20,56 @@
 				</div>
 				<div class="dualbox__item-right">
 					<div class="accordion">
-						<p class="accordion__title">Jus de pommes</p>
 						<div class="accordion__content">
-							<div class="accordion__text">
-								<p class="accordion__text-container">Nom de l'entreprise et producteur</p>
-								<i class="fa-solid fa-chevron-right accordion__icon"></i>
+							<p class="accordion__title">Jus de pommes</p>
+							<div class="accordion__text accordion__text-active">
+								<div class="accordion__text-container accordion__text-container--textLarge">
+									Nom de l'entreprise et producteur
+									<i class="fa-solid fa-chevron-right accordion__icon"></i>
+								</div>
+								<div class="accordion__text-container accordion__text-container--textSmall accordion__remove">
+									Plantation du Beauregard
+									<br>
+									Mr Marc Janssens
+								</div>
 							</div>
 							<div class="accordion__text">
-								<p class="accordion__text-container">Description du produit</p>
-								<i class="fa-solid fa-chevron-right accordion__icon"></i>
+								<div class="accordion__text-container accordion__text-container--textLarge">
+									Description du produit
+									<i class="fa-solid fa-chevron-right accordion__icon"></i>
+								</div>
+								<div class="accordion__text-container accordion__text-container--textSmall accordion__remove">
+									Entreprise respectant la récolte des fruits à maturité,
+									<br>
+									100% BIO.
+								</div>
 							</div>
 							<div class="accordion__text">
-								<p class="accordion__text-container">Localisation de l'entreprise</p>
-								<i class="fa-solid fa-chevron-right accordion__icon"></i>
+								<div class="accordion__text-container accordion__text-container--textLarge">
+									Localisation de l'entreprise
+									<i class="fa-solid fa-chevron-right accordion__icon"></i>
+								</div>
+								<div class="accordion__text-container accordion__text-container--textSmall accordion__remove">
+									7830 Silly
+								</div>
 							</div>
 							<div class="accordion__text">
-								<p class="accordion__text-container">Autres produits de ce producteur</p>
-								<i class="fa-solid fa-chevron-right accordion__icon"></i>
+								<div class="accordion__text-container accordion__text-container--textLarge">
+									Autres produits de ce producteur
+									<i class="fa-solid fa-chevron-right accordion__icon"></i>
+								</div>
+								<div class="accordion__text-container accordion__text-container--textSmall accordion__remove">blablabla</div>
 							</div>
-
-							<div class="button">
-								<button class="button__container button__container--medium">
-									<a class="button__link button__link--textMedium" href="#">Ajouter au panier</a>
-								</button>
-							</div>
+						</div>
+						<div class="button button--padding">
+							<button class="button__container button__container--large">
+								<a class="button__link button__link--textSmall" href="{{ path('home') }}#contact">Contactez-nous</a>
+								<i class="fa-solid fa-chevron-right home__button-icon"></i>
+							</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-{% endblock %}
+	</div>
+</section>{% endblock %}

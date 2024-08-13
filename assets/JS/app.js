@@ -13,3 +13,6 @@ import './sections/appearCard';
 
 // Import des fichiers JS pour utiliser le swiper pour la page "history"
 import './sections/swiper';
+
+// Import des fichiers JS pour utiliser l'effet "accordéon" dans la page détails du produits (article)
+import './sections/accordion';

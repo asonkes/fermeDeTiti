@@ -58,6 +58,10 @@
                 transform: rotate(270deg);
             }
         }
+
+        .menu__link:hover.active {
+            color: red;
+        }
     }
 
     .menu,
@@ -106,7 +110,8 @@
         .header__language {
             padding: 0 10px;
 
-            &-image {
+            &-image,
+            &-image2 {
                 width: 32px;
                 height: 32px;
                 transform: scale(1);
@@ -116,6 +121,24 @@
                     transform: scale(1.3);
                 }
             }
+
+            &-image.active {
+                display: none;
+            }
+
+            &-image2 {
+                display: none;
+
+                &.active {
+                    display: block;
+                }
+            }
+
         }
     }
+}
+
+.header:not(:hover) .menu__link.active2 {
+    color: var(--black);
+    transition: all 0.2s ease-out;
 }

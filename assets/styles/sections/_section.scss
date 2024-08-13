@@ -35,10 +35,41 @@
         text-align: center;
         font-family: var(--font-family2);
         font-size: 48px;
-        padding: 90px 0 30px 0;
+        padding: 90px 10px 30px 10px;
 
         @include mixins.lg {
             font-size: 40px;
+        }
+    }
+
+    &__link {
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+
+        &-container {
+            width: 75%;
+            display: inline-block;
+            font-family: var(--font-family1);
+            text-decoration: none;
+            font-size: 20px;
+            color: var(--black);
+
+            @include mixins.s {
+                font-size: 18px;
+            }
+        }
+
+        &-icon {
+            font-size: 20px;
+            padding: 10px;
+            transform: rotate(180deg);
+
+            @include mixins.s {
+                font-size: 18px;
+            }
         }
     }
 }
