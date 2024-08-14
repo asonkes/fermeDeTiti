@@ -6,13 +6,16 @@ import './header/header';
 import './burger/burger';
 
 // Import des fichiers JS faisant partie de la page "home"
-import './sections/moveLogo';
+import './components/moveLogo';
 
 // Import des fichiers JS faisant partie de la page "categories"
-import './sections/appearCard';
+import './components/appearCardCircle';
+
+// Import des fichiers JS faisant partie de la page "products"
+import './components/appearCardPortrait';
 
 // Import des fichiers JS pour utiliser le swiper pour la page "history"
-import './sections/swiper';
+import './components/swiper';
 
 // Import des fichiers JS pour utiliser l'effet "accordéon" dans la page détails du produits (article)
-import './sections/accordion';
+import './components/accordion';

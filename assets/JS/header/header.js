@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const linkIcon = document.querySelector('.menu__link-icon');
     const menu = document.querySelector('.menu__submenu');
     const header = document.querySelector('.header');
+
+    const home = document.querySelector('.home');
     const article = document.querySelector('.article');
+    const products = document.querySelector('.products');
 
     linkSpecial.addEventListener('click', (e) => {
         e.preventDefault();
@@ -18,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
             linkIcon.classList.toggle('active');
         }
+    })
+
+    // Permet que le background du header reste même si on sort du menu
+    header.addEventListener('click', () => {
+        header.classList.add('active');
     })
 
     document.addEventListener('scroll', (e) => {
@@ -41,15 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    // on load
-    if (article) {
+    // on load (Permet de mettre le background sur le header au chargement)
+    if (article || products) {
         header.classList.add('active');
     }
     
     window.addEventListener('click', (event) => {
         // Si le menu est actif et que le clic ne vient ni du menu ni du lien, on ferme le menu
         if (menu.classList.contains('active') && !menu.contains(event.target) && !linkSpecial.contains(event.target)) {
-            if (!article) {
+            if (home) {
                 header.classList.remove('active');
             }
             menu.classList.remove('active');

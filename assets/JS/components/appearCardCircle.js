@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const home = document.querySelector('.home');
     
     // Fonction pour ajouter les classes `active` aux éléments progressivement
-    function addActiveClassToElements() {
+    function appearCardCircle() {
         // Récupère la position actuelle du défilement et la hauteur de la fenêtre
         const { scrollTop, clientHeight } = document.documentElement;
         
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const cardTitle = card.querySelector('.card__circle-title');
                         const cardContent = card.querySelector('.card__circle-content');
                         
-                        // Ajouter la classe `active` au titre et au contenu de la carte
+                        // Ajouter la classe 'active' au titre et au contenu de la carte
                         if (cardTitle) {
                             cardTitle.classList.add('active');
                         }
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Écouter l'événement de défilement
     window.addEventListener('scroll', (e) => {
         e.preventDefault();
-        addActiveClassToElements();
+        appearCardCircle();
     });
     }
 });

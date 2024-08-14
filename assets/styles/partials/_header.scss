@@ -55,10 +55,6 @@
                 transform: rotate(270deg);
             }
         }
-
-        .menu__link:hover.active {
-            color: red;
-        }
     }
 
     .menu,
@@ -107,8 +103,7 @@
         .header__language {
             padding: 0 10px;
 
-            &-image,
-            &-image2 {
+            &-image {
                 width: 32px;
                 height: 32px;
                 transform: scale(1);
@@ -122,15 +117,6 @@
             &-image.active {
                 display: none;
             }
-
-            &-image2 {
-                display: none;
-
-                &.active {
-                    display: block;
-                }
-            }
-
         }
     }
 }

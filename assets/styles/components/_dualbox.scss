@@ -65,7 +65,7 @@
                 }
 
                 @include mixins.xs {
-                    font-size: 25px;
+                    font-size: 24px;
                 }
             }
 
@@ -82,6 +82,10 @@
                     font-family: var(--font-family3);
                     font-size: 22px;
                     padding: 10px;
+
+                    @include mixins.xxl {
+                        font-size: 21px;
+                    }
 
                     @include mixins.xl {
                         font-size: 20px;
