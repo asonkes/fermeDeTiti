@@ -19,3 +19,4 @@ import './components/swiper';
 
 // Import des fichiers JS pour utiliser l'effet "accordéon" dans la page détails du produits (article)
 import './components/accordion';
+

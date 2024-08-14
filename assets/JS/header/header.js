@@ -1,67 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const linkSpecial = document.querySelector('.menu__link--special');
-    console.log(linkSpecial, 'linkSpecial');
-
-    const linkIcon = document.querySelector('.menu__link-icon');
-    const menu = document.querySelector('.menu__submenu');
-    const header = document.querySelector('.header');
 
     const home = document.querySelector('.home');
     const article = document.querySelector('.article');
     const products = document.querySelector('.products');
 
-    linkSpecial.addEventListener('click', (e) => {
-        e.preventDefault();
-        if(menu) {
-            menu.classList.toggle('active');
-            
-            if(!article) {
-                header.classList.toggle('active');
-            }
-        
-            linkIcon.classList.toggle('active');
+    const header = document.querySelector('.header');
+    const subMenu = document.querySelector('.menu__submenu');
+
+    const linkSpecial = document.querySelector('.menu__link--special');
+    const linkIcon = document.querySelector('.menu__link-icon');
+
+    // Fonction pour initialiser l'état du header au chargement de la page
+    function initializeheader() {
+        if(!home) {
+            header.classList.add('active');
         }
-    })
-
-    // Permet que le background du header reste même si on sort du menu
-    header.addEventListener('click', () => {
-        header.classList.add('active');
-    })
-
-    document.addEventListener('scroll', (e) => {
-        e.preventDefault();
-
+    }
+ 
+    // Fonction pour gérer le scroll
+    function handleScroll() {
         const { scrollTop } = document.documentElement;
 
-        if(header) {
-            header.classList.add('active2');
-            menu.classList.add('active2');  
-           
-        } else {
-            header.classList.remove('active2');
-            menu.classList.remove('active2');
-        }
+        // Permet de changer la couleur du background du header
+        header.classList.add('active2');
+
+        // Permet de changer la couleur du background du sous-menu
+        subMenu.classList.add('active2');  
 
         if(scrollTop === 0) {
+            // Permet qd scroll=0, d'enlever le vert foncé du header
             header.classList.remove('active2');
-            header.classList.add('active');
-            menu.classList.remove('active2');
-        }
-    })
 
-    // on load (Permet de mettre le background sur le header au chargement)
-    if (article || products) {
-        header.classList.add('active');
+            // Permet qd scroll=0, de remettre le vert clair du header
+            header.classList.add('active');
+
+            // Permet qd scroll=0, d'enlever le vert foncé du sous-menu
+            subMenu.classList.remove('active2');
+        }
     }
-    
-    window.addEventListener('click', (event) => {
-        // Si le menu est actif et que le clic ne vient ni du menu ni du lien, on ferme le menu
-        if (menu.classList.contains('active') && !menu.contains(event.target) && !linkSpecial.contains(event.target)) {
-            if (home) {
-                header.classList.remove('active');
-            }
-            menu.classList.remove('active');
+
+    // Fonction pour gérer le clic sur le lien spécial
+    function toggleSubMenu(e) {
+        e.preventDefault();
+        if(subMenu) {
+            // Permet d'ouvrir le sous-menu
+            subMenu.classList.toggle('active');
+
+            // Permet de faire un 'rotate' de l'icône à côté de "produits" 
+            linkIcon.classList.toggle('active');
+        }
+    }
+
+    // Fonction pour gérer le clic en dehors du sous-menu et du header
+    function handleClickOutside(event) {
+        // Permet que le background du header reste même si on sort du menu
+        header.classList.add('active');
+        
+         // Si le menu est actif et que le clic ne vient ni du menu ni du lien, on ferme le menu
+         if (subMenu.classList.contains('active') && !subMenu.contains(event.target) && !linkSpecial.contains(event.target)) {
+
+            // Permet de fermer le sous-menu si clique en dehors du header
+            subMenu.classList.remove('active');
+            
+            // Permet de remettre l'icône à son rotate de base si clique en dehors du header
             linkIcon.classList.remove('active');
         }
-    });
+    }
+
+    initializeheader();
+    document.addEventListener('scroll', handleScroll);
+    linkSpecial.addEventListener('click', toggleSubMenu);
+    document.addEventListener('click', handleClickOutside);
 })
