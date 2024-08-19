@@ -35,7 +35,6 @@
     }
 
     &__label {
-        width: 100%;
         font-family: var(--font-family1);
         font-size: 22px;
 
@@ -47,12 +46,16 @@
             padding: 30px;
         }
 
+        &--supp {
+            font-size: 20px !important;
+        }
+
         @include mixins.md {
-            font-size: 20px;
+            font-size: 20px !important;
         }
 
         @include mixins.s {
-            font-size: 17px;
+            font-size: 17px !important;
         }
     }
 
@@ -64,11 +67,16 @@
             width: auto;
         }
 
+        &--margin {
+            margin: 10px 0;
+        }
+
         &--supp {
             text-decoration: none !important;
             border: 1px solid var(--brun) !important;
             border-radius: 20px;
             padding: 10px !important;
+            background-color: var(--white) !important;
         }
 
         @include mixins.s {
@@ -92,5 +100,25 @@
 
     &__textarea {
         resize: none;
+    }
+
+    /* Gestion des couelurs (background et autres) ==> uniformisation des différents navigateurs */
+    &__input:-webkit-autofill,
+    &__textarea:-webkit-autofill {
+        -webkit-box-shadow: 0 0 5px 50px var(--gris) inset;
+        box-shadow: 0 0 0px 1000px var(--gris) inset;
+        -webkit-text-fill-color: var(--black);
+    }
+
+    &__input:-moz-autofill,
+    &__textarea:-moz-autofill {
+        background-color: var(--gris) !important;
+        color: var(--black) !important;
+    }
+
+    &__input:-ms-autofill,
+    &__textarea:-ms-autofill {
+        background-color: var(--gris) !important;
+        color: var(--black) !important;
     }
 }

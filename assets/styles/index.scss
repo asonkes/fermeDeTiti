@@ -1,3 +1,4 @@
+@use "../../node_modules/normalize.css/normalize.css";
 @use "./base";
 @use "./variables";
 
@@ -18,6 +19,7 @@
 @use "./components/banneryHead";
 @use "./components/button";
 @use "./components/dualbox.scss";
+@use "./components/flashMessages";
 @use "./components/form";
 @use "./components/grid";
 @use "./components/searchBar";

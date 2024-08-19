@@ -1,19 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+	<section class="section section--padding" id="contact">
+		<div class="section__bg-overlay"></div>
+		<h2 class="section__title-h2">Inscription</h2>
 
-    {{ form_errors(registrationForm) }}
+		<div class="simpleBox">
+			<div class="form form--flex">
+				{{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
+				{{ form_start(registrationForm) }}
+
+				<div class="padding10">
+					{{ form_row(registrationForm.lastname) }}
+				</div>
+				<div class="padding10">
+					{{ form_row(registrationForm.firstname) }}
+				</div>
+				<div class="padding10">
+					{{ form_row(registrationForm.address) }}
+				</div>
+				<div class="padding10">
+					{{ form_row(registrationForm.zipcode) }}
+				</div>
+				<div class="padding10">
+					{{ form_row(registrationForm.city) }}
+				</div>
+				<div class="padding10">
+					{{ form_row(registrationForm.email) }}
+				</div>
+				<div class="padding10">
+					{{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+				</div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+				{{ form_row(registrationForm.RGPDConsent) }}
+
+				<div class="button button--marginTop">
+					<div class="button__container button__container--flex button__container--small">
+						<button class="button__link button__link--textSmall button__link--supp" type="submit">M'inscrire</button>
+					</div>
+				</div>
+
+				{{ form_end(registrationForm) }}
+			</div>
+		</div>
+	</section>
 {% endblock %}

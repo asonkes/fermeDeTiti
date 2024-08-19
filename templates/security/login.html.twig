@@ -11,13 +11,12 @@
 		<div class="simpleBox">
 			<form class="form form--flex" method="post">
 				{% if error %}
-					<!-- Changer classe bootstrap -->
-					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					<div class="alert__message-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 				{% endif %}
 
 				{% if app.user %}
 					<!-- Changer classe bootstrap -->
-					<div class="mb-3">
+					<div class="alert__message-success">
 						Vous êtes connecté(e)
 						{{ app.user.userIdentifier }},
 						<a href="{{ path('app_logout') }}">Me déconnecter</a>
@@ -26,18 +25,22 @@
 
 				<label class="form__label form__label--widthAuto form__label--padding" for="inputEmail">E-mail</label>
 
-				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control form__input form__input--widthAuto form__input--supp" autocomplete="email" required autofocus>
+				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form__input form__input--widthAuto form__input--supp" autocomplete="email" required autofocus>
 
 				<label class="form__label form__label--widthAuto form__label--padding" for="inputPassword">Mot de passe</label>
 
-				<input class="form-control form__input form__input--widthAuto form__input--supp" type="password" name="password" id="inputPassword" autocomplete="current-password" required>
+				<input class="form__input form__input--widthAuto form__input--supp" type="password" name="password" id="inputPassword" autocomplete="current-password" required>
 
 				<input class="form__input form__input--widthAuto form__input--supp" type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 				<div class="button button--marginTop">
-					<div class="button__container button__container--flex button__container--small">
-						<button class="button__link button__link--textSmall" type="submit">Me connecter</button>
+					<div class="button__container button__container--flex button__container--large">
+						<button class="button__link button__link--textSmall button__link--supp" type="submit">Me connecter</button>
 					</div>
+				</div>
+
+				<div>
+					<a href="{{ path('app_register') }}">Je ne suis pas encore inscrit?</a>
 				</div>
 			</form>
 		</div>
