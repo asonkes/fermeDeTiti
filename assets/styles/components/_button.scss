@@ -18,6 +18,12 @@
         background-color: var(--vert);
         border: none;
 
+        &--flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         &--large {
             width: 278px;
             border-radius: 30px;

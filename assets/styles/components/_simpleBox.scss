@@ -1,0 +1,9 @@
+@use "../mixins/mixins";
+
+.simpleBox {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+}

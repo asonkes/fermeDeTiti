@@ -6,6 +6,12 @@
     font-size: 22px;
     font-weight: 600;
 
+    &--flex {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     &__ul {
         width: 100%;
         list-style: none;
@@ -33,6 +39,14 @@
         font-family: var(--font-family1);
         font-size: 22px;
 
+        &--widthAuto {
+            width: auto;
+        }
+
+        &--padding {
+            padding: 30px;
+        }
+
         @include mixins.md {
             font-size: 20px;
         }
@@ -45,6 +59,17 @@
     &__input {
         width: 100%;
         font-size: 17px;
+
+        &--widthAuto {
+            width: auto;
+        }
+
+        &--supp {
+            text-decoration: none !important;
+            border: 1px solid var(--brun) !important;
+            border-radius: 20px;
+            padding: 10px !important;
+        }
 
         @include mixins.s {
             font-size: 14px;
@@ -63,6 +88,9 @@
         text-decoration: underline;
         text-decoration-thickness: 3px;
         text-underline-offset: 4px;
+    }
+
+    &__textarea {
         resize: none;
     }
 }

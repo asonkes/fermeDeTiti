@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion
+{% endblock %}
+
+{% block body %}
+	<section class="section section--padding" id="contact">
+		<div class="section__bg-overlay"></div>
+		<h2 class="section__title-h2">Connexion</h2>
+
+		<div class="simpleBox">
+			<form class="form form--flex" method="post">
+				{% if error %}
+					<!-- Changer classe bootstrap -->
+					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				{% if app.user %}
+					<!-- Changer classe bootstrap -->
+					<div class="mb-3">
+						Vous êtes connecté(e)
+						{{ app.user.userIdentifier }},
+						<a href="{{ path('app_logout') }}">Me déconnecter</a>
+					</div>
+				{% endif %}
+
+				<label class="form__label form__label--widthAuto form__label--padding" for="inputEmail">E-mail</label>
+
+				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control form__input form__input--widthAuto form__input--supp" autocomplete="email" required autofocus>
+
+				<label class="form__label form__label--widthAuto form__label--padding" for="inputPassword">Mot de passe</label>
+
+				<input class="form-control form__input form__input--widthAuto form__input--supp" type="password" name="password" id="inputPassword" autocomplete="current-password" required>
+
+				<input class="form__input form__input--widthAuto form__input--supp" type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+				<div class="button button--marginTop">
+					<div class="button__container button__container--flex button__container--small">
+						<button class="button__link button__link--textSmall" type="submit">Me connecter</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+{% endblock %}
