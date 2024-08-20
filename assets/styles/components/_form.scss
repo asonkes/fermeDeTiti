@@ -3,13 +3,19 @@
 .form {
     width: 100%;
     font-family: var(--font-family1);
-    font-size: 22px;
     font-weight: 600;
 
     &--flex {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    &--supp {
+        width: auto !important;
+        box-shadow: 0px -3px 25px rgba(98, 154, 40, 0.7);
+        padding: 20px;
+        border-radius: 20px;
     }
 
     &__ul {
@@ -36,22 +42,14 @@
 
     &__label {
         font-family: var(--font-family1);
-        font-size: 22px;
+        font-size: 20px;
 
         &--widthAuto {
             width: auto;
         }
 
         &--padding {
-            padding: 30px;
-        }
-
-        &--supp {
-            font-size: 20px !important;
-        }
-
-        @include mixins.md {
-            font-size: 20px !important;
+            padding: 25px;
         }
 
         @include mixins.s {
@@ -61,7 +59,6 @@
 
     &__input {
         width: 100%;
-        font-size: 17px;
 
         &--widthAuto {
             width: auto;
@@ -73,8 +70,7 @@
 
         &--supp {
             text-decoration: none !important;
-            border: 1px solid var(--brun) !important;
-            border-radius: 20px;
+            border: 1px solid var(--gris) !important;
             padding: 10px !important;
             background-color: var(--white) !important;
         }
@@ -87,7 +83,7 @@
     &__input,
     &__textarea {
         font-family: var(--font-family1);
-        font-size: 18px;
+        font-size: 16px;
         font-style: italic;
         border: none;
         outline: none;
@@ -105,20 +101,27 @@
     /* Gestion des couelurs (background et autres) ==> uniformisation des différents navigateurs */
     &__input:-webkit-autofill,
     &__textarea:-webkit-autofill {
-        -webkit-box-shadow: 0 0 5px 50px var(--gris) inset;
-        box-shadow: 0 0 0px 1000px var(--gris) inset;
-        -webkit-text-fill-color: var(--black);
+        box-shadow: 0 0 0px 1000px var(--white) inset;
+        border: 1px solid var(--gris);
     }
 
     &__input:-moz-autofill,
     &__textarea:-moz-autofill {
-        background-color: var(--gris) !important;
-        color: var(--black) !important;
+        background-color: var(--white);
+        border: 1px solid var(--gris);
+        color: var(--black);
     }
 
     &__input:-ms-autofill,
     &__textarea:-ms-autofill {
-        background-color: var(--gris) !important;
-        color: var(--black) !important;
+        background-color: var(--white);
+        border: 1px solid var(--gris);
+        color: var(--black);
+    }
+
+    &__link--special {
+        font-size: 14px;
+        text-decoration: none;
+        color: var(--black);
     }
 }

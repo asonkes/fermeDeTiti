@@ -80,29 +80,8 @@
 
                 &-text {
                     font-family: var(--font-family3);
-                    font-size: 22px;
+                    font-size: 19px;
                     padding: 10px;
-
-                    @include mixins.xxl {
-                        font-size: 21px;
-                    }
-
-                    @include mixins.xl {
-                        font-size: 20px;
-                        padding: 5px;
-                    }
-
-                    @include mixins.md-lt-lt {
-                        font-size: 19px;
-                    }
-
-                    @include mixins.md-lt {
-                        padding: 10px;
-                    }
-
-                    @include mixins.md {
-                        padding: 5px;
-                    }
 
                     @include mixins.s {
                         font-size: 17px;

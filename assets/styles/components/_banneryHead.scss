@@ -37,13 +37,8 @@
     }
 
     &__icon {
-        width: 35px;
-        height: 35px;
-
-        @include mixins.s {
-            width: 30px;
-            height: 30px;
-        }
+        width: 25px;
+        height: 25px;
 
         & .banneryHead__icon-image {
             width: 100%;
@@ -53,11 +48,7 @@
 
     &__text {
         font-family: var(--font-family1);
-        font-size: 18px;
-
-        @include mixins.md {
-            font-size: 16px;
-        }
+        font-size: 16px;
 
         @include mixins.s {
             font-size: 12px;

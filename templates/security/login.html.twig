@@ -9,13 +9,12 @@
 		<h2 class="section__title-h2">Connexion</h2>
 
 		<div class="simpleBox">
-			<form class="form form--flex" method="post">
+			<form class="form form--flex form--supp" method="post">
 				{% if error %}
 					<div class="alert__message-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 				{% endif %}
 
 				{% if app.user %}
-					<!-- Changer classe bootstrap -->
 					<div class="alert__message-success">
 						Vous êtes connecté(e)
 						{{ app.user.userIdentifier }},
@@ -39,8 +38,8 @@
 					</div>
 				</div>
 
-				<div>
-					<a href="{{ path('app_register') }}">Je ne suis pas encore inscrit?</a>
+				<div class="padding20">
+					<a class="form__link--special" href="{{ path('app_register') }}">Je ne suis pas encore inscrit?</a>
 				</div>
 			</form>
 		</div>

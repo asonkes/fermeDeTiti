@@ -26,7 +26,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Nom',
                 'label_attr' => [
-                    'class' => 'form__label form__label--supp'
+                    'class' => 'form__label'
                 ],
             ])
             ->add('firstname', TextType::class, [
@@ -35,7 +35,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Prénom',
                 'label_attr' => [
-                    'class' => 'form__label form__label--supp'
+                    'class' => 'form__label'
                 ],
             ])
             ->add('address', TextType::class, [
@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Addresse',
                 'label_attr' => [
-                    'class' => 'form__label form__label--supp'
+                    'class' => 'form__label'
                 ],
             ])
             ->add('zipcode', NumberType::class, [
@@ -53,7 +53,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Code Postal',
                 'label_attr' => [
-                    'class' => 'form__label form__label--supp'
+                    'class' => 'form__label'
                 ],
             ])
             ->add('city', TextType::class, [
@@ -62,7 +62,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Ville',
                 'label_attr' => [
-                    'class' => 'form__label form__label--supp'
+                    'class' => 'form__label'
                 ],
             ])
             ->add('email', EmailType::class, [
@@ -71,7 +71,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'E-mail',
                 'label_attr' => [
-                    'class' => 'form__label form__label--supp'
+                    'class' => 'form__label'
                 ],
             ])
             ->add('RGPDConsent', CheckboxType::class, [
@@ -81,7 +81,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'label' => " J'accepte la politique de confidentialité ",
                 'label_attr' => [
-                    'class' => 'form__label form__label--supp'
+                    'class' => 'form__label'
                 ],
                 'constraints' => [
                     new IsTrue([
@@ -99,7 +99,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Nom',
                 'label_attr' => [
-                    'class' => 'form__label form__label--supp'
+                    'class' => 'form__label'
                 ],
                 'constraints' => [
                     new NotBlank([
