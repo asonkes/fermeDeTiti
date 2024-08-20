@@ -21,9 +21,6 @@ class Categories
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
-    private ?self $parent = null;
-
     /**
      * @var Collection<int, self>
      */
@@ -59,18 +56,6 @@ class Categories
         return $this;
     }
 
-    public function getParent(): ?self
-    {
-        return $this->parent;
-    }
-
-    public function setParent(?self $parent): static
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, self>
      */
@@ -83,7 +68,6 @@ class Categories
     {
         if (!$this->categories->contains($category)) {
             $this->categories->add($category);
-            $category->setParent($this);
         }
 
         return $this;
@@ -93,9 +77,6 @@ class Categories
     {
         if ($this->categories->removeElement($category)) {
             // set the owning side to null (unless already changed)
-            if ($category->getParent() === $this) {
-                $category->setParent(null);
-            }
         }
 
         return $this;

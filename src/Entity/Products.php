@@ -27,6 +27,9 @@ class Products
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $price = null;
 
@@ -38,20 +41,19 @@ class Products
     private ?categories $categories = null;
 
     /**
-     * @var Collection<int, Images>
-     */
-    #[ORM\OneToMany(targetEntity: Images::class, mappedBy: 'products', orphanRemoval: true)]
-    private Collection $images;
-
-    /**
      * @var Collection<int, OrdersDetails>
      */
     #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'products')]
     private Collection $ordersDetails;
 
+    #[ORM\Column(length: 255)]
+    private ?string $producteur = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $society = null;
+
     public function __construct()
     {
-        $this->images = new ArrayCollection();
         $this->ordersDetails = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
     }
@@ -81,6 +83,18 @@ class Products
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
@@ -122,36 +136,6 @@ class Products
     }
 
     /**
-     * @return Collection<int, Images>
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Images $image): static
-    {
-        if (!$this->images->contains($image)) {
-            $this->images->add($image);
-            $image->setProducts($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Images $image): static
-    {
-        if ($this->images->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getProducts() === $this) {
-                $image->setProducts(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, OrdersDetails>
      */
     public function getOrdersDetails(): Collection
@@ -177,6 +161,30 @@ class Products
                 $ordersDetail->setProducts(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProducteur(): ?string
+    {
+        return $this->producteur;
+    }
+
+    public function setProducteur(string $producteur): static
+    {
+        $this->producteur = $producteur;
+
+        return $this;
+    }
+
+    public function getSociety(): ?string
+    {
+        return $this->society;
+    }
+
+    public function setSociety(string $society): static
+    {
+        $this->society = $society;
 
         return $this;
     }
