@@ -9,30 +9,27 @@
 		<h2 class="section__title-h2">Inscription</h2>
 
 		<div class="simpleBox">
-			<div class="form form--flex">
+			<div class="form form--flex form--supp">
 				{{ form_errors(registrationForm) }}
 
 				{{ form_start(registrationForm) }}
 
-				<div class="padding10">
+				<div class="form__label-container padding5">
 					{{ form_row(registrationForm.lastname) }}
-				</div>
-				<div class="padding10">
 					{{ form_row(registrationForm.firstname) }}
 				</div>
-				<div class="padding10">
+
+				<div class="padding5">
 					{{ form_row(registrationForm.address) }}
 				</div>
-				<div class="padding10">
+				<div class="form__label-container padding5">
 					{{ form_row(registrationForm.zipcode) }}
-				</div>
-				<div class="padding10">
 					{{ form_row(registrationForm.city) }}
 				</div>
-				<div class="padding10">
+				<div class="padding5">
 					{{ form_row(registrationForm.email) }}
 				</div>
-				<div class="padding10">
+				<div class="padding5">
 					{{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
@@ -40,7 +37,7 @@
 
 				{{ form_row(registrationForm.RGPDConsent) }}
 
-				<div class="button button--marginTop">
+				<div class="button button--marginTop2">
 					<div class="button__container button__container--flex button__container--small">
 						<button class="button__link button__link--textSmall button__link--supp" type="submit">M'inscrire</button>
 					</div>

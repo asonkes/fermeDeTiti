@@ -40,6 +40,12 @@
         }
     }
 
+    &__label-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
     &__label {
         font-family: var(--font-family1);
         font-size: 20px;
@@ -119,7 +125,7 @@
         color: var(--black);
     }
 
-    &__link--special {
+    &__link-special {
         font-size: 14px;
         text-decoration: none;
         color: var(--black);
