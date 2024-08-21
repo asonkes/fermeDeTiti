@@ -20,7 +20,8 @@ class ProductsFixtures extends Fixture
                 'image' => 'vue-face-jus-pomme-frais-pommes-fraiches-bureau-bois-marron-photo-cocktail-fruits-couleur-boisson_140725-92833.webp',
                 'price' => '7.00',
                 'stock' => 10,
-                'category_reference' => 'cat-1'
+                'category_reference' => 'cat-1',
+                'producer_reference' => 'prod-1'
             ],
             [
                 'name' => 'jus de poires',
@@ -29,6 +30,7 @@ class ProductsFixtures extends Fixture
                 'price' => '7.50',
                 'stock' => 10,
                 'category_reference' => 'cat-1',
+                'producer_reference' => 'prod-1'
             ],
             [
                 'name' => "jus d'orange",
@@ -36,7 +38,8 @@ class ProductsFixtures extends Fixture
                 'image' => 'couper-fruits-jus-orange-parapluie_23-2148145311.webp',
                 'price' => '6.50',
                 'stock' => 10,
-                'category_reference' => 'cat-1'
+                'category_reference' => 'cat-1',
+                'producer_reference' => 'prod-1'
             ],
             [
                 'name' => 'jus de cerises',
@@ -44,7 +47,8 @@ class ProductsFixtures extends Fixture
                 'image' => 'cornels-du-jus-dans-verre-pot_114579-18055.webp',
                 'price' => '6.50',
                 'stock' => 10,
-                'category_reference' => 'cat-1'
+                'category_reference' => 'cat-1',
+                'producer_reference' => 'prod-1'
             ],
             [
                 'name' => 'jus de prunes',
@@ -52,7 +56,8 @@ class ProductsFixtures extends Fixture
                 'image' => 'prunes-jardin-dans-panier-fond-bleu-verre-jus-photo-haute-qualite_114579-53019.webp',
                 'price' => '8.00',
                 'stock' => 10,
-                'category_reference' => 'cat-1'
+                'category_reference' => 'cat-1',
+                'producer_reference' => 'prod-1'
             ],
             [
                 'name' => 'jus de pêches',
@@ -60,7 +65,8 @@ class ProductsFixtures extends Fixture
                 'image' => 'nectarines-au-jus-table-grungy-planche-decouper-vue-laterale_176474-8778.webp',
                 'price' => '7.00',
                 'stock' => 10,
-                'category_reference' => 'cat-1'
+                'category_reference' => 'cat-1',
+                'producer_reference' => 'prod-1'
             ]
         ];
 
@@ -76,6 +82,10 @@ class ProductsFixtures extends Fixture
             // On va chercher une référence de catégorie
             $category = $this->getReference($data['category_reference']);
             $product->setCategories($category);
+
+            // On va chercher une référence de produit
+            $producer = $this->getReference($data['producer_reference']);
+            $product->setProducer($producer);
 
             $manager->persist($product);
         }

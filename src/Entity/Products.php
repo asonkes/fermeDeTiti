@@ -38,7 +38,7 @@ class Products
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?categories $categories = null;
+    private ?Categories $categories = null;
 
     /**
      * @var Collection<int, OrdersDetails>
@@ -46,17 +46,14 @@ class Products
     #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'products')]
     private Collection $ordersDetails;
 
-    /**
-     * @var Collection<int, Producer>
-     */
-    #[ORM\OneToMany(targetEntity: Producer::class, mappedBy: 'products')]
-    private Collection $producers;
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Producer $producer = null; // Changez "producer" pour "Producer"
 
     public function __construct()
     {
         $this->ordersDetails = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
-        $this->producers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,12 +121,12 @@ class Products
         return $this;
     }
 
-    public function getCategories(): ?categories
+    public function getCategories(): ?Categories // Correction pour le type
     {
         return $this->categories;
     }
 
-    public function setCategories(?categories $categories): static
+    public function setCategories(?Categories $categories): static
     {
         $this->categories = $categories;
 
@@ -166,32 +163,14 @@ class Products
         return $this;
     }
 
-    /**
-     * @return Collection<int, Producer>
-     */
-    public function getProducers(): Collection
+    public function getProducer(): ?Producer // Correction de la méthode pour obtenir le producteur
     {
-        return $this->producers;
+        return $this->producer;
     }
 
-    public function addProducer(Producer $producer): static
+    public function setProducer(?Producer $producer): static // Correction de la méthode pour définir le producteur
     {
-        if (!$this->producers->contains($producer)) {
-            $this->producers->add($producer);
-            $producer->setProducts($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProducer(Producer $producer): static
-    {
-        if ($this->producers->removeElement($producer)) {
-            // set the owning side to null (unless already changed)
-            if ($producer->getProducts() === $this) {
-                $producer->setProducts(null);
-            }
-        }
+        $this->producer = $producer;
 
         return $this;
     }
