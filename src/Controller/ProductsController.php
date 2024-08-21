@@ -2,15 +2,25 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Products;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/produits', name: 'products_')]
 class ProductsController extends AbstractController
 {
-    #[Route('/products', name: 'products')]
+    #[Route('/', name: 'index')]
     public function index(): Response
     {
         return $this->render('products/index.html.twig');
+    }
+
+    #[Route('/{slug}', name: 'details')]
+    public function details(Products $product): Response
+    {
+        return $this->render('products/details.html.twig', [
+            'product' => $product
+        ]);
     }
 }
