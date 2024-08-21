@@ -33,6 +33,12 @@ class Categories
     #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'categories')]
     private Collection $products;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $alt = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -108,6 +114,30 @@ class Categories
                 $product->setCategories(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getAlt(): ?string
+    {
+        return $this->alt;
+    }
+
+    public function setAlt(string $alt): static
+    {
+        $this->alt = $alt;
 
         return $this;
     }

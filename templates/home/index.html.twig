@@ -30,66 +30,18 @@
 		<h2 class="section__title-h2">Nos Produits</h2>
 		<div class="grid">
 			<div class="grid__container">
-				<div class="card__circle">
-					<p class="card__circle-title">Boissons</p>
-					<div class="card__circle-content">
-						<div class="card__circle-image">
-							<a href="{{ path('products_index')}}">
-								<img class="image" src=" {{ asset('images/categories/smoothies-aux-fruits-frais-fond-bois_23-2148227524.webp')}}" alt="image représentant différentes bouteilles de jus de fruits">
-							</a>
+				{% for category in categories %}
+					<div class="card__circle">
+						<p class="card__circle-title">{{ category.name }}</p>
+						<div class="card__circle-content">
+							<div class="card__circle-image">
+								<a href="{{ path('products_index')}}">
+									<img class="image" src=" {{ asset('images/categories/' ~ category.image)}}" alt="{{ category.alt }}">
+								</a>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="card__circle">
-					<p class="card__circle-title">Fruits</p>
-					<div class="card__circle-content">
-						<div class="card__circle-image">
-							<a href="#">
-								<img class="image" src=" {{ asset('images/categories/arrangement-fruits-savoureux-sous-angle-eleve_23-2148545917.webp')}}" alt="image représentant différentes sortes de fruits">
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="card__circle">
-					<p class="card__circle-title">Légumes</p>
-					<div class="card__circle-content">
-						<div class="card__circle-image">
-							<a href="#">
-								<img class="image" src=" {{ asset('images/categories/legume-vue-face_140725-103355-1.webp')}}" alt="image représentant différentes sortes de légumes">
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="card__circle">
-					<p class="card__circle-title">Boulangerie</p>
-					<div class="card__circle-content">
-						<div class="card__circle-image">
-							<a href="#">
-								<img class="image" src=" {{ asset('images/categories/boulangerie_23-2148011544.webp')}}" alt="image représentant différentes sortes de pain">
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="card__circle">
-					<p class="card__circle-title">Crèmerie</p>
-					<div class="card__circle-content">
-						<div class="card__circle-image">
-							<a href="#">
-								<img class="image" src=" {{ asset('images/categories/delicieux-morceaux-fromage_144627-43352.webp')}}" alt="image représentant différentes sorte de fromage">
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="card__circle">
-					<p class="card__circle-title">Bières</p>
-					<div class="card__circle-content">
-						<div class="card__circle-image">
-							<a href="#">
-								<img class="image" src=" {{ asset('images/categories/biere-aux-epis-ble-chips-dans-verre-table-bois-high-angle-view_176474-5888.webp')}}" alt="image représentant une bière dans un verre">
-							</a>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 		</div>
 	</section>

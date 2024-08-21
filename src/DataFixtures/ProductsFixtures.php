@@ -21,7 +21,8 @@ class ProductsFixtures extends Fixture
                 'price' => '7.00',
                 'stock' => 10,
                 'category_reference' => 'cat-1',
-                'producer_reference' => 'prod-1'
+                'producer_reference' => 'prod-1',
+                'alt' => 'image représentant un verre de jus de pommes avec des pommes à côté'
             ],
             [
                 'name' => 'jus de poires',
@@ -30,7 +31,8 @@ class ProductsFixtures extends Fixture
                 'price' => '7.50',
                 'stock' => 10,
                 'category_reference' => 'cat-1',
-                'producer_reference' => 'prod-1'
+                'producer_reference' => 'prod-1',
+                'alt' => 'image représentant un verre de jus de poires avec des poires à côté'
             ],
             [
                 'name' => "jus d'orange",
@@ -39,7 +41,8 @@ class ProductsFixtures extends Fixture
                 'price' => '6.50',
                 'stock' => 10,
                 'category_reference' => 'cat-1',
-                'producer_reference' => 'prod-1'
+                'producer_reference' => 'prod-1',
+                'alt' => "image représentant un verre d'orange avec des oranges à côté"
             ],
             [
                 'name' => 'jus de cerises',
@@ -48,7 +51,8 @@ class ProductsFixtures extends Fixture
                 'price' => '6.50',
                 'stock' => 10,
                 'category_reference' => 'cat-1',
-                'producer_reference' => 'prod-1'
+                'producer_reference' => 'prod-1',
+                'alt' => 'image représentant un verre de jus de cerises avec des cerises à côté dans un bol'
             ],
             [
                 'name' => 'jus de prunes',
@@ -57,7 +61,8 @@ class ProductsFixtures extends Fixture
                 'price' => '8.00',
                 'stock' => 10,
                 'category_reference' => 'cat-1',
-                'producer_reference' => 'prod-1'
+                'producer_reference' => 'prod-1',
+                'alt' => 'image représentant un verre de jus de prunes avec des prunes à côté dans un panier'
             ],
             [
                 'name' => 'jus de pêches',
@@ -66,7 +71,8 @@ class ProductsFixtures extends Fixture
                 'price' => '7.00',
                 'stock' => 10,
                 'category_reference' => 'cat-1',
-                'producer_reference' => 'prod-1'
+                'producer_reference' => 'prod-1',
+                'alt' => 'image représentant un verre de jus de pêches avec des pêches à côté'
             ]
         ];
 
@@ -77,6 +83,7 @@ class ProductsFixtures extends Fixture
                 ->setImage($data['image'])
                 ->setPrice($data['price'])
                 ->setStock($data['stock'])
+                ->setAlt($data['alt'])
                 ->setSlug($this->slugger->slug($data['name'])->lower());
 
             // On va chercher une référence de catégorie

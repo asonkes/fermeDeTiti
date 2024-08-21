@@ -13,7 +13,6 @@
 				Retour
 			</a>
 		</div>
-
 		<div class="searchBar">
 			<div class="searchBar__container">
 				<input type="text" placeholder="Rechercher..." class="searchBar__container-input"/>
@@ -23,90 +22,23 @@
 
 		<div class="grid">
 			<div class="grid__container">
-				<div class="card__portrait">
-					<p class="card__portrait-title">Jus de pommes</p>
-					<div class="card__portrait-content">
-						<div class="card__portrait-image">
-							<a href="{{ path('products_details', {'slug': product.slug}) }}">
-								<img class="image" src="{{ asset('images/articles/vue-face-jus-pomme-frais-pommes-fraiches-bureau-bois-marron-photo-cocktail-fruits-couleur-boisson_140725-92833.webp')}}" alt="image représentant un verre avec du jus de pommes">
-							</a>
-						</div>
-						<div class="card__portrait-informations">
-							<i class="fa-solid fa-heart card__portrait-icon"></i>
-							<p class="card__portrait-text">7,00 € / litre</p>
-						</div>
-					</div>
-				</div>
-				<div class="card__portrait">
-					<p class="card__portrait-title">Jus de poires</p>
-					<div class="card__portrait-content">
-						<div class="card__portrait-image">
-							<a href="#">
-								<img class="image" src="{{ asset('images/articles/poires-dans-panier-seau-boisson-high-angle-view-tableau-blanc_176474-8761.webp')}}" alt="image représentant un verre avec du jus de poires">
-							</a>
-						</div>
-						<div class="card__portrait-informations">
-							<i class="fa-solid fa-heart card__portrait-icon"></i>
-							<p class="card__portrait-text">7,50 € / litre</p>
+				{% for product in products %}
+					<div class="card__portrait">
+						<p class="card__portrait-title">{{ product.name }}</p>
+						<div class="card__portrait-content">
+							<div class="card__portrait-image">
+								<a href="#">
+									<img class="image" src="{{ asset('images/articles/' ~ product.image)}}" alt="{{ product.alt }}">
+								</a>
+							</div>
+							<div class="card__portrait-informations">
+								<i class="fa-solid fa-heart card__portrait-icon"></i>
+								<p class="card__portrait-text">{{ product.price}}
+									/ litre</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="card__portrait">
-					<p class="card__portrait-title">Jus d'orange</p>
-					<div class="card__portrait-content">
-						<div class="card__portrait-image">
-							<a href="#">
-								<img class="image" src="{{ asset('images/articles/couper-fruits-jus-orange-parapluie_23-2148145311.webp')}}" alt="image représentant un verre avec du jus de poires">
-							</a>
-						</div>
-						<div class="card__portrait-informations">
-							<i class="fa-solid fa-heart card__portrait-icon"></i>
-							<p class="card__portrait-text">6.50 € / litre</p>
-						</div>
-					</div>
-				</div>
-				<div class="card__portrait">
-					<p class="card__portrait-title">Jus de cerises</p>
-					<div class="card__portrait-content">
-						<div class="card__portrait-image">
-							<a href="#">
-								<img class="image" src="{{ asset('images/articles/cornels-du-jus-dans-verre-pot_114579-18055.webp')}}" alt="image représentant un verre avec du jus de cerises">
-							</a>
-						</div>
-						<div class="card__portrait-informations">
-							<i class="fa-solid fa-heart card__portrait-icon"></i>
-							<p class="card__portrait-text">6.50 € / litre</p>
-						</div>
-					</div>
-				</div>
-				<div class="card__portrait">
-					<p class="card__portrait-title">Jus de prunes</p>
-					<div class="card__portrait-content">
-						<div class="card__portrait-image">
-							<a href="#">
-								<img class="image" src="{{ asset('images/articles/prunes-jardin-dans-panier-fond-bleu-verre-jus-photo-haute-qualite_114579-53019.webp')}}" alt="image représentant un verre avec du jus de prunes">
-							</a>
-						</div>
-						<div class="card__portrait-informations">
-							<i class="fa-solid fa-heart card__portrait-icon"></i>
-							<p class="card__portrait-text">8.00 € / litre</p>
-						</div>
-					</div>
-				</div>
-				<div class="card__portrait">
-					<p class="card__portrait-title">Jus de pêches</p>
-					<div class="card__portrait-content">
-						<div class="card__portrait-image">
-							<a href="#">
-								<img class="image" src="{{ asset('images/articles/nectarines-au-jus-table-grungy-planche-decouper-vue-laterale_176474-8778.webp')}}" alt="image représentant un verre avec du jus de pêches">
-							</a>
-						</div>
-						<div class="card__portrait-informations">
-							<i class="fa-solid fa-heart card__portrait-icon"></i>
-							<p class="card__portrait-text">7.00 € / litre</p>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 		</div>
 	</section>

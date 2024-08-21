@@ -48,7 +48,10 @@ class Products
 
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Producer $producer = null; // Changez "producer" pour "Producer"
+    private ?Producer $producer = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $alt = null; // Changez "producer" pour "Producer"
 
     public function __construct()
     {
@@ -171,6 +174,18 @@ class Products
     public function setProducer(?Producer $producer): static // Correction de la méthode pour définir le producteur
     {
         $this->producer = $producer;
+
+        return $this;
+    }
+
+    public function getAlt(): ?string
+    {
+        return $this->alt;
+    }
+
+    public function setAlt(string $alt): static
+    {
+        $this->alt = $alt;
 
         return $this;
     }
