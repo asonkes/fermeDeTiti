@@ -46,16 +46,17 @@ class Products
     #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'products')]
     private Collection $ordersDetails;
 
-    #[ORM\Column(length: 255)]
-    private ?string $producteur = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $society = null;
+    /**
+     * @var Collection<int, Producer>
+     */
+    #[ORM\OneToMany(targetEntity: Producer::class, mappedBy: 'products')]
+    private Collection $producers;
 
     public function __construct()
     {
         $this->ordersDetails = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
+        $this->producers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -165,26 +166,32 @@ class Products
         return $this;
     }
 
-    public function getProducteur(): ?string
+    /**
+     * @return Collection<int, Producer>
+     */
+    public function getProducers(): Collection
     {
-        return $this->producteur;
+        return $this->producers;
     }
 
-    public function setProducteur(string $producteur): static
+    public function addProducer(Producer $producer): static
     {
-        $this->producteur = $producteur;
+        if (!$this->producers->contains($producer)) {
+            $this->producers->add($producer);
+            $producer->setProducts($this);
+        }
 
         return $this;
     }
 
-    public function getSociety(): ?string
+    public function removeProducer(Producer $producer): static
     {
-        return $this->society;
-    }
-
-    public function setSociety(string $society): static
-    {
-        $this->society = $society;
+        if ($this->producers->removeElement($producer)) {
+            // set the owning side to null (unless already changed)
+            if ($producer->getProducts() === $this) {
+                $producer->setProducts(null);
+            }
+        }
 
         return $this;
     }
