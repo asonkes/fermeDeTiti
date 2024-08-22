@@ -24,7 +24,7 @@ class Categories
     /**
      * @var Collection<int, self>
      */
-    #[ORM\OneToMany(targetEntity: self::class)]
+    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
     private Collection $categories;
 
     /**
