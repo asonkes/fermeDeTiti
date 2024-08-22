@@ -24,7 +24,7 @@ class Categories
     /**
      * @var Collection<int, self>
      */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
+    #[ORM\OneToMany(targetEntity: self::class)]
     private Collection $categories;
 
     /**
@@ -38,6 +38,9 @@ class Categories
 
     #[ORM\Column(length: 255)]
     private ?string $alt = null;
+
+    #[ORM\Column]
+    private ?int $categoryOrder = null;
 
     public function __construct()
     {
@@ -138,6 +141,18 @@ class Categories
     public function setAlt(string $alt): static
     {
         $this->alt = $alt;
+
+        return $this;
+    }
+
+    public function getCategoryOrder(): ?int
+    {
+        return $this->categoryOrder;
+    }
+
+    public function setCategoryOrder(int $categoryOrder): static
+    {
+        $this->categoryOrder = $categoryOrder;
 
         return $this;
     }
