@@ -19,7 +19,7 @@ class CategoriesFixtures extends Fixture
             [
                 'name' => 'Boissons',
                 'image' => 'smoothies-aux-fruits-frais-fond-bois_23-2148227524.webp',
-                'alt' => 'image représentant différentes bouteilles de jus de fruits'
+                'alt' => 'image représentant différentes bouteilles de jus de fruits',
             ],
             [
                 'name' => 'Fruits',

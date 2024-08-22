@@ -28,7 +28,7 @@
 						<p class="card__portrait-title">{{ product.name }}</p>
 						<div class="card__portrait-content">
 							<div class="card__portrait-image">
-								<a href="#">
+								<a href=" {{ path('article_index', {slug : product.slug})}}">
 									<img class="image" src="{{ asset('images/articles/' ~ product.image)}}" alt="{{ product.alt }}">
 								</a>
 							</div>

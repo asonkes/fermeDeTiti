@@ -33,6 +33,9 @@ class Producer
     #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'products')]
     private Collection $products;
 
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -117,6 +120,18 @@ class Producer
                 $product->setProducer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }

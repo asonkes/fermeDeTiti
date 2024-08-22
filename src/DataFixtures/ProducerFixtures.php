@@ -16,12 +16,14 @@ class ProducerFixtures extends Fixture
             [
                 'name' => 'Marc Janssens',
                 'society' => 'Plantation du Beauregard',
+                'description' => 'Entreprise respectant la récolte des fruits à maturité, 100% BIO',
                 'zipcode' => '7830',
                 'city' => 'Silly'
             ],
             [
                 'name' => 'Stadnik Tiphaine',
                 'society' => 'Ferme de Warelles',
+                'description' => 'Entreprise respectant la récolte des fruits à maturité, 100% BIO',
                 'zipcode' => '7850',
                 'city' => 'Enghien'
             ]
@@ -32,6 +34,7 @@ class ProducerFixtures extends Fixture
             $producer = new Producer();
             $producer->setName($data['name'])
                 ->setSociety($data['society'])
+                ->setDescription($data['description'])
                 ->setZipcode($data['zipcode'])
                 ->setCity($data['city']);
 

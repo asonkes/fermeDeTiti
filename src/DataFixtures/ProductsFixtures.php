@@ -16,7 +16,6 @@ class ProductsFixtures extends Fixture
         $productsData = [
             [
                 'name' => 'jus de pommes',
-                'description' => 'Entreprise respectant la récolte des fruits à maturité, 100% BIO',
                 'image' => 'vue-face-jus-pomme-frais-pommes-fraiches-bureau-bois-marron-photo-cocktail-fruits-couleur-boisson_140725-92833.webp',
                 'price' => '7.00',
                 'stock' => 10,
@@ -26,7 +25,6 @@ class ProductsFixtures extends Fixture
             ],
             [
                 'name' => 'jus de poires',
-                'description' => 'Entreprise respectant la récolte des fruits à maturité, 100% BIO',
                 'image' => 'poires-dans-panier-seau-boisson-high-angle-view-tableau-blanc_176474-8761.webp',
                 'price' => '7.50',
                 'stock' => 10,
@@ -36,7 +34,6 @@ class ProductsFixtures extends Fixture
             ],
             [
                 'name' => "jus d'orange",
-                'description' => 'Entreprise respectant la récolte des fruits à maturité, 100% BIO',
                 'image' => 'couper-fruits-jus-orange-parapluie_23-2148145311.webp',
                 'price' => '6.50',
                 'stock' => 10,
@@ -46,7 +43,6 @@ class ProductsFixtures extends Fixture
             ],
             [
                 'name' => 'jus de cerises',
-                'description' => 'Entreprise respectant la récolte des fruits à maturité, 100% BIO',
                 'image' => 'cornels-du-jus-dans-verre-pot_114579-18055.webp',
                 'price' => '6.50',
                 'stock' => 10,
@@ -56,7 +52,6 @@ class ProductsFixtures extends Fixture
             ],
             [
                 'name' => 'jus de prunes',
-                'description' => 'Entreprise respectant la récolte des fruits à maturité, 100% BIO',
                 'image' => 'prunes-jardin-dans-panier-fond-bleu-verre-jus-photo-haute-qualite_114579-53019.webp',
                 'price' => '8.00',
                 'stock' => 10,
@@ -66,7 +61,6 @@ class ProductsFixtures extends Fixture
             ],
             [
                 'name' => 'jus de pêches',
-                'description' => 'Entreprise respectant la récolte des fruits à maturité, 100% BIO',
                 'image' => 'nectarines-au-jus-table-grungy-planche-decouper-vue-laterale_176474-8778.webp',
                 'price' => '7.00',
                 'stock' => 10,
@@ -79,7 +73,6 @@ class ProductsFixtures extends Fixture
         foreach ($productsData as $data) {
             $product = new Products();
             $product->setName($data['name'])
-                ->setDescription($data['description'])
                 ->setImage($data['image'])
                 ->setPrice($data['price'])
                 ->setStock($data['stock'])

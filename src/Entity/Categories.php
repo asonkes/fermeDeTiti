@@ -150,7 +150,7 @@ class Categories
         return $this->categoryOrder;
     }
 
-    public function setCategoryOrder(int $categoryOrder): static
+    public function setCategoryOrder(int $categoryOrder): self
     {
         $this->categoryOrder = $categoryOrder;
 
