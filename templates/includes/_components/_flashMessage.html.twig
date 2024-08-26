@@ -1,0 +1,9 @@
+{% if app.user is not null and not app.user.isVerified %}
+	<div class="alert__message-warning alert__message-warning--flex alert__message-warning--position alert__message-warning--supp" role="alert">
+		<p>
+			<strong>Votre compte n'est pas activé,</strong>
+			veuillez renvoyer le lien d'activation.
+		</p>
+		<i class="fa-solid fa-xmark alert__message-icon"></i>
+	</div>
+{% endif %}

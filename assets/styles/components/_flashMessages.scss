@@ -1,7 +1,8 @@
 @use "../mixins/mixins";
 
 .alert__message-danger,
-.alert__message-success {
+.alert__message-success,
+.alert__message-warning {
     font-size: 14px;
     padding: 10px;
 }
@@ -14,4 +15,37 @@
 .alert__message-success {
     color: green;
     background-color: rgba(98, 154, 40, 0.2);
+}
+
+.alert__message-warning {
+    color: yellow;
+    background-color: rgba(255, 255, 0, 0.4);
+
+    &--flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &--position {
+        position: absolute;
+        top: 70px;
+    }
+
+    &--supp {
+        width: 100%;
+        height: 50px;
+        font-family: var(--font-family1);
+        color: var(--black);
+        z-index: 99;
+    }
+
+    &.active {
+        display: none;
+    }
+}
+
+.alert__message-icon {
+    padding: 15px;
+    cursor: pointer;
 }

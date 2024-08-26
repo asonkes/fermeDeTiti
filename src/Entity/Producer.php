@@ -30,7 +30,7 @@ class Producer
     /**
      * @var Collection<int, Products>
      */
-    #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'products')]
+    #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'producer')]
     private Collection $products;
 
     #[ORM\Column(length: 255)]

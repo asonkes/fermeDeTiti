@@ -22,12 +22,6 @@ class Categories
     private ?string $name = null;
 
     /**
-     * @var Collection<int, self>
-     */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
-    private Collection $categories;
-
-    /**
      * @var Collection<int, Products>
      */
     #[ORM\OneToMany(targetEntity: Products::class, mappedBy: 'categories')]
@@ -44,7 +38,6 @@ class Categories
 
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
         $this->products = new ArrayCollection();
     }
 
@@ -61,32 +54,6 @@ class Categories
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
-    public function addCategory(self $category): static
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(self $category): static
-    {
-        if ($this->categories->removeElement($category)) {
-            // set the owning side to null (unless already changed)
-        }
 
         return $this;
     }

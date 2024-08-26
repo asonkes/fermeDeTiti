@@ -1,7 +1,10 @@
 // Import de la CSS 
 import '../styles/index.scss';
 
-// Import des fichiers JS
+// Import des fichiers JS pour fermer les messages Flashs
+import './components/FlashMessageClose';
+
+// Import des fichiers JS pour header et footer
 import './header/header';
 import './burger/burger';
 
