@@ -23,9 +23,37 @@ class ProducerFixtures extends Fixture
             [
                 'name' => 'Stadnik Tiphaine',
                 'society' => 'Ferme de Warelles',
-                'description' => 'Entreprise respectant la récolte des fruits à maturité, 100% BIO',
+                'description' => "Agricultrice raisonnée et aimant son travail, système de biométhanisation, accueil d'école maternelles et primaire, stages à la ferme durant l'été.",
                 'zipcode' => '7850',
                 'city' => 'Enghien'
+            ],
+            [
+                'name' => 'Mathieu Guillaume',
+                'society' => 'Les Vergers de Barry',
+                'description' => 'Producteurs de petits fruits dans le respect de la terre et de la culture BIO.',
+                'zipcode' => '7534',
+                'city' => 'Tournai'
+            ],
+            [
+                'name' => 'Edouard Menet',
+                'society' => 'Les Petits Fruits.be',
+                'description' => 'Producteurs de fruits BIO au coeur de la Wallonie Picarde !',
+                'zipcode' => '7870',
+                'city' => 'Montignies-lez-lens'
+            ],
+            [
+                'name' => 'Louis Oostendorp',
+                'society' => 'Les fromages de Thoricourt',
+                'description' => 'Exploitation familiale proposant essentiellement du lait de vache en délicieux fromages.',
+                'zipcode' => '7830',
+                'city' => 'Silly'
+            ],
+            [
+                'name' => 'Bertrand Van der Haegen',
+                'society' => 'La brasserie de Silly',
+                'description' => 'Le brassage de la bière est un savoir-faire qui se transmet depuis 6 générations à la brasserie de Silly, et ce depuis 1850.',
+                'zipcode' => '7830',
+                'city' => 'Silly'
             ]
         ];
 
