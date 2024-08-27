@@ -29,7 +29,7 @@
 
     &--position {
         position: absolute;
-        top: 70px;
+        top: 130px;
     }
 
     &--supp {
@@ -40,12 +40,22 @@
         z-index: 99;
     }
 
+    &--special {
+        position: absolute;
+        top: 70px;
+
+        &.active {
+            display: none;
+        }
+    }
+
     &.active {
         display: none;
     }
 }
 
-.alert__message-icon {
+.alert__message-icon,
+.alert__message-icon2 {
     padding: 15px;
     cursor: pointer;
 }

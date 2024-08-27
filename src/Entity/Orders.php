@@ -23,7 +23,7 @@ class Orders
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?users $users = null;
+    private ?Users $users = null;
 
     /**
      * @var Collection<int, OrdersDetails>

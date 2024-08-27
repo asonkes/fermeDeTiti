@@ -18,12 +18,12 @@ class OrdersDetails
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'ordersDetails')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?orders $orders = null;
+    private ?Orders $orders = null;
 
     #[ORM\Id]
     #[ORM\ManyToOne(inversedBy: 'ordersDetails')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?products $products = null;
+    private ?Products $products = null;
 
     public function getQuantity(): ?int
     {

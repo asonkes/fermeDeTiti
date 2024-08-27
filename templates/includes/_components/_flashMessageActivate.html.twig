@@ -1,0 +1,9 @@
+{% if app.user and app.user.isVerified == false%}
+	<div class="alert__message-warning alert__message-warning--flex alert__message-warning--position alert__message-warning--supp" role="alert">
+		<p>
+			<strong>Votre compte n'est pas activé,</strong>
+			<a href="{{ path('resend_verif')}}">veuillez renvoyer le lien d'activation.</a>
+		</p>
+		<i class="fa-solid fa-xmark alert__message-icon"></i>
+	</div>
+{% endif %}
