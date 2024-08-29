@@ -12,10 +12,17 @@
     }
 
     &--supp {
-        width: auto !important;
         box-shadow: 0px -3px 25px rgba(98, 154, 40, 0.7);
         padding: 20px;
         border-radius: 20px;
+    }
+
+    &--width {
+        width: auto !important;
+    }
+
+    &--maxWidth {
+        max-width: 500px
     }
 
     &__ul {
@@ -127,7 +134,6 @@
 
     &__link-special {
         font-size: 14px;
-        text-decoration: none;
         color: var(--black);
     }
 }

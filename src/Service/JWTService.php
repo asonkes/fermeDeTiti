@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use DateTimeImmutable;
-use Doctrine\DBAL\Types\DateImmutableType;
 
 class JWTService
 {
