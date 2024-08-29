@@ -56,6 +56,9 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private ?bool $is_verified = false;
 
+    #[ORM\Column(length: 255, nullable: 'true')]
+    private ?string $resetToken = null;
+
     /**
      * @var Collection<int, Orders>
      */
@@ -210,6 +213,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $is_verified): static
     {
         $this->is_verified = $is_verified;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(string $resetToken): static
+    {
+        $this->resetToken = $resetToken;
 
         return $this;
     }

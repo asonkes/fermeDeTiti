@@ -38,6 +38,10 @@ class UsersFixtures extends Fixture
             $firstname = $faker->firstName();
             $lastname = $faker->lastName();
 
+            // J'enlève les caractères spéciaux des adresses mails
+            $firstname = preg_replace('/[^a-z0-9!#$%&\'*+\=?^_`{|}~.]/i', '', $firstname);
+            $lastname = preg_replace('/[^a-z0-9!#$%&\'*+\=?^_`{|}~.]/i', '', $lastname);
+
             //strtolower ==> garantit que les noms et prénoms dans l'adresse mail sont en miniscule
             $email = strtolower($firstname) . '.' . strtolower($lastname) . '@' . $faker->freeEmailDomain();
 

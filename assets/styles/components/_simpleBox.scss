@@ -7,4 +7,9 @@
     display: flex;
     justify-content: center;
     padding: 15px;
+
+    &--align {
+        height: 70vh;
+        align-items: center;
+    }
 }

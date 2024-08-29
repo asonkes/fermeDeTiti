@@ -33,7 +33,7 @@ class Categories
     #[ORM\Column(length: 255)]
     private ?string $alt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $categoryOrder = null;
 
     public function __construct()
