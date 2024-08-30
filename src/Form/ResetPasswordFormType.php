@@ -17,7 +17,7 @@ class ResetPasswordFormType extends AbstractType
                 'attr' => [
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
-                'label' => 'Entrez votre mot de passse',
+                'label' => 'Entrez votre nouveau mot de passse',
                 'label_attr' => [
                     'class' => 'form__label'
                 ]

@@ -11,8 +11,9 @@
 @use "./partials/header.scss";
 
 // use des fichiers de "home" et page par défault
-@use "./sections/section";
+@use "./sections/error";
 @use "./sections/home";
+@use "./sections/section";
 
 // use des composants
 @use "./components/accordion";
