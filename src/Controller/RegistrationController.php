@@ -8,7 +8,6 @@ use App\Repository\UsersRepository;
 use App\Security\UsersAuthenticator;
 use App\Service\JWTService;
 use App\Service\SendEmailService;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -35,7 +34,10 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            // Persist l'utilisateur pour générer l'id
             $entityManager->persist($user);
+
+            // Là, on enregistre l'utilisateur sans le token
             $entityManager->flush();
 
             // On génère le JWT de l'utilisateur
@@ -53,6 +55,12 @@ class RegistrationController extends AbstractController
 
             // On génère le token
             $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
+
+            //On sauvegarge le token dans la base de données
+            $user->setResetToken($token);
+
+            // Sauvegardez le token dans la base de données
+            $entityManager->flush();
 
             // On envoie un e-mail
             $mailer->send(
@@ -80,6 +88,7 @@ class RegistrationController extends AbstractController
 
         // On vérifie si le token est valide, n'a pas expiré et n'a pas été modifié
         if ($jwt->isValid($token) && !$jwt->isExpired($token) && $jwt->check($token, $this->getParameter('app.jwtsecret'))) {
+
             // On récupère le payload
             $payload = $jwt->getPayload($token);
 
@@ -102,18 +111,18 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('renvoiverif', name: 'resend_verif')]
-    public function resendVerif(JWTService $jwt, SendEmailService $mailer, UsersRepository $usersRepository): Response
+    public function resendVerif(JWTService $jwt, SendEmailService $mailer): Response
     {
         $user = $this->getUser();
 
-        if (!$user) {
+        if (!$user instanceof Users) {
             $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page');
 
             return $this->redirectToRoute('app_login');
         }
 
         if ($user->getIsVerified()) {
-            return $this->addFlash('warning', 'Cet utilisateur est déjà activé');
+            $this->addFlash('warning', 'Cet utilisateur est déjà activé');
 
             return $this->redirectToRoute('app_login');
         }
