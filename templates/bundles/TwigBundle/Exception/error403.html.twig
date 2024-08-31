@@ -1,10 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Warelles - erreur
+{% block title %}Warelles - Erreur
 {% endblock %}
 
 {% block body %}
-	<section class="section burger__effect products">
-		<div class="section__bg-overlay"></div>
-		<h2 class="section__title-h2">Erreur 403</h2</section>
-	{% endblock %}
+	<section class="section__error403 section--padding" id="contact">
+		<h2 class="section__title-h2">Page non Trouvée</h2</section>
+		<div class="simpleBox simpleBox--align">
+			<div class="box">
+				<p class="box__text-item">Désolée, nous ne trouvons pas cette page</p>
+				<div class="box__text-item2">
+					<a class="box__item-link" href=" {{ path('home')}} ">
+						Revenir au site
+						<i class="fa-solid fa-chevron-right"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>{% endblock %}

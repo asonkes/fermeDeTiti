@@ -1,0 +1,66 @@
+@use "../mixins/mixins";
+
+.box {
+    width: auto;
+    padding: 20px;
+
+    &__text-item,
+    &__text-item2 {
+        background-color: var(--vert);
+        padding: 30px;
+        border-radius: 5px;
+        text-align: center;
+        font-family: var(--font-family1);
+        font-weight: 600;
+    }
+
+    &__text-item {
+        font-size: 22px;
+        color: var(--white);
+        transform: rotate(-15deg);
+        position: relative;
+        z-index: 1;
+
+        @include mixins.md {
+            font-size: 20px;
+        }
+
+        @include mixins.s {
+            font-size: 18px;
+        }
+    }
+
+    &__text-item2 {
+        width: 70%;
+        margin-top: 35px;
+        margin-left: 150px;
+        font-size: 20px;
+        transform: rotate(15deg);
+
+        @include mixins.md {
+            margin-top: 20px;
+            margin-left: 120px;
+            font-size: 18px;
+        }
+
+        @include mixins.s {
+            margin-left: 80px;
+            font-size: 16px;
+        }
+
+        @include mixins.xs {
+            margin-top: 10px;
+            margin-left: 60px;
+        }
+
+        &:hover {
+            background-color: var(--vert2);
+            transform: rotate(5deg);
+            transition: all 1s ease-in-out;
+        }
+    }
+
+    &__item-link {
+        color: var(--white);
+    }
+}
