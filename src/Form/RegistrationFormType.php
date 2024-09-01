@@ -66,13 +66,19 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('email', EmailType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Entrez votre adresse mail'
+                    ])
+
+                ],
                 'attr' => [
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'E-mail',
                 'label_attr' => [
                     'class' => 'form__label'
-                ],
+                ]
             ])
             ->add('RGPDConsent', CheckboxType::class, [
                 'attr' => [

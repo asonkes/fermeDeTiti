@@ -48,7 +48,10 @@ class Products
     private ?Producer $producer = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $alt = null; // Changez "producer" pour "Producer"
+    private ?string $alt = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $type = null;
 
     public function __construct()
     {
@@ -171,6 +174,18 @@ class Products
     public function setAlt(string $alt): static
     {
         $this->alt = $alt;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

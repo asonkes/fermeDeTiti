@@ -17,7 +17,7 @@
 		<div class="dualbox">
 			<div class="dualbox__container">
 				<div class="dualbox__item-left">
-					<img class="dualbox__image" src="{{ asset('images/articles/vue-face-jus-pomme-frais-pommes-fraiches-bureau-bois-marron-photo-cocktail-fruits-couleur-boisson_140725-92833.webp')}}" alt="image représentant l'image d'un jus de fruit">
+					<img class="dualbox__image" src={{ asset('images/articles/' ~ product.image)}} alt={}>
 				</div>
 				<div class="dualbox__item-right">
 					<div class="accordion">
@@ -62,9 +62,17 @@
 							</div>
 						</div>
 						<div class="button button--padding">
-							<button class="button__container button__container--large">
-								<a class="button__link button__link--textSmall" href="{{ path('home') }}#contact">Contactez-nous</a>
+							<button class="button__container button__container--large margin20">
+								<a class="button__link button__link--textSmall" href="#">Choisir la quantité</a>
 								<i class="fa-solid fa-chevron-right home__button-icon"></i>
+							</button>
+							<button class="button__container button__container--large">
+								{% if product.stock > 0 %}
+									<a class="button__link button__link--textSmall" href="#">Ajouter au panier</a>
+									<i class="fa-solid fa-chevron-right home__button-icon"></i>
+								{% else %}
+									<p class="button__link button__link--textSmall danger">Temporairement indisponible</p>
+								{% endif %}
 							</button>
 						</div>
 					</div>

@@ -22,7 +22,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 10,
                 'category_reference' => 'cat-1',
                 'producer_reference' => 'prod-1',
-                'alt' => 'image représentant un verre de jus de pommes avec des pommes à côté'
+                'alt' => 'image représentant un verre de jus de pommes avec des pommes à côté',
+                'type' => 'litre'
             ],
             [
                 'name' => 'jus de poires',
@@ -31,7 +32,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 10,
                 'category_reference' => 'cat-1',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un verre de jus de poires avec des poires à côté'
+                'alt' => 'image représentant un verre de jus de poires avec des poires à côté',
+                'type' => 'litre'
             ],
             [
                 'name' => "jus d'orange",
@@ -40,7 +42,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 10,
                 'category_reference' => 'cat-1',
                 'producer_reference' => 'prod-2',
-                'alt' => "image représentant un verre d'orange avec des oranges à côté"
+                'alt' => "image représentant un verre d'orange avec des oranges à côté",
+                'type' => 'litre'
             ],
             [
                 'name' => 'jus de cerises',
@@ -49,7 +52,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 10,
                 'category_reference' => 'cat-1',
                 'producer_reference' => 'prod-3',
-                'alt' => 'image représentant un verre de jus de cerises avec des cerises à côté dans un bol'
+                'alt' => 'image représentant un verre de jus de cerises avec des cerises à côté dans un bol',
+                'type' => 'litre'
             ],
             [
                 'name' => 'jus de prunes',
@@ -58,7 +62,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 10,
                 'category_reference' => 'cat-1',
                 'producer_reference' => 'prod-3',
-                'alt' => 'image représentant un verre de jus de prunes avec des prunes à côté dans un panier'
+                'alt' => 'image représentant un verre de jus de prunes avec des prunes à côté dans un panier',
+                'type' => 'litre'
             ],
             [
                 'name' => 'jus de pêches',
@@ -67,7 +72,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 10,
                 'category_reference' => 'cat-1',
                 'producer_reference' => 'prod-1',
-                'alt' => 'image représentant un verre de jus de pêches avec des pêches à côté'
+                'alt' => 'image représentant un verre de jus de pêches avec des pêches à côté',
+                'type' => 'litre'
             ],
             // Base de données des fruits
             [
@@ -77,7 +83,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-1',
-                'alt' => 'image représentant un tas de pommes'
+                'alt' => 'image représentant un tas de pommes',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Poires',
@@ -86,7 +93,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de poires'
+                'alt' => 'image représentant un tas de poires',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Cerises',
@@ -95,7 +103,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-3',
-                'alt' => 'image représentant un tas de cerises'
+                'alt' => 'image représentant un tas de cerises',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Prunes',
@@ -104,7 +113,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-3',
-                'alt' => 'image représentant un tas de prunes'
+                'alt' => 'image représentant un tas de prunes',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Pêches',
@@ -113,52 +123,58 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-3',
-                'alt' => 'image représentant un tas de pêches'
+                'alt' => 'image représentant un tas de pêches',
+                'type' => 'kilo'
             ],
             [
-                'name' => 'Fraises (500gr)',
+                'name' => 'Fraises',
                 'image' => 'fraises-coupees-deux-baies-entieres-baies-mures-vue-dessus-arriere-plan-fraises-mures-delicieux-dess.webp',
                 'price' => '5.00',
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de framboises'
+                'alt' => 'image représentant un tas de framboises',
+                'type' => '500gr'
             ],
             [
-                'name' => 'Framboises (300gr)',
+                'name' => 'Framboises',
                 'image' => 'gros-plan-framboises-fraiches-mignonnes-autre_181624-1270.webp',
                 'price' => '5.50',
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-4',
-                'alt' => 'image représentant un tas de prunes'
+                'alt' => 'image représentant un tas de prunes',
+                'type' => '300gr'
             ],
             [
-                'name' => 'Myrtilles (300gr)',
+                'name' => 'Myrtilles',
                 'image' => 'fruits-sains-vendre-au-marche_23-2148263725.webp',
                 'price' => '4.00',
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-4',
-                'alt' => 'image représentant un tas de myrtilles'
+                'alt' => 'image représentant un tas de myrtilles',
+                'type' => '300gr'
             ],
             [
-                'name' => 'Groseilles (300gr)',
+                'name' => 'Groseilles',
                 'image' => 'arrangement-canneberges-vue-dessus_23-2148823574.webp',
                 'price' => '4.00',
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-4',
-                'alt' => 'image représentant un tas de groseilles'
+                'alt' => 'image représentant un tas de groseilles',
+                'type' => '300gr'
             ],
             [
-                'name' => 'Mûres (300gr)',
+                'name' => 'Mûres',
                 'image' => 'framboise-biologique-nutritive-marche_23-2148263724.webp',
                 'price' => '4.0',
                 'stock' => 100,
                 'category_reference' => 'cat-2',
                 'producer_reference' => 'prod-4',
-                'alt' => 'image représentant un tas mûres'
+                'alt' => 'image représentant un tas mûres',
+                'type' => '300gr'
             ],
             // Base de données  des légumes
             [
@@ -168,7 +184,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-3',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de pommes de terre'
+                'alt' => 'image représentant un tas de pommes de terre',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Tomates',
@@ -177,7 +194,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-3',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de tomates'
+                'alt' => 'image représentant un tas de tomates',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Courgettes',
@@ -186,7 +204,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-3',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de tomates'
+                'alt' => 'image représentant un tas de tomates',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Aubergines',
@@ -195,7 +214,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-3',
                 'producer_reference' => 'prod-2',
-                'alt' => "image représentant un tas d'aubergines"
+                'alt' => "image représentant un tas d'aubergines",
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Poivrons',
@@ -204,7 +224,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-3',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de poivrons'
+                'alt' => 'image représentant un tas de poivrons',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Carottes',
@@ -213,7 +234,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-3',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de carottes'
+                'alt' => 'image représentant un tas de carottes',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Concombres',
@@ -222,7 +244,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-3',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de concombres'
+                'alt' => 'image représentant un tas de concombres',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Oignons',
@@ -231,7 +254,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-3',
                 'producer_reference' => 'prod-2',
-                'alt' => "image représentant un tas d'oignons"
+                'alt' => "image représentant un tas d'oignons",
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Petits pois',
@@ -240,7 +264,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-3',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de petits pois'
+                'alt' => 'image représentant un tas de petits pois',
+                'type' => 'kilo'
             ],
             // Base de données pour la boulangerie
             [
@@ -250,7 +275,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-4',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de pains ronds'
+                'alt' => 'image représentant un tas de pains ronds',
+                'type' => 'pièce'
             ],
             // Base de données pour la crèmerie
             [
@@ -260,7 +286,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-5',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant une bouteille de lait'
+                'alt' => 'image représentant une bouteille de lait',
+                'type' => 'litre'
             ],
             [
                 'name' => 'Oeufs',
@@ -269,7 +296,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-5',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant une boite de 6 oeufs'
+                'alt' => 'image représentant une boite de 6 oeufs',
+                'type' => '6 pièces'
             ],
             [
                 'name' => 'Farine',
@@ -278,7 +306,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-5',
                 'producer_reference' => 'prod-2',
-                'alt' => 'image représentant un tas de la farine'
+                'alt' => 'image représentant un tas de la farine',
+                'type' => 'kilo'
             ],
             [
                 'name' => 'Fromage Blanc',
@@ -287,7 +316,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-5',
                 'producer_reference' => 'prod-5',
-                'alt' => 'image représentant un sac de farine'
+                'alt' => 'image représentant un sac de farine',
+                'type' => 'pièce'
             ],
             [
                 'name' => 'Fromage blanc aux fines herbes',
@@ -296,7 +326,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-5',
                 'producer_reference' => 'prod-5',
-                'alt' => 'image représentant un fromage blanc aux fines herbes'
+                'alt' => 'image représentant un fromage blanc aux fines herbes',
+                'type' => 'pièce'
             ],
             // Base de données des bières
             [
@@ -306,7 +337,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-6',
                 'producer_reference' => 'prod-6',
-                'alt' => 'image représentant un bière et un verre à côté'
+                'alt' => 'image représentant un bière et un verre à côté',
+                'type' => '33cl'
             ],
             [
                 'name' => 'Double Enghien Brune',
@@ -315,7 +347,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-6',
                 'producer_reference' => 'prod-6',
-                'alt' => 'image représentant un bière et un verre à côté'
+                'alt' => 'image représentant un bière et un verre à côté',
+                'type' => '33cl'
             ],
             [
                 'name' => 'Enghien Brune',
@@ -324,7 +357,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-6',
                 'producer_reference' => 'prod-6',
-                'alt' => 'image représentant un bière et un verre à côté'
+                'alt' => 'image représentant un bière et un verre à côté',
+                'type' => '33cl'
             ],
             [
                 'name' => 'Enghien Blonde',
@@ -333,7 +367,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-6',
                 'producer_reference' => 'prod-6',
-                'alt' => 'image représentant un bière et un verre à côté'
+                'alt' => 'image représentant un bière et un verre à côté',
+                'type' => '33cl'
             ],
             [
                 'name' => 'Enghien Noel',
@@ -342,7 +377,8 @@ class ProductsFixtures extends Fixture
                 'stock' => 100,
                 'category_reference' => 'cat-6',
                 'producer_reference' => 'prod-6',
-                'alt' => 'image représentant un bière et un verre à côté'
+                'alt' => 'image représentant un bière et un verre à côté',
+                'type' => '33cl'
             ]
         ];
 
@@ -353,6 +389,7 @@ class ProductsFixtures extends Fixture
                 ->setPrice($data['price'])
                 ->setStock($data['stock'])
                 ->setAlt($data['alt'])
+                ->setType($data['type'])
                 ->setSlug($this->slugger->slug($data['name'])->lower());
 
             // On va chercher une référence de catégorie
