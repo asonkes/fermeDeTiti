@@ -5,14 +5,15 @@ namespace App\Form;
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormType extends AbstractType
@@ -21,7 +22,13 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('lastname', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre nom'
+                    ])
+                ],
                 'attr' => [
+                    'placeholder' => 'nom',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Nom',
@@ -30,7 +37,13 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('firstname', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre prénom'
+                    ])
+                ],
                 'attr' => [
+                    'placeholder' => 'prénom',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Prénom',
@@ -39,7 +52,13 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('address', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre addresse'
+                    ])
+                ],
                 'attr' => [
+                    'placeholder' => 'Rue noir mouchon 15',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Addresse',
@@ -48,7 +67,13 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('zipcode', NumberType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre code postal'
+                    ])
+                ],
                 'attr' => [
+                    'placeholder' => '7850',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Code Postal',
@@ -57,7 +82,13 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('city', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre ville'
+                    ])
+                ],
                 'attr' => [
+                    'placeholder' => 'enghien',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Ville',
@@ -70,9 +101,9 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Entrez votre adresse mail'
                     ])
-
                 ],
                 'attr' => [
+                    'placeholder' => 'exemple@email.com',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'E-mail',
@@ -96,14 +127,13 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => [
+                    'placeholder' => 'mot de passe',
                     'autocomplete' => 'new-password',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
-                'label' => 'Nom',
+                'label' => 'Mot de passe',
                 'label_attr' => [
                     'class' => 'form__label'
                 ],
@@ -112,10 +142,13 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Entrez votre mot de passe',
                     ]),
                     new Length([
-                        'min' => 2,
-                        'minMessage' => 'Votre mot de passe doit faire {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'min' => 12,
+                        'minMessage' => 'Votre mot de passe doit faire minimum {{ limit }} caractères',
+                        'max' => 128,
+                    ]),
+                    new Regex([
+                        'pattern' => '/[!@#$%^&*(),.?":{}|<>]/',
+                        'message' => 'Votre mot de passe doit contenir au moins un caractère spécial.',
                     ]),
                 ],
             ])

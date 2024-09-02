@@ -86,7 +86,9 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('app_login');
             }
 
-            return $this->redirectToRoute('home');
+            $this->addFlash('danger', 'Votre e-mail est inexistant, veuillez réessayer');
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('security/reset_password_request.html.twig', [

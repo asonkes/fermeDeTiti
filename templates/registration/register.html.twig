@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}Warelles - Inscription
 {% endblock %}
 
 {% block body %}
@@ -10,7 +10,6 @@
 
 		<div class="simpleBox">
 			<div class="form form--maxWidth form--flex form--supp" method="post">
-				{{ form_errors(registrationForm) }}
 
 				{{ form_start(registrationForm) }}
 
@@ -26,6 +25,7 @@
 				<div class="padding5">
 					{{ form_row(registrationForm.address) }}
 				</div>
+
 				<div class="form__label-container padding5">
 					<div class="width45">
 						{{ form_row(registrationForm.zipcode) }}
@@ -34,13 +34,21 @@
 						{{ form_row(registrationForm.city) }}
 					</div>
 				</div>
+
 				<div class="padding5">
 					{{ form_row(registrationForm.email) }}
 				</div>
+
 				<div class="padding5">
-					{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+					{{ form_label(registrationForm.plainPassword) }}
+
+					<div
+						class='danger fontSizeSmall listStyleNone'>
+						<!-- Seul le texte des erreurs est rouge -->
+						{{ form_errors(registrationForm.plainPassword) }}
+					</div>
+
+					{{ form_widget(registrationForm.plainPassword) }}
 				</div>
 
 				{{ form_row(registrationForm.RGPDConsent) }}

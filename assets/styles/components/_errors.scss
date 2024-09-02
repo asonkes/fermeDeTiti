@@ -1,0 +1,13 @@
+@use "../mixins/mixins";
+
+.danger {
+    color: red;
+}
+
+.listStyleNone ul {
+    list-style: none;
+}
+
+.fontSizeSmall {
+    font-size: 14px;
+}
