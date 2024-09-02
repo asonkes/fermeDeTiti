@@ -1,0 +1,33 @@
+{% if products.pages > 1 %}
+
+	{% set path = 'products_index' %}
+	{% set slug = category.slug %}
+	{% set pages = products.pages %}
+	{% set currentPage = products.page %}
+
+	<nav class="pagination__nav">
+		<ul class="pagination__ul">
+			{% if currentPage > 1 %}
+				<li class="pagination__li">
+					<a class="pagination__li-link" href="{{ path(path, {slug: slug, page: currentPage - 1 }) }}">
+						<i class="fa-solid fa-chevron-left"></i>
+					</a>
+				</li>
+			{% endif %}
+
+			{% for page in 1..pages %}
+				<li class="pagination__li {{ (page == currentPage) ? 'active' : '' }}">
+					<a class="pagination__li-link {{ (page == currentPage) ? 'active' : '' }}" href="{{ path(path, {slug: slug, page: page }) }}">{{ page }}</i>
+				</li>
+			{% endfor %}
+
+			{% if currentPage < pages %}
+				<li class="pagination__li">
+					<a class="pagination__li-link" href="{{ path(path, {slug: slug, page: currentPage + 1 }) }}">
+						<i class="fa-solid fa-chevron-right"></i>
+					</a>
+				</li>
+			{% endif %}
+		</ul>
+	</nav>
+{% endif %}
