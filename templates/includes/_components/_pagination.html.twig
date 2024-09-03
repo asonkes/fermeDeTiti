@@ -1,10 +1,9 @@
-{% if products.pages > 1 %}
+{% set path = 'products_index' %}
+{% set slug = category.slug %}
+{% set pages = products.pages %}
+{% set currentPage = products.page %}
 
-	{% set path = 'products_index' %}
-	{% set slug = category.slug %}
-	{% set pages = products.pages %}
-	{% set currentPage = products.page %}
-
+{% if pages > 1 %}
 	<nav class="pagination__nav">
 		<ul class="pagination__ul">
 			{% if currentPage > 1 %}

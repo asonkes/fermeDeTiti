@@ -18,10 +18,10 @@ class ProductsRepository extends ServiceEntityRepository
     }
 
     // Permet de débuter la pagination
-    public function findProductsPaginated(int $page, string $slug, int $limit = 6): array
+    public function findProductsPaginated(int $page, string $slug, int $limit): array
     {
         //pagination commence
-        // abs (valeur absolue) ==> permet de toujours avoir une limite même si on met une valeur négative
+        // abs (valeur absolue) ==> permet de toujours avoir une valeur positive même si une valeur négative est accidentellement insérée.
         $limit = abs($limit);
 
         $result = [];
@@ -38,15 +38,21 @@ class ProductsRepository extends ServiceEntityRepository
             // Permet d'aller chercher juste les produits qui correspondent à ma page et à ma limit
             ->setFirstResult(($page * $limit) - $limit);
 
+        // $paginator encapsule les informations de $query dans un objet Paginator pour l'éxécuté de manière optimlmisée
         $paginator = new Paginator($query);
+        // Là, on exécute la requête et récupère les objets pour la page courante
         $data = $paginator->getQuery()->getResult();
 
         // On vérifie que l'on a des données
         if (empty($data)) {
+            // Vous pouvez définir un message à passer à votre template
+            $this->addFlash('warning', "Aucun produit n'a été trouvé pour cette catégorie");
+
             return $result;
         }
 
-        // On calcule le nombre de pages
+        // On calcule le nombre de pages 
+        // Pour cela avec "ceil", on va arrondir à l'entier supérieur le plus proche (si 8.87 = 9)
         $pages = ceil($paginator->count() / $limit);
 
         // On remplit le tableau
