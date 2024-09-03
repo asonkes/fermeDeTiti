@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
@@ -28,7 +29,6 @@ class RegistrationFormType extends AbstractType
                     ])
                 ],
                 'attr' => [
-                    'placeholder' => 'nom',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Nom',
@@ -43,7 +43,6 @@ class RegistrationFormType extends AbstractType
                     ])
                 ],
                 'attr' => [
-                    'placeholder' => 'prénom',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Prénom',
@@ -58,7 +57,6 @@ class RegistrationFormType extends AbstractType
                     ])
                 ],
                 'attr' => [
-                    'placeholder' => 'Rue noir mouchon 15',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Addresse',
@@ -73,7 +71,6 @@ class RegistrationFormType extends AbstractType
                     ])
                 ],
                 'attr' => [
-                    'placeholder' => '7850',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Code Postal',
@@ -88,7 +85,6 @@ class RegistrationFormType extends AbstractType
                     ])
                 ],
                 'attr' => [
-                    'placeholder' => 'enghien',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Ville',
@@ -100,7 +96,14 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrez votre adresse mail'
-                    ])
+                    ]),
+                    new Email([
+                        'message' => 'Veuillez entrer une adresse email valide, contenant un "@" et un domaine valide'
+                    ]),
+                    new Length([
+                        'max' => 180,
+                        'maxMessage' => 'Votre adresse email ne doit pas dépasser {{ limit }} caractères'
+                    ]),
                 ],
                 'attr' => [
                     'placeholder' => 'exemple@email.com',
@@ -129,7 +132,6 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'attr' => [
-                    'placeholder' => 'mot de passe',
                     'autocomplete' => 'new-password',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],

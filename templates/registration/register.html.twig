@@ -15,36 +15,70 @@
 
 				<div class="form__label-container padding5">
 					<div class="width45">
-						{{ form_row(registrationForm.lastname) }}
+						{{ form_label(registrationForm.lastname)}}
+
+						<div class='danger fontSizeSmall listStyleNone'>
+							{{ form_errors(registrationForm.lastname) }}
+						</div>
+
+						{{ form_widget(registrationForm.lastname) }}
 					</div>
 					<div class="width45">
-						{{ form_row(registrationForm.firstname) }}
+						{{ form_label(registrationForm.firstname)}}
+
+						<div class='danger fontSizeSmall listStyleNone'>
+							{{ form_errors(registrationForm.firstname) }}
+						</div>
+
+						{{ form_widget(registrationForm.firstname) }}
 					</div>
 				</div>
 
 				<div class="padding5">
-					{{ form_row(registrationForm.address) }}
+					{{ form_label(registrationForm.address)}}
+
+					<div class='danger fontSizeSmall listStyleNone'>
+						{{ form_errors(registrationForm.address) }}
+					</div>
+
+					{{ form_widget(registrationForm.address) }}
 				</div>
 
 				<div class="form__label-container padding5">
 					<div class="width45">
-						{{ form_row(registrationForm.zipcode) }}
+						{{ form_label(registrationForm.zipcode)}}
+
+						<div class='danger fontSizeSmall listStyleNone'>
+							{{ form_errors(registrationForm.zipcode) }}
+						</div>
+
+						{{ form_widget(registrationForm.zipcode) }}
 					</div>
 					<div class="width45">
-						{{ form_row(registrationForm.city) }}
+						{{ form_label(registrationForm.city)}}
+
+						<div class='danger fontSizeSmall listStyleNone'>
+							{{ form_errors(registrationForm.city) }}
+						</div>
+
+						{{ form_widget(registrationForm.city) }}
 					</div>
 				</div>
 
 				<div class="padding5">
-					{{ form_row(registrationForm.email) }}
+					{{ form_label(registrationForm.email) }}
+
+					<div class='danger fontSizeSmall listStyleNone'>
+						{{ form_errors(registrationForm.email) }}
+					</div>
+
+					{{ form_widget(registrationForm.email) }}
 				</div>
 
 				<div class="padding5">
 					{{ form_label(registrationForm.plainPassword) }}
 
-					<div
-						class='danger fontSizeSmall listStyleNone'>
-						<!-- Seul le texte des erreurs est rouge -->
+					<div class='danger fontSizeSmall listStyleNone'>
 						{{ form_errors(registrationForm.plainPassword) }}
 					</div>
 

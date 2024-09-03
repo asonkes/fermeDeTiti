@@ -74,7 +74,7 @@ class SecurityController extends AbstractController
 
                 // Envoi du mail
                 $mailer->send(
-                    'no-reply@monsite.com',
+                    'no-reply@monsite.net',
                     $user->getEmail(),
                     'Réinitialisation du mot de passe',
                     'password_reset',
@@ -113,6 +113,7 @@ class SecurityController extends AbstractController
 
                 // On efface le token
                 $user->setResetToken('');
+
                 $user->setPassword(
                     $passwordHasher->hashPassword(
                         $user,

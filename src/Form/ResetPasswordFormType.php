@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class ResetPasswordFormType extends AbstractType
 {
@@ -20,7 +23,21 @@ class ResetPasswordFormType extends AbstractType
                 'label' => 'Entrez votre nouveau mot de passse',
                 'label_attr' => [
                     'class' => 'form__label'
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Entrez votre mot de passe',
+                    ]),
+                    new Length([
+                        'min' => 12,
+                        'minMessage' => 'Votre mot de passe doit faire minimum {{ limit }} caractères',
+                        'max' => 128,
+                    ]),
+                    new Regex([
+                        'pattern' => '/[!@#$%^&*(),.?":{}|<>]/',
+                        'message' => 'Votre mot de passe doit contenir au moins un caractère spécial.',
+                    ]),
+                ],
             ]);
     }
 

@@ -3,9 +3,12 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class ResetPasswordRequestFormType extends AbstractType
 {
@@ -14,6 +17,18 @@ class ResetPasswordRequestFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Entrez votre adresse mail'
+                    ]),
+                    new Email([
+                        'message' => 'Veuillez entrer une adresse email valide, contenant un "@" et un domaine valide'
+                    ]),
+                    new Length([
+                        'max' => 180,
+                        'maxMessage' => 'Votre adresse email ne doit pas dépasser {{ limit }} caractères'
+                    ]),
+                ],
                 'attr' => [
                     'placeholder' => 'exemple@email.com',
                     'class' => 'form__input form__input--supp form__input--margin'
