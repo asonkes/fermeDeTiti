@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Ajout de Produits
+{% endblock %}
+
+{% block body %}
+	<section class="section section--padding" id="contact">
+		<div class="section__bg-overlay"></div>
+		<h2 class="section__title-h2">Administration d'édition de Produits</h2>
+
+		<div class="simpleBox">
+			<form class="form form--maxWidth form--flex form--supp" method="post">
+				{% include 'includes/_components/_form.html.twig' with{'button_label': 'Modifier'} %}
+			</div>
+		</div>
+	</section>
+{% endblock %}

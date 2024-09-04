@@ -332,7 +332,7 @@ class ProductsFixtures extends Fixture
             // Base de données des bières
             [
                 'name' => 'Enghien Hiver',
-                'image' => 'enghien-hiver.webp',
+                'image' => 'enghien-hiver1.webp',
                 'price' => '3.00',
                 'stock' => 100,
                 'category_reference' => 'cat-6',
@@ -342,17 +342,7 @@ class ProductsFixtures extends Fixture
             ],
             [
                 'name' => 'Double Enghien Brune',
-                'image' => 'double-enghien-bruin.webp',
-                'price' => '2.88',
-                'stock' => 100,
-                'category_reference' => 'cat-6',
-                'producer_reference' => 'prod-6',
-                'alt' => 'image représentant un bière et un verre à côté',
-                'type' => '33cl'
-            ],
-            [
-                'name' => 'Enghien Brune',
-                'image' => 'enghien-brune.webp',
+                'image' => 'enghien-brune1.webp',
                 'price' => '2.50',
                 'stock' => 100,
                 'category_reference' => 'cat-6',
@@ -362,7 +352,7 @@ class ProductsFixtures extends Fixture
             ],
             [
                 'name' => 'Enghien Blonde',
-                'image' => 'enghien-blonde-600x600.webp',
+                'image' => 'enghien-blonde.webp',
                 'price' => '3.00',
                 'stock' => 100,
                 'category_reference' => 'cat-6',
@@ -371,9 +361,19 @@ class ProductsFixtures extends Fixture
                 'type' => '33cl'
             ],
             [
-                'name' => 'Enghien Noel',
-                'image' => '17a1c7173961fac9410ad673fd801ee3.png',
-                'price' => '3.00',
+                'name' => 'Silly Scotch',
+                'image' => 'silly-scotch.webp',
+                'price' => '2.50',
+                'stock' => 100,
+                'category_reference' => 'cat-6',
+                'producer_reference' => 'prod-6',
+                'alt' => 'image représentant un bière et un verre à côté',
+                'type' => '33cl'
+            ],
+            [
+                'name' => 'Silly Kriek',
+                'image' => 'silly-kriek-600x600.webp',
+                'price' => '2.75',
                 'stock' => 100,
                 'category_reference' => 'cat-6',
                 'producer_reference' => 'prod-6',

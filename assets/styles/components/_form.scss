@@ -88,6 +88,10 @@
             background-color: var(--white) !important;
         }
 
+        &--special {
+            width: 255px;
+        }
+
         @include mixins.s {
             font-size: 14px;
         }

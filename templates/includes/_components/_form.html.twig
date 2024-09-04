@@ -1,0 +1,95 @@
+{{ form_start(productForm) }}
+
+<div>
+	{{ form_label(productForm.name)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.name) }}
+	</div>
+
+	{{ form_widget(productForm.name) }}
+</div>
+
+<div>
+	{{ form_label(productForm.image)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.image) }}
+	</div>
+
+	{{ form_widget(productForm.image) }}
+</div>
+
+<div>
+	{{ form_label(productForm.price)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.price) }}
+	</div>
+
+	{{ form_widget(productForm.price) }}
+</div>
+
+<div>
+	{{ form_label(productForm.stock)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.stock) }}
+	</div>
+
+	{{ form_widget(productForm.stock) }}
+</div>
+
+<div>
+	{{ form_label(productForm.alt)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.alt) }}
+	</div>
+
+	{{ form_widget(productForm.alt) }}
+</div>
+
+<div>
+	{{ form_label(productForm.type)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.type) }}
+	</div>
+
+	<div class="form__input--special">
+		{{ form_widget(productForm.type) }}
+	</div>
+</div>
+
+<div>
+	{{ form_label(productForm.categories)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.categories) }}
+	</div>
+
+	<div class="form__input--special">
+		{{ form_widget(productForm.categories) }}
+	</div>
+</div>
+
+<div>
+	{{ form_label(productForm.producer)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.producer) }}
+	</div>
+
+	<div class="form__input--special">
+		{{ form_widget(productForm.producer) }}
+	</div>
+</div>
+
+<div class="button">
+	<div class="button__container button__container--flex button__container--small">
+		<button class="button__link button__link--textSmall button__link--supp" type="submit">{{ button_label|default('Ajouter')}}</button>
+	</div>
+</div>
+
+{{ form_end(productForm) }}
