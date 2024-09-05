@@ -8,10 +8,11 @@ use App\Entity\Categories;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ProductsFormType extends AbstractType
 {
@@ -27,17 +28,21 @@ class ProductsFormType extends AbstractType
                     'class' => 'form__label'
                 ]
             ])
-            ->add('image', TextType::class, [
+            ->add('image', FileType::class, [
                 'attr' => [
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
+                'label' => false,
                 'label_attr' => [
                     'class' => 'form__label'
-                ]
+                ],
+                'mapped' => false, // Important si vous n'êtes pas en train de lier à une entité
+                'required' => true, // Si vous voulez que le champ soit obligatoire
             ])
             ->add('price', NumberType::class, [
                 'scale' => 2,
                 'attr' => [
+                    'placeholder' => '0.00',
                     'step' => 0.01,
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],

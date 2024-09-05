@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Products;
 use App\Form\ProductsFormType;
+use App\Service\PictureService;
+use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,37 +25,55 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/produits/ajout', name: 'add')]
-    public function add(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
+    public function addProduct(Request $request, SluggerInterface $slugger, EntityManagerInterface $em, PictureService $pictureService)
     {
-        // On vérifie si l'utilisateur peut éditer avec le voter
-        $this->denyAccessUnlessGranted(('ROLE_ADMIN'));
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        // On créé un nouveau produit
         $product = new Products();
 
-        // On créer le formulaire
+        // On créé le formulaire
         $productForm = $this->createForm(ProductsFormType::class, $product);
 
-        // On traite la requête du formulaire
+        // traite la requête du formulaire
         $productForm->handleRequest($request);
 
         // On vérifie si le formulaire est soumis et valide
         if ($productForm->isSubmitted() && $productForm->isValid()) {
+            dd($productForm);
 
             // On génère le slug
             $slug = $slugger->slug($product->getName());
             $product->setSlug($slug);
 
-            // On stocke le produit
+            // Récupérer le fichier image
+            $image = $productForm->get('image')->getData();
+            //dd($image);
+
+            if ($image) {
+                dd($image);
+                // Définir le dossier de destination
+                $folder = 'products';
+                dd($folder);
+
+                // Appeler le service d'ajout pour gérer l'image
+                $fichier = $this->$pictureService->add($image, $folder, 250, 350);
+                dd($fichier);
+
+                // Appeler le setter pour hydrater la propriété image
+                $product->setImage($fichier);
+            }
+
+            // On stocke
             $em->persist($product);
             $em->flush();
 
-            $this->addFlash('success', 'Produit ajouté avec succès');
+            $this->addFlash('succès', 'Produit ajouté avec succès');
+
             return $this->redirectToRoute('admin_products');
         }
 
         return $this->render('admin/products/add.html.twig', [
-            'productForm' => $productForm->createView()
+            'productForm' => $productForm,
         ]);
     }
 
