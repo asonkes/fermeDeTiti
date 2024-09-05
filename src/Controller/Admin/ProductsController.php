@@ -47,7 +47,7 @@ class ProductsController extends AbstractController
 
             // Récupérer le fichier image
             $image = $productForm->get('image')->getData();
-            //dd($image);
+            dd($image);
 
             if ($image) {
                 dd($image);
