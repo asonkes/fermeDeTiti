@@ -24,4 +24,4 @@ import './components/swiper';
 import './components/accordion';
 
 // Import des fichiers JS pour faire apparaître l'image sélectionnée dans un form
-import './components/imageInput';
+import './components/formDashboard';

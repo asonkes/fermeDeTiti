@@ -10,18 +10,6 @@
 	{{ form_widget(productForm.name) }}
 </div>
 
-<div class="width100">
-	{{ form_label(productForm.image)}}
-
-	<div class='danger fontSizeSmall listStyleNone'>
-		{{ form_errors(productForm.image) }}
-	</div>
-
-	{{ form_widget(productForm.image) }}
-
-	<div class="preview__image"></div>
-</div>
-
 <div>
 	{{ form_label(productForm.price)}}
 
@@ -81,6 +69,43 @@
 
 	{{ form_widget(productForm.producer) }}
 </div>
+
+{% if app.request.attributes.get('_route') == 'admin_add' %}
+
+	{{ form_label(productForm.image)}}
+
+	<div class="width100">
+		<div class='danger fontSizeSmall listStyleNone'>
+			{{ form_errors(productForm.image) }}
+		</div>
+
+		{{ form_widget(productForm.image) }}
+
+		<div class="preview__image"></div>
+	</div>
+{% endif %}
+
+{% if app.request.attributes.get('_route') == 'admin_edit' %}
+
+	{{ form_label(productForm.image)}}
+
+	<div class="width100">
+		<div class="margin10">
+			{% if product.image %}
+				<div class="current__image">
+					<h4 class="current__image-text">Image actuelle</h4>
+					<img src="{{ asset('images/articles/' ~ product.image)}}" alt="Image" width='200'>
+				</div>
+			{% endif %}
+			<h4 class="current__text">Nouvelle image choisie</h4>
+			<div class="preview__image"></div>
+		</div>
+		<div class='danger fontSizeSmall listStyleNone'>
+			{{ form_errors(productForm.image) }}
+		</div>
+		{{ form_widget(productForm.image) }}
+	</div>
+{% endif %}
 
 <div class="button">
 	<div class="button__container button__container--flex button__container--small">

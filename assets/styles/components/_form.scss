@@ -137,3 +137,20 @@
         color: var(--black);
     }
 }
+
+.preview__image {
+    max-width: 150px;
+    height: 150px;
+    display: none;
+
+    &.active {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .preview__image-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

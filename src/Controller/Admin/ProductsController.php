@@ -48,9 +48,8 @@ class ProductsController extends AbstractController
             $image = $productForm->get('image')->getData();
 
             if ($image) {
-
                 // Définir le dossier de destination
-                $folder = 'products';
+                $folder = 'articles';
 
                 // Appeler le service d'ajout pour gérer l'image
                 $fichier = $pictureService->add($image, $folder, 250, 350);
@@ -74,7 +73,7 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/produits/edition/{id}', name: 'edit')]
-    public function edit(Products $product, Request $request, SluggerInterface $slugger, EntityManagerInterface $em): Response
+    public function edit(Products $product, Request $request, SluggerInterface $slugger, EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', $product);
 
@@ -91,26 +90,31 @@ class ProductsController extends AbstractController
             $slug = $slugger->slug($product->getName());
             $product->setSlug($slug);
 
+            // Récupérer le fichier image
+            $image = $productForm->get('image')->getData();
+
+            if ($image) {
+                // Définir le dossier de destination
+                $folder = 'articles';
+
+                // Appeler le service d'ajout pour gérer l'image
+                $fichier = $pictureService->add($image, $folder, 250, 350);
+
+                // Appeler le setter pour hydrater la propriété image
+                $product->setImage($fichier);
+            }
+
             // On stocke le produit
             $em->persist($product);
             $em->flush();
 
-            $this->addFlash('success', 'Produit ajouté avec succès');
+            $this->addFlash('success', 'Produit modifié avec succès');
             return $this->redirectToRoute('admin_products');
         }
 
         return $this->render('admin/products/edit.html.twig', [
-            'productForm' => $productForm->createView()
-        ]);
-    }
-
-    #[Route('/produits/suppression/{id}', name: 'delete')]
-    public function delete(Products $product): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', $product);
-
-        return $this->render('admin/products/index.html.twig', [
-            'controller_name' => 'ProductsController',
+            'productForm' => $productForm->createView(),
+            'product' => $product
         ]);
     }
 }

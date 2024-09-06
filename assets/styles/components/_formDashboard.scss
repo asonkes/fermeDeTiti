@@ -1,0 +1,24 @@
+.current__image {
+    display: block;
+
+    &.active {
+        display: none;
+    }
+
+    &-text {
+        color: red;
+        font-size: 16px;
+        margin: 5px 0;
+    }
+}
+
+.current__text {
+    color: red;
+    font-size: 16px;
+    margin: 5px 0;
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}

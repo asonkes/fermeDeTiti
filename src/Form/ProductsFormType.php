@@ -36,7 +36,7 @@ class ProductsFormType extends AbstractType
                     'class' => 'form__label'
                 ],
                 'mapped' => false, // Important si vous n'êtes pas en train de lier à une entité
-                'required' => true, // Si vous voulez que le champ soit obligatoire
+                'required' => true // Si vous voulez que le champ soit obligatoire,
             ])
             ->add('price', NumberType::class, [
                 'scale' => 2,

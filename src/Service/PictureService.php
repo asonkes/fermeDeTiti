@@ -19,8 +19,8 @@ class PictureService
 
     public function add(UploadedFile $picture, ?string $folder = '', ?int $maxWidth = 250, ?int $maxHeight = 350)
     {
-        // Générer un nom unique pour l'image
-        $fileName = md5(uniqid(rand(), true)) . '.webp';
+        // Récupérer le nom d'origine du fichier
+        $originalName = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
 
         // Récupérer les informations de l'image
         $pictureInfos = getimagesize($picture);
@@ -44,6 +44,14 @@ class PictureService
 
         // Créer une nouvelle image redimensionnée
         $resizedPicture = imagecreatetruecolor($newWidth, $newHeight);
+
+        // Préserver la transparence pour les PNG
+        if ($pictureInfos['mime'] === 'image/png') {
+            imagealphablending($resizedPicture, false);
+            imagesavealpha($resizedPicture, true);
+        }
+
+        // Redimensionner l'image
         imagecopyresampled($resizedPicture, $source, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
         // Déterminer le chemin de stockage
@@ -55,7 +63,10 @@ class PictureService
         }
 
         // Sauvegarder l'image en WebP
-        $saved = imagewebp($resizedPicture, $path . '/' . $fileName);
+        $saved = imagewebp($resizedPicture, $path . '/' . $originalName, 95);
+
+        // Appeler la méthode pour sauvegarder l'image en fonction du type de fichier
+        $this->saveImage($resizedPicture, $path, $originalName, $pictureInfos['mime']);
 
         // Libérer la mémoire
         imagedestroy($source);
@@ -67,7 +78,7 @@ class PictureService
         }
 
         // Retourner le nom de l'image
-        return $fileName;
+        return $originalName;
     }
 
     private function createImageFromFile($picture, $mime)
@@ -84,26 +95,20 @@ class PictureService
         }
     }
 
-    public function delete(string $fichier, ?string $folder = '')
+    private function saveImage($image, $path, $originalName, $mime)
     {
-        // Ne pas supprimer l'image par défaut
-        if ($fichier === 'default.webp') {
-            return false;
+        switch ($mime) {
+            case 'image/png':
+                imagepng($image, $path . '/' . $originalName);
+                break;
+            case 'image/jpeg':
+                imagejpeg($image, $path . '/' . $originalName, 95); // Ajustez la qualité JPEG ici
+                break;
+            case 'image/webp':
+                imagewebp($image, $path . '/' . $originalName, 95); // Ajustez la qualité WebP ici
+                break;
+            default:
+                throw new Exception("Format d'image non supporté");
         }
-
-        $path = $this->params->get('images_directory') . $folder;
-
-        // Déterminer le chemin de l'image originale
-        $originalPath = $path . '/' . $fichier;
-
-        // Initialiser le succès à faux
-        $success = false;
-
-        // Suppression de l'image originale
-        if (file_exists($originalPath) && unlink($originalPath)) {
-            $success = true;
-        }
-
-        return $success;
     }
 }
