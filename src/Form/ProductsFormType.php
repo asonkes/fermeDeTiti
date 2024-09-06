@@ -30,9 +30,8 @@ class ProductsFormType extends AbstractType
             ])
             ->add('image', FileType::class, [
                 'attr' => [
-                    'class' => 'form__input form__input--supp form__input--margin'
+                    'class' => 'form__input form__input--supp form__input--margin input__imageJS'
                 ],
-                'label' => false,
                 'label_attr' => [
                     'class' => 'form__label'
                 ],

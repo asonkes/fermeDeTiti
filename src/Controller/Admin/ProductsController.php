@@ -39,7 +39,6 @@ class ProductsController extends AbstractController
 
         // On vérifie si le formulaire est soumis et valide
         if ($productForm->isSubmitted() && $productForm->isValid()) {
-            dd($productForm);
 
             // On génère le slug
             $slug = $slugger->slug($product->getName());
@@ -47,17 +46,14 @@ class ProductsController extends AbstractController
 
             // Récupérer le fichier image
             $image = $productForm->get('image')->getData();
-            dd($image);
 
             if ($image) {
-                dd($image);
+
                 // Définir le dossier de destination
                 $folder = 'products';
-                dd($folder);
 
                 // Appeler le service d'ajout pour gérer l'image
-                $fichier = $this->$pictureService->add($image, $folder, 250, 350);
-                dd($fichier);
+                $fichier = $pictureService->add($image, $folder, 250, 350);
 
                 // Appeler le setter pour hydrater la propriété image
                 $product->setImage($fichier);
@@ -67,7 +63,7 @@ class ProductsController extends AbstractController
             $em->persist($product);
             $em->flush();
 
-            $this->addFlash('succès', 'Produit ajouté avec succès');
+            $this->addFlash('success', 'Produit ajouté avec succès');
 
             return $this->redirectToRoute('admin_products');
         }

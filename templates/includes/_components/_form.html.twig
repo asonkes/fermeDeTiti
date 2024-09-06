@@ -18,6 +18,8 @@
 	</div>
 
 	{{ form_widget(productForm.image) }}
+
+	<div class="preview__image"></div>
 </div>
 
 <div>
@@ -57,9 +59,7 @@
 		{{ form_errors(productForm.type) }}
 	</div>
 
-	<div class="form__input--special">
-		{{ form_widget(productForm.type) }}
-	</div>
+	{{ form_widget(productForm.type) }}
 </div>
 
 <div>
@@ -69,9 +69,7 @@
 		{{ form_errors(productForm.categories) }}
 	</div>
 
-	<div class="form__input--special">
-		{{ form_widget(productForm.categories) }}
-	</div>
+	{{ form_widget(productForm.categories) }}
 </div>
 
 <div>
@@ -81,9 +79,7 @@
 		{{ form_errors(productForm.producer) }}
 	</div>
 
-	<div class="form__input--special">
-		{{ form_widget(productForm.producer) }}
-	</div>
+	{{ form_widget(productForm.producer) }}
 </div>
 
 <div class="button">

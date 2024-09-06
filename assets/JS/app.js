@@ -23,3 +23,5 @@ import './components/swiper';
 // Import des fichiers JS pour utiliser l'effet "accordéon" dans la page détails du produits (article)
 import './components/accordion';
 
+// Import des fichiers JS pour faire apparaître l'image sélectionnée dans un form
+import './components/imageInput';
