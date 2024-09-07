@@ -8,9 +8,13 @@ use App\Entity\Categories;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
@@ -20,6 +24,11 @@ class ProductsFormType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez entrer votre nom'
+                    ])
+                ],
                 'attr' => [
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
@@ -29,6 +38,11 @@ class ProductsFormType extends AbstractType
                 ]
             ])
             ->add('image', FileType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez insérer votre image'
+                    ])
+                ],
                 'attr' => [
                     'class' => 'form__input form__input--supp form__input--margin input__imageJS'
                 ],
@@ -38,11 +52,17 @@ class ProductsFormType extends AbstractType
                 'mapped' => false, // Important si vous n'êtes pas en train de lier à une entité
                 'required' => true // Si vous voulez que le champ soit obligatoire,
             ])
-            ->add('price', NumberType::class, [
-                'scale' => 2,
+            ->add('price', MoneyType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Indiquez insérer votre prix'
+                    ]),
+                    new Positive([
+                        'message' => 'Le montant indiqué ne peut être négatif'
+                    ])
+                ],
                 'attr' => [
                     'placeholder' => '0.00',
-                    'step' => 0.01,
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Prix',
@@ -51,16 +71,36 @@ class ProductsFormType extends AbstractType
                 ]
             ])
             ->add('stock', NumberType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez insérer votre stock'
+                    ]),
+                    new Positive([
+                        'message' => 'Le montant indiqué ne peut être négatif'
+                    ])
+                ],
                 'attr' => [
-                    'class' => 'form__input form__input--supp form__input--margin'
+                    'class' => 'form__input form__input--supp form__input--margin',
+                    'step' => 1,
+                    'min' => 0
                 ],
                 'label_attr' => [
                     'class' => 'form__label'
                 ]
             ])
             ->add('alt', TextType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => "Veuillez insérer la description de l'image"
+                    ]),
+                    new Length([
+                        'max' => 125,
+                        'maxMessage' => "Votre description de l'image ne peut dépasser 125 caractères"
+                    ])
+                ],
                 'attr' => [
-                    'class' => 'form__input form__input--supp form__input--margin'
+                    'class' => 'form__input form__input--supp form__input--margin',
+                    'maxlength' => 125
                 ],
                 'label' => 'Texte Image',
                 'label_attr' => [

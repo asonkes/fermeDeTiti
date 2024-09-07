@@ -26,6 +26,12 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre nom'
+                    ]),
+                    new Length([
+                        'minMessage' => 3,
+                        'maxMessage' => 50,
+                        'minMessage' => 'Votre nom doit faire au moins {{limit}} caractères',
+                        'maxMessage' => 'Votre nom doit faire au maximum {{limit}} caractères'
                     ])
                 ],
                 'attr' => [
@@ -40,6 +46,12 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre prénom'
+                    ]),
+                    new Length([
+                        'minMessage' => 3,
+                        'maxMessage' => 50,
+                        'minMessage' => 'Votre nom doit faire au moins {{limit}} caractères',
+                        'maxMessage' => 'Votre nom doit faire au maximum {{limit}} caractères'
                     ])
                 ],
                 'attr' => [
@@ -54,6 +66,16 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre addresse'
+                    ]),
+                    new Length([
+                        'minMessage' => 15,
+                        'maxMessage' => 100,
+                        'minMessage' => 'Votre nom doit faire au moins {{limit}} caractères',
+                        'maxMessage' => 'Votre nom doit faire au maximum {{limit}} caractères'
+                    ]),
+                    new Regex([
+                        'pattern' => '/^[a-zA-Z0-9\s\'\-]+$/',
+                        'message' => 'Votre adresse ne doit contenir que des lettres, des chiffres, des espaces, des tirets et des apostrophes.',
                     ])
                 ],
                 'attr' => [
@@ -68,6 +90,10 @@ class RegistrationFormType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer votre code postal'
+                    ]),
+                    new Regex([
+                        'pattern' => '/^\d{4}$/',
+                        'message' => 'Veuillez entrer un code postal valide à 4 chiffres'
                     ])
                 ],
                 'attr' => [

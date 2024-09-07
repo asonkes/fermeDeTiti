@@ -81,6 +81,12 @@
             margin: 10px 0;
         }
 
+        &--flexRow {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
         &--supp {
             text-decoration: none !important;
             border: 1px solid var(--gris) !important;
