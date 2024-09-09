@@ -4,10 +4,66 @@
 {% endblock %}
 
 {% block body %}
-	<section class="section section--padding" id="contact">
+	<section class="section section--padding burger__effect" id="contact">
 		<div class="section__bg-overlay"></div>
 		<h2 class="section__title-h2">Administration des Utilisateurs</h2>
 
-		<div class="simpleBox"></div>
+		<div class="simpleBox">
+			<table>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>E-mail</th>
+						<th>Rôle</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Addresse</th>
+						<th>Code Postal</th>
+						<th>Ville</th>
+						<th>Vérifié</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<th>
+								{{user.id}}
+							</th>
+							<th>
+								{{user.email}}
+							</th>
+							<th>
+								{% for role in user.roles %}
+									{% if role == 'ROLE_ADMIN' %}
+										{% set name = "Administrateur" %}
+									{% elseif role == 'ROLE_USER' %}
+										{% set name = "Utilisateur" %}
+									{% endif %}
+									<span>{{name}}</span>
+								{% endfor %}
+							</th>
+							<th>
+								{{user.lastname}}
+							</th>
+							<th>
+								{{user.firstname}}
+							</th>
+							<th>
+								{{user.address}}
+							</th>
+							<th>
+								{{user.zipcode}}
+							</th>
+							<th>
+								{{user.city}}
+							</th>
+							<th>
+								{{user.isVerified}}
+							</th>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</section>
 {% endblock %}

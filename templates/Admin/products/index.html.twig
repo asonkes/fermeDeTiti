@@ -4,10 +4,59 @@
 {% endblock %}
 
 {% block body %}
-	<section class="section section--padding" id="contact">
+	<section class="section section--padding burger__effect" id="contact">
 		<div class="section__bg-overlay"></div>
 		<h2 class="section__title-h2">Administration des Produits</h2>
 
-		<div class="simpleBox"></div>
+		<div class="simpleBox">
+			<table>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Image</th>
+						<th>Prix</th>
+						<th>Stock</th>
+						<th>Slug</th>
+						<th>Alt</th>
+						<th>Type</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for product in products %}
+						<tr>
+							<th>
+								{{product.id}}
+							</th>
+							<th>
+								{{product.name}}
+							</th>
+							<th>
+								<img src="{{ asset('images/articles/' ~ product.image)}}">
+							</th>
+							<th>
+								{{product.price}}
+							</th>
+							<th>
+								{{product.stock}}
+							</th>
+							<th>
+								{{product.slug}}
+							</th>
+							<th>
+								{{product.alt}}
+							</th>
+							<th>
+								{{product.type}}
+							</th>
+							<th>
+								<a href="{{ path('admin_products_edit', {id: product.id})}}">Modifier</a>
+							</th>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</section>
-{% endblock %}
+</section>{% endblock %}

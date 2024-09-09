@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Producteurs
+{% endblock %}
+
+{% block body %}
+	<section class="section section--padding burger__effect" id="contact">
+		<div class="section__bg-overlay"></div>
+		<h2 class="section__title-h2">Administration des Producteurs</h2>
+
+		<div class="simpleBox">
+			<table>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Société</th>
+						<th>Code Postal</th>
+						<th>Ville</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for producer in producer %}
+						<tr>
+							<th>
+								{{producer.id}}
+							</th>
+							<th>
+								{{producer.name}}
+							</th>
+							<th>
+								{{producer.society}}
+							</th>
+							<th>
+								{{producer.zipcode}}
+							</th>
+							<th>
+								{{producer.city}}
+							</th>
+							<th>
+								{{producer.description}}
+							</th>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
+{% endblock %}

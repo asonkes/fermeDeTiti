@@ -2,10 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Categories;
+use App\Entity\Producer;
 use App\Entity\Products;
 use App\Form\ProductsFormType;
 use App\Service\PictureService;
 use Symfony\Component\Form\FormError;
+use App\Repository\ProducerRepository;
+use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +21,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProductsController extends AbstractController
 {
     #[Route('/produits', name: 'products')]
-    public function index(): Response
+    public function index(Products $products, ProductsRepository $productsRepository): Response
     {
+        $products = $productsRepository->findAll([]);
+
         return $this->render('admin/products/index.html.twig', [
-            'controller_name' => 'ProductsController',
+            'products' => $products
         ]);
     }
 
-    #[Route('/produits/ajout', name: 'add')]
+    #[Route('/produits/ajout', name: 'products_add')]
     public function addProduct(Request $request, SluggerInterface $slugger, EntityManagerInterface $em, PictureService $pictureService)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -72,7 +78,7 @@ class ProductsController extends AbstractController
         ]);
     }
 
-    #[Route('/produits/edition/{id}', name: 'edit')]
+    #[Route('/produits/edition/{id}', name: 'products_edit')]
     public function edit(Products $product, Request $request, SluggerInterface $slugger, EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', $product);

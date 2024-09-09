@@ -36,6 +36,12 @@
 			<li class="menu__item">
 				<a href="{{ path('home') }}#contact" class="menu__link">Contact</a>
 			</li>
+
+			{% if is_granted('ROLE_ADMIN') %}
+				<li class="menu__item">
+					<a href="{{ path('admin_index') }}#contact" class="menu__link">Administration</a>
+				</li>
+			{% endif %}
 		</ul>
 	</nav>
 
@@ -70,25 +76,25 @@
 				<a href=" {{ path('home')}}" class="burger__menu-link">Accueil</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="#" class="burger__menu-link">Nos Produits</a>
+				<a href="{{ path('home')}}#categories" class="burger__menu-link">Nos Produits</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="#" class="burger__menu-link">Boissons</a>
+				<a href="{{ path('products_index', {slug: 'boissons'})}}" class="burger__menu-link">Boissons</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="#" class="burger__menu-link">Fruits</a>
+				<a href="{{ path('products_index', {slug: 'fruits'})}}" class="burger__menu-link">Fruits</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="#" class="burger__menu-link">Légumes</a>
+				<a href="{{ path('products_index', {slug: 'légumes'})}}" class="burger__menu-link">Légumes</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="#" class="burger__menu-link">Boulangerie</a>
+				<a href="{{ path('products_index', {slug: 'boulangerie'})}}" class="burger__menu-link">Boulangerie</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="#" class="burger__menu-link">Crèmerie</a>
+				<a href="{{ path('products_index', {slug: 'crèmerie'})}}" class="burger__menu-link">Crèmerie</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="#" class="burger__menu-link">Bières</a>
+				<a href="{{ path('products_index', {slug: 'bières'})}}" class="burger__menu-link">Bières</a>
 			</li>
 			<li class="burger__menu-item">
 				<a href="{{ path('home')}}#history" class="burger__menu-link">Notre Histoire</a>
@@ -100,7 +106,7 @@
 				<a href="#" class="burger__menu-link">Mon compte</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="#" class="burger__menu-link">Connexion</a>
+				<a href="{{ path('app_login')}}" class="burger__menu-link">Connexion</a>
 			</li>
 		</ul>
 	</nav>
