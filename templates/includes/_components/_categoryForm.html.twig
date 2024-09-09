@@ -1,0 +1,51 @@
+{{ form_start(categoryForm) }}
+
+<div>
+	{{ form_label(categoryForm.name)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(categoryForm.name) }}
+	</div>
+
+	{{ form_widget(categoryForm.name) }}
+</div>
+
+<div>
+	{{ form_label(categoryForm.image)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(categoryForm.image) }}
+	</div>
+
+	<div class="form__input--flexRow">
+		{{ form_widget(categoryForm.image) }}
+	</div>
+</div>
+
+<div>
+	{{ form_label(categoryForm.alt)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(categoryForm.alt) }}
+	</div>
+
+	{{ form_widget(categoryForm.alt) }}
+</div>
+
+<div>
+	{{ form_label(categoryForm.categoryOrder)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(categoryForm.categoryOrder) }}
+	</div>
+
+	{{ form_widget(categoryForm.categoryOrder) }}
+</div>
+
+<div class="button">
+	<div class="button__container button__container--flex button__container--small">
+		<button class="button__link button__link--textSmall button__link--supp" type="submit">{{ button_label|default('Ajouter')}}</button>
+	</div>
+</div>
+
+{{ form_end(categoryForm) }}

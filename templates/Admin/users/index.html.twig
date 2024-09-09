@@ -30,16 +30,19 @@
 								{{user.id}}
 							</th>
 							<th>
-								{{user.email}}
+								{{ user.email|split('@')[0] }}<br>
+								@{{ user.email|split('@')[1] }}
 							</th>
 							<th>
 								{% for role in user.roles %}
 									{% if role == 'ROLE_ADMIN' %}
 										{% set name = "Administrateur" %}
+										{% set roleClass = "role__admin" %}
 									{% elseif role == 'ROLE_USER' %}
 										{% set name = "Utilisateur" %}
+										{% set roleClass = "role__user" %}
 									{% endif %}
-									<span>{{name}}</span>
+									<span class="role {{ roleClass }}">{{ name }}</span>
 								{% endfor %}
 							</th>
 							<th>
@@ -58,7 +61,11 @@
 								{{user.city}}
 							</th>
 							<th>
-								{{user.isVerified}}
+								<label class="switch">
+									<input type="checkbox" {% if user.isVerified %} checked {% endif %}/>
+									<span class="slider"></span>
+								</label>
+								<span class="status">{{ user.isVerified ? 'Vérifié' : 'Non vérifié' }}</span>
 							</th>
 						</tr>
 					{% endfor %}

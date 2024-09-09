@@ -1,0 +1,59 @@
+{{ form_start(producerForm) }}
+
+<div>
+	{{ form_label(producerForm.name)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(producerForm.name) }}
+	</div>
+
+	{{ form_widget(producerForm.name) }}
+</div>
+
+<div>
+	{{ form_label(producerForm.society)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(producerForm.society) }}
+	</div>
+
+	{{ form_widget(producerForm.society) }}
+</div>
+
+<div>
+	{{ form_label(producerForm.zipcode)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(producerForm.zipcode) }}
+	</div>
+
+	{{ form_widget(producerForm.zipcode) }}
+</div>
+
+<div>
+	{{ form_label(producerForm.city)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(producerForm.city) }}
+	</div>
+
+	{{ form_widget(producerForm.city) }}
+</div>
+
+<div>
+	{{ form_label(producerForm.desscription)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(producerForm.desscription) }}
+	</div>
+
+	{{ form_widget(producerForm.description) }}
+</div>
+
+<div class="button">
+	<div class="button__container button__container--flex button__container--small">
+		<button class="button__link button__link--textSmall button__link--supp" type="submit">{{ button_label|default('Ajouter')}}</button>
+	</div>
+</div>
+
+{{ form_end(producerForm) }}

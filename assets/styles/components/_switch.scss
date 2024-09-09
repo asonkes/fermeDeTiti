@@ -1,0 +1,50 @@
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #99b4df;
+        border-radius: 30px;
+        transition: 0.4s;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            /* Ajusté pour tenir dans la nouvelle taille */
+            width: 18px;
+            left: 1px;
+            bottom: 1px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+    }
+
+    input:checked+.slider {
+        background-color: #346abf;
+
+        &:before {
+            transform: translateX(30px);
+            /* Ajusté pour correspondre à la nouvelle largeur */
+        }
+    }
+}
+
+// Style pour le texte du statut (Vérifié/Non vérifié)
+.status {
+    margin: 5px 0 0 10px;
+}

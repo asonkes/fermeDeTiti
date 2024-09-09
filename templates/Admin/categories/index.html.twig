@@ -14,10 +14,10 @@
 					<tr>
 						<th>Id</th>
 						<th>Nom</th>
-						<th>Slug</th>
 						<th>Image</th>
 						<th>Alt</th>
 						<th>Ordre</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,9 +30,6 @@
 								{{category.name}}
 							</th>
 							<th>
-								{{category.slug}}
-							</th>
-							<th>
 								<img src="{{ asset('images/categories/' ~ category.image)}}" alt="Image">
 							</th>
 							<th>
@@ -40,6 +37,9 @@
 							</th>
 							<th>
 								{{category.categoryOrder}}
+							</th>
+							<th>
+								<a href="#">Modifier</a>
 							</th>
 						</tr>
 					{% endfor %}

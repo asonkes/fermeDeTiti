@@ -24,7 +24,6 @@ class CategoriesController extends AbstractController
     #[Route('/categories/ajout', name: 'categories_add')]
     function add(): Response
     {
-
         return $this->render('admin/categories/add.html.twig', []);
     }
 }
