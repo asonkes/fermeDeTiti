@@ -74,7 +74,7 @@ class ProductsController extends AbstractController
         }
 
         return $this->render('admin/products/add.html.twig', [
-            'productForm' => $productForm,
+            'productForm' => $productForm
         ]);
     }
 

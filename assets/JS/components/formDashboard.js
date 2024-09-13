@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const imageInput = document.querySelector('.input__imageJS');
+    console.log(imageInput, 'imageInput');
+
     const previewImage = document.querySelector('.preview__image');
+    console.log(previewImage, 'previewImage');
+    
     const currentImage = document.querySelector('.current__image');
     const currentText = document.querySelector('.current__text');
 

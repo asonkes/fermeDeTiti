@@ -11,18 +11,6 @@
 </div>
 
 <div>
-	{{ form_label(categoryForm.image)}}
-
-	<div class='danger fontSizeSmall listStyleNone'>
-		{{ form_errors(categoryForm.image) }}
-	</div>
-
-	<div class="form__input--flexRow">
-		{{ form_widget(categoryForm.image) }}
-	</div>
-</div>
-
-<div>
 	{{ form_label(categoryForm.alt)}}
 
 	<div class='danger fontSizeSmall listStyleNone'>
@@ -40,6 +28,18 @@
 	</div>
 
 	{{ form_widget(categoryForm.categoryOrder) }}
+</div>
+
+<div>
+	{{ form_label(categoryForm.image)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(categoryForm.image) }}
+	</div>
+
+	<div class="form__input--flexRow">
+		{{ form_widget(categoryForm.image) }}
+	</div>
 </div>
 
 <div class="button">
