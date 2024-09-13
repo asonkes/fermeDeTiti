@@ -2,9 +2,11 @@
 
 <div>
 	{{ form_label(productForm.name)}}
+
 	<div class='danger fontSizeSmall listStyleNone'>
 		{{ form_errors(productForm.name) }}
 	</div>
+
 	{{ form_widget(productForm.name) }}
 </div>
 
@@ -104,6 +106,7 @@
 		{{ form_widget(productForm.image) }}
 	</div>
 {% endif %}
+
 
 <div class="button">
 	<div class="button__container button__container--flex button__container--small">

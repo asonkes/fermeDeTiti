@@ -12,39 +12,73 @@
 
 <div>
 	{{ form_label(categoryForm.alt)}}
-
 	<div class='danger fontSizeSmall listStyleNone'>
 		{{ form_errors(categoryForm.alt) }}
 	</div>
-
 	{{ form_widget(categoryForm.alt) }}
 </div>
 
 <div>
 	{{ form_label(categoryForm.categoryOrder)}}
-
 	<div class='danger fontSizeSmall listStyleNone'>
 		{{ form_errors(categoryForm.categoryOrder) }}
 	</div>
-
 	{{ form_widget(categoryForm.categoryOrder) }}
 </div>
 
 <div>
 	{{ form_label(categoryForm.image)}}
-
 	<div class='danger fontSizeSmall listStyleNone'>
 		{{ form_errors(categoryForm.image) }}
 	</div>
+	{{ form_widget(categoryForm.image) }}
 
-	<div class="form__input--flexRow">
+	<div class="preview__image"></div>
+</div>
+
+{% if app.request.attributes.get('_route') == 'admin_add' %}
+
+	{{ form_label(categoryForm.image)}}
+
+	<div class="width100">
+		<div class='danger fontSizeSmall listStyleNone'>
+			{{ form_errors(categoryForm.image) }}
+		</div>
+
+		{{ form_widget(categoryForm.image) }}
+
+		<div class="preview__image"></div>
+	</div>
+{% endif %}
+
+{% if app.request.attributes.get('_route') == 'admin_edit' %}
+
+	{{ form_label(categoryForm.image)}}
+
+	<div class="width100">
+		<div class="margin10">
+			{% if category.image %}
+				<div class="current__image">
+					<h4 class="current__image-text">Image actuelle</h4>
+					<img src="{{ asset('images/categories/' ~ category.image)}}" alt="Image" width='200'>
+				</div>
+			{% endif %}
+			<h4 class="current__text">Nouvelle image choisie</h4>
+			<div class="preview__image"></div>
+		</div>
+		<div class='danger fontSizeSmall listStyleNone'>
+			{{ form_errors(categoryForm.image) }}
+		</div>
 		{{ form_widget(categoryForm.image) }}
 	</div>
-</div>
+{% endif %}
+
 
 <div class="button">
 	<div class="button__container button__container--flex button__container--small">
-		<button class="button__link button__link--textSmall button__link--supp" type="submit">{{ button_label|default('Ajouter')}}</button>
+		<button class="button__link button__link--textSmall button__link--supp" type="submit">
+			{{ button_label|default('Ajouter') }}
+		</button>
 	</div>
 </div>
 

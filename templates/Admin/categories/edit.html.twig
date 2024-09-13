@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin - Catégories
+{% block title %}Admin - Ajout de Catégories
 {% endblock %}
 
 {% block body %}
 	<section class="section section--padding burger__effect" id="contact">
 		<div class="section__bg-overlay"></div>
-		<h2 class="section__title-h2">Administration d'ajout de Catégories</h2>
+		<h2 class="section__title-h2">Administration d'édition de Catégories</h2>
 
 		<div class="simpleBox">
 			<div class="form form--maxWidth form--flex form--supp" method="post">
-				{% include 'includes/_components/_categoryForm.html.twig' %}
+				{% include 'includes/_components/_categoryForm.html.twig' with{'button_label': 'Modifier'} %}
 			</div>
 		</div>
 	</section>

@@ -2,13 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Categories;
-use App\Entity\Producer;
 use App\Entity\Products;
 use App\Form\ProductsFormType;
 use App\Service\PictureService;
-use Symfony\Component\Form\FormError;
-use App\Repository\ProducerRepository;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
