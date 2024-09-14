@@ -17,7 +17,7 @@ class PictureService
         $this->params = $params;
     }
 
-    public function add(UploadedFile $picture, ?string $folder = '', ?int $maxWidth = 250, ?int $maxHeight = 350)
+    public function add(UploadedFile $picture, ?string $folder = '', ?int $maxWidth = 300, ?int $maxHeight = 350)
     {
         // Récupérer le nom d'origine du fichier
         $originalName = pathinfo($picture->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
@@ -32,6 +32,11 @@ class PictureService
 
         // Créer la ressource d'image selon le format
         $source = $this->createImageFromFile($picture, $pictureInfos['mime']);
+
+        // Corriger l'orientation de l'image si nécessaire (EXIF)
+        if ($pictureInfos['mime'] === 'image/jpeg') {
+            $source = $this->correctImageOrientation($picture, $source);
+        }
 
         // Obtenir les dimensions d'origine
         $width = $pictureInfos[0];
@@ -110,5 +115,51 @@ class PictureService
             default:
                 throw new Exception("Format d'image non supporté");
         }
+    }
+
+    private function correctImageOrientation(UploadedFile $picture, $image)
+    {
+        // Lire les données EXIF (uniquement pour les fichiers JPEG)
+        $exif = @exif_read_data($picture->getPathname());
+
+        if ($exif && isset($exif['Orientation'])) {
+            switch ($exif['Orientation']) {
+                case 3:
+                    $image = imagerotate($image, 180, 0); // Rotation de 180°
+                    break;
+                case 6:
+                    $image = imagerotate($image, -90, 0); // Rotation de 90° dans le sens horaire
+                    break;
+                case 8:
+                    $image = imagerotate($image, 90, 0); // Rotation de 90° dans le sens anti-horaire
+                    break;
+            }
+        }
+
+        return $image;
+    }
+
+    public function delete(string $fichier, ?string $folder = '', ?int $width = 300, ?int $height = 350)
+    {
+        if ($fichier !== 'default.webp') {
+            $success = false;
+            $path = $this->params->get('images_directory') . $folder;
+
+            $mini = $path . '/mini/' . $width . 'x' . $height . '-' . $fichier;
+
+            if (file_exists($mini)) {
+                unlink($mini);
+                $success = true;
+            }
+
+            $original = $path . '/' . $fichier;
+
+            if (file_exists($original)) {
+                unlink($original);
+                $success = true;
+            }
+            return $success;
+        }
+        return false;
     }
 }

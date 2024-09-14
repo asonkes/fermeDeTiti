@@ -91,15 +91,25 @@ class CategoriesController extends AbstractController
             $slug = $slugger->slug($category->getName());
             $category->setSlug($slug);
 
-            // On récupère le fichier image
-            $image = $categoryForm->get('image')->getData();
+            // On récupère l'ancienne image
+            $oldImage = $category->getImage();
 
-            if ($image) {
+            // On récupère le fichier image
+            $newImage = $categoryForm->get('image')->getData();
+
+            // Si nouvelles image envoyée
+            if ($newImage) {
+
+                // Supprimer l'ancienne image qui existe
+                if ($oldImage) {
+                    $pictureService->delete($oldImage, 'categories');
+                }
+
                 // Définir le dossier de destination
                 $folder = 'categories';
 
                 // Appeler le service d'ajout pour gérer l'image
-                $fichier = $pictureService->add($image, $folder, 250, 350);
+                $fichier = $pictureService->add($newImage, $folder, 300, 350);
 
                 // Appeler le setter pour hydrater la propriété image
                 $category->setImage($fichier);
@@ -120,11 +130,22 @@ class CategoriesController extends AbstractController
     }
 
     #[Route('/categories/suppression/{id}', name: 'categories_delete')]
-    public function delete(Categories $category, Request $request, EntityManagerInterface $em): Response
+    public function delete(Categories $category, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
+
+            // Récupérer l'image associée
+            $image = $category->getImage();
+
+            // Supprimer l'image si elle existe
+            if ($image) {
+                // Passer le nom du fichier et le dossier au service de suppression
+                $pictureService->delete($image, 'categories');
+            }
+
+            // On supprime l'élément catégorie de la base de données
             $em->remove($category);
             $em->flush();
 
@@ -133,6 +154,6 @@ class CategoriesController extends AbstractController
             $this->addFlash('danger', 'Échec de la suppression du produit');
         }
 
-        return $this->redirectToRoute('admin_products');
+        return $this->redirectToRoute('admin_categories');
     }
 }

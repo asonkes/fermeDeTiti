@@ -92,15 +92,25 @@ class ProductsController extends AbstractController
             $slug = $slugger->slug($product->getName());
             $product->setSlug($slug);
 
-            // Récupérer le fichier image
-            $image = $productForm->get('image')->getData();
+            // On récupère l'ancienne image
+            $oldImage = $product->getImage();
 
-            if ($image) {
+            // Récupérer le fichier image
+            $newimage = $productForm->get('image')->getData();
+
+            // Si nouvelles image envoyée
+            if ($newimage) {
+
+                // Supprimer l'ancienne image qui existe
+                if ($oldImage) {
+                    $pictureService->delete($oldImage, 'articles');
+                }
+
                 // Définir le dossier de destination
                 $folder = 'articles';
 
                 // Appeler le service d'ajout pour gérer l'image
-                $fichier = $pictureService->add($image, $folder, 250, 350);
+                $fichier = $pictureService->add($newimage, $folder, 300, 350);
 
                 // Appeler le setter pour hydrater la propriété image
                 $product->setImage($fichier);
@@ -121,11 +131,21 @@ class ProductsController extends AbstractController
     }
 
     #[Route('/produits/suppression/{id}', name: 'products_delete')]
-    public function delete(Products $product, Request $request, EntityManagerInterface $em): Response
+    public function delete(Products $product, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
+
+            // Récupérer l'image associée
+            $image = $product->getImage();
+
+            // Supprimer l'image si elle existe
+            if ($image) {
+                // Passer le nom du fichier et le dossier au service de suppression
+                $pictureService->delete($image, 'articles');
+            }
+
             $em->remove($product);
             $em->flush();
 

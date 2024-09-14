@@ -1,0 +1,81 @@
+{{ form_start(userForm) }}
+
+<div>
+	{{ form_label(userForm.email)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(userForm.email) }}
+	</div>
+
+	{{ form_widget(userForm.email) }}
+</div>
+
+<div>
+	{{ form_label(userForm.roles)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(userForm.roles) }}
+	</div>
+
+	{{ form_widget(userForm.roles) }}
+</div>
+
+<div>
+	{{ form_label(userForm.lastname)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(userForm.lastname) }}
+	</div>
+
+	{{ form_widget(userForm.lastname) }}
+</div>
+
+<div>
+	{{ form_label(userForm.firstname)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(userForm.firstname) }}
+	</div>
+
+	{{ form_widget(userForm.firstname) }}
+</div>
+
+<div>
+	{{ form_label(userForm.address)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(userForm.address) }}
+	</div>
+
+	{{ form_widget(userForm.address) }}
+</div>
+
+<div>
+	{{ form_label(userForm.zipcode)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(userForm.zipcode) }}
+	</div>
+
+	{{ form_widget(userForm.zipcode) }}
+</div>
+
+<div>
+	{{ form_label(userForm.city)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(userForm.city) }}
+	</div>
+
+	{{ form_widget(userForm.city) }}
+</div>
+
+<div class="button">
+	<div class="button__container button__container--flex button__container--small">
+		<button class="button__link button__link--textSmall button__link--supp" type="submit">
+			{{ button_label|default('Ajouter') }}
+		</button>
+	</div>
+</div>
+
+{{ form_end(userForm) }}

@@ -43,11 +43,11 @@
 								{{producer.description}}
 							</th>
 							<th>
-								<a class="margin10" href="{{ path('admin_producers_edit', {id: producer.id})}}">Modifier</a>
+								<a class="margin10 dashboard__button dashboard__button-modify" href="{{ path('admin_producers_edit', {id: producer.id})}}">Modifier</a>
 
 								<form method="post" action="{{ path('admin_producers_delete', {id: producer.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce producteur ?');">
 									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ producer.id) }}">
-									<button class="margin10 dashboard__button" type="submit">Supprimer</button>
+									<button class="margin10 dashboard__button dashboard__button-danger" type="submit">Supprimer</button>
 								</form>
 							</th>
 						</tr>

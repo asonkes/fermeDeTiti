@@ -72,10 +72,18 @@
 }
 
 .dashboard__button {
-    background-color: red;
     border: none;
     border-radius: 15px;
     padding: 5px;
     color: var(--white);
     cursor: pointer;
+
+    &-danger {
+        background-color: red;
+    }
+
+    &-modify {
+        background-color: orange;
+        text-decoration: none;
+    }
 }
