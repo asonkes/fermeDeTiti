@@ -69,7 +69,10 @@
 								<span class="status">{{ user.isVerified ? 'Vérifié' : 'Non vérifié' }}</span>
 							</th>
 							<th>
-								<a class="margin10" href="#">Supprimer</a>
+								<form method="post" action="{{ path('admin_users_delete', {id: user.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+									<button class="margin10 dashboard__button" type="submit">Supprimer</button>
+								</form>
 							</th>
 						</tr>
 					{% endfor %}

@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Users;
 use App\Repository\UsersRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,5 +21,22 @@ class UsersController extends AbstractController
         return $this->render('admin/users/index.html.twig', [
             'users' => $users,
         ]);
+    }
+
+    #[Route('utilisateurs/suppression/{id}', name: 'users_delete')]
+    public function delete(Users $user, Request $request, EntityManagerInterface $em): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+            $em->remove($user);
+            $em->flush();
+
+            $this->addFlash('success', 'Utilisateur supprimé avec succès');
+        } else {
+            $this->addFlash('danger', "Échec de la suppression de l'utilisateur");
+        }
+
+        return $this->redirectToRoute('admin_users');
     }
 }
