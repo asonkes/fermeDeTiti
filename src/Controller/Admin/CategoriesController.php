@@ -109,7 +109,7 @@ class CategoriesController extends AbstractController
             $em->persist($category);
             $em->flush();
 
-            $this->addFlash('success', 'Produit modifié avec succès');
+            $this->addFlash('success', 'Catégorie modifiée avec succès');
             return $this->redirectToRoute('admin_categories');
         }
 
@@ -117,5 +117,22 @@ class CategoriesController extends AbstractController
             'categoryForm' => $categoryForm->createView(),
             'category' => $category
         ]);
+    }
+
+    #[Route('/categories/suppression/{id}', name: 'categories_delete')]
+    public function delete(Categories $category, Request $request, EntityManagerInterface $em): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
+            $em->remove($category);
+            $em->flush();
+
+            $this->addFlash('success', 'Produit supprimé avec succès');
+        } else {
+            $this->addFlash('danger', 'Échec de la suppression du produit');
+        }
+
+        return $this->redirectToRoute('admin_products');
     }
 }

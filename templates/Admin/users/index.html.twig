@@ -21,6 +21,7 @@
 						<th>Code Postal</th>
 						<th>Ville</th>
 						<th>Vérifié</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -66,6 +67,9 @@
 									<span class="slider"></span>
 								</label>
 								<span class="status">{{ user.isVerified ? 'Vérifié' : 'Non vérifié' }}</span>
+							</th>
+							<th>
+								<a class="margin10" href="#">Supprimer</a>
 							</th>
 						</tr>
 					{% endfor %}

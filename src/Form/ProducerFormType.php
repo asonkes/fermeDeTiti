@@ -38,7 +38,7 @@ class ProducerFormType extends AbstractType
                     ])
                 ],
                 'attr' => [
-                    'class' => 'form__input form__input--supp form__input--margin input__imageJS'
+                    'class' => 'form__input form__input--supp form__input--margin'
                 ],
                 'label' => 'Société',
                 'label_attr' => [

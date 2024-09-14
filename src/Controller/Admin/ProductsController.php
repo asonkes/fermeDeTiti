@@ -119,4 +119,21 @@ class ProductsController extends AbstractController
             'product' => $product
         ]);
     }
+
+    #[Route('/produits/suppression/{id}', name: 'products_delete')]
+    public function delete(Products $product, Request $request, EntityManagerInterface $em): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
+            $em->remove($product);
+            $em->flush();
+
+            $this->addFlash('success', 'Produit supprimé avec succès');
+        } else {
+            $this->addFlash('danger', 'Échec de la suppression du produit');
+        }
+
+        return $this->redirectToRoute('admin_products');
+    }
 }

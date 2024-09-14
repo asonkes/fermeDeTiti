@@ -70,3 +70,12 @@
 .home__button-icon {
     margin: 2px 0 0 15px;
 }
+
+.dashboard__button {
+    background-color: red;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    color: var(--white);
+    cursor: pointer;
+}

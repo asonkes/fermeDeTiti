@@ -155,31 +155,6 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
-                'mapped' => false,
-                'attr' => [
-                    'autocomplete' => 'new-password',
-                    'class' => 'form__input form__input--supp form__input--margin'
-                ],
-                'label' => 'Mot de passe',
-                'label_attr' => [
-                    'class' => 'form__label'
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Entrez votre mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 12,
-                        'minMessage' => 'Votre mot de passe doit faire minimum {{ limit }} caractères',
-                        'max' => 128,
-                    ]),
-                    new Regex([
-                        'pattern' => '/[!@#$%^&*(),.?":{}|<>]/',
-                        'message' => 'Votre mot de passe doit contenir au moins un caractère spécial.',
-                    ]),
-                ],
-            ])
         ;
     }
 
