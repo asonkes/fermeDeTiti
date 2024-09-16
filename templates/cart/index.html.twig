@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Warelles - Panier
+{% endblock %}
+
+{% block body %}
+	<section class="section section--padding burger__effect" id="contact">
+		<div class="section__bg-overlay"></div>
+		<h2 class="section__title-h2">Panier</h2>
+
+		<div class="simpleBox">
+			<table>
+				<thead>
+					<tr>
+						<th>Produit</th>
+						<th>Prix</th>
+						<th>Quantité</th>
+						<th>Total</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for element in data %}
+						<tr>
+							<th>
+								{{ element.product.name }}
+							</th>
+							<th>
+								{{ element.product.price }}
+								€
+							</th>
+							<th>
+								{{element.quantity}}
+							</th>
+							<th>
+								{{ (element.product.price * element.quantity) | number_format(2, ',', ' ')  }}
+								€
+							</th>
+							<th>
+								<a class="margin10 dashboard__button dashboard__button-modify" href="{{ path('cart_add', {id: element.product.id})}}">+</a>
+								<a class="margin10 dashboard__button dashboard__button-modify" href="{{ path('cart_remove', {id: element.product.id})}}">-</a>
+								<a class="margin10 dashboard__button dashboard__button-danger" href="{{ path('cart_delete', {id: element.product.id})}}">Supprimer</a>
+							</th>
+						</tr>
+					{% else %}
+						<tr>
+							<td>Votre panier est vide</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>Total</td>
+						<td>{{ total | number_format(2, ',', ' ') }}
+							€</td>
+						<td>
+							<a href="{{ path('cart_empty')}}">Vider</a>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</section>
+{% endblock %}

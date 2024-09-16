@@ -62,13 +62,9 @@
 							</div>
 						</div>
 						<div class="button button--padding">
-							<button class="button__container button__container--large margin20">
-								<a class="button__link button__link--textSmall" href="#">Choisir la quantité</a>
-								<i class="fa-solid fa-chevron-right home__button-icon"></i>
-							</button>
 							<button class="button__container button__container--large">
 								{% if product.stock > 0 %}
-									<a class="button__link button__link--textSmall" href="#">Ajouter au panier</a>
+									<a class="button__link button__link--textSmall" href="{{ path('cart_add', {id: product.id})}}">Ajouter au panier</a>
 									<i class="fa-solid fa-chevron-right home__button-icon"></i>
 								{% else %}
 									<p class="button__link button__link--textSmall danger">Temporairement indisponible</p>
