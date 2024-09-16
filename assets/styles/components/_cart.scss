@@ -1,0 +1,82 @@
+@use "../mixins/mixins";
+
+.cart {
+    box-shadow: 0px -3px 25px rgba(98, 154, 40, 0.7);
+    padding: 20px;
+    border-radius: 20px;
+    font-family: var(--font-family1);
+    font-weight: 600;
+
+    &__container {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 20px 0 10px 0;
+        border-bottom: 1px solid var(--vert);
+
+        @include mixins.md {
+            display: block
+        }
+
+        &-image {
+            width: 150px;
+            height: 150px;
+            margin: 0 15px 0 0;
+
+            .image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &-item {
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        &-text {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+
+            .text {
+                padding: 0 0 5px 0;
+                text-decoration: underline;
+            }
+        }
+
+        &-icon {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+
+            &--flex {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.cart__number {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    &-container {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        color: var(--white);
+        background-color: var(--vert2);
+        right: -15px;
+    }
+}

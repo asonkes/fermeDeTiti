@@ -9,45 +9,60 @@
 		<h2 class="section__title-h2">Panier</h2>
 
 		<div class="simpleBox">
-			<table>
-				<thead>
-					<tr>
-						<th>Produit</th>
-						<th>Prix</th>
-						<th>Quantité</th>
-						<th>Total</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
+			<div class="cart">
+				<h3>Votre Panier:
+					{{ cart_total_quantity() }}
+					article(s)</h3>
+				<div class="cart__container">
 					{% for element in data %}
-						<tr>
-							<th>
+						<div class="cart__container-image">
+							<img class="image" src=" {{ asset('images/articles/' ~ element.product.image)}} ">
+						</div>
+						<div class="cart__container-item">
+							<div class="cart__container-text">
+								<p class="text">Nom:</p>
 								{{ element.product.name }}
-							</th>
-							<th>
+							</div>
+							<div class="cart__container-text">
+								<p class="text">Prix:</p>
 								{{ element.product.price }}
 								€
-							</th>
-							<th>
-								{{element.quantity}}
-							</th>
-							<th>
+							</div>
+						</div>
+						<div class="cart__container-item">
+							<div class="cart__container-text">
+								<p class="text">Quantité:</p>
+								<div class="cart__container-icon">
+									<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_add', {id: element.product.id})}}">
+										<i class="fa-solid fa-plus"></i>
+									</a>
+									<div class="paddingAll5 cart__container-icon--flex">
+										{{element.quantity}}
+									</div>
+									<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_remove', {id: element.product.id})}}">
+										<i class="fa-solid fa-minus"></i>
+									</a>
+								</div>
+							</div>
+							<div class="cart__container-text">
+								<p class="text">Total:</p>
 								{{ (element.product.price * element.quantity) | number_format(2, ',', ' ')  }}
 								€
-							</th>
-							<th>
-								<a class="margin10 dashboard__button dashboard__button-modify" href="{{ path('cart_add', {id: element.product.id})}}">+</a>
-								<a class="margin10 dashboard__button dashboard__button-modify" href="{{ path('cart_remove', {id: element.product.id})}}">-</a>
-								<a class="margin10 dashboard__button dashboard__button-danger" href="{{ path('cart_delete', {id: element.product.id})}}">Supprimer</a>
-							</th>
-						</tr>
+							</div>
+						</div>
+						<div class="cart__container-item widthAuto">
+							<div class="cart__container-text">
+								<a class="size18" href="{{ path('cart_delete', {id: element.product.id})}}">
+									<i class="fa-solid fa-trash-can"></i>
+								</a>
+							</div>
+						</div>
 					{% else %}
 						<tr>
 							<td>Votre panier est vide</td>
 						</tr>
 					{% endfor %}
-				</tbody>
+				</div>
 				<tfoot>
 					<tr>
 						<td>Total</td>
@@ -58,7 +73,7 @@
 						</td>
 					</tr>
 				</tfoot>
-			</table>
+			</div>
 		</div>
 	</section>
 {% endblock %}

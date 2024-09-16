@@ -14,6 +14,10 @@ section {
     padding: 5px 0;
 }
 
+.paddingAll5 {
+    padding: 5px;
+}
+
 .padding10 {
     padding: 10px 0;
 }
@@ -36,4 +40,12 @@ section {
 
 .width100 {
     width: 100%;
+}
+
+.widthAuto {
+    width: auto !important;
+}
+
+.size18 {
+    font-size: 18px;
 }

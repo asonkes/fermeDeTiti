@@ -87,3 +87,11 @@
         background-color: orange;
     }
 }
+
+.cart__button {
+    border-radius: 15px;
+
+    &-container {
+        background-color: var(--vert);
+    }
+}

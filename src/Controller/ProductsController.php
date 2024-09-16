@@ -34,4 +34,31 @@ class ProductsController extends AbstractController
             'products' => $products
         ]);
     }
+
+    #[Route('/{category_slug}/article/{product_slug}', name: 'article')]
+    public function article(string $category_slug, string $product_slug, ProductsRepository $productsRepository, CategoriesRepository $categoriesRepository): Response
+    {
+        // Récupération du produit à partir de son slug
+        $product = $productsRepository->findOneBy(['slug' => $product_slug]);
+
+        if (!$product) {
+            throw $this->createNotFoundException('Produit non trouvé');
+        }
+
+        // Récupération du producteur du produit
+        $producer = $product->getProducer();
+
+        // Récupération de la catégorie pour le lien de retour
+        $category = $categoriesRepository->findOneBy(['slug' => $category_slug]);
+
+        if (!$category) {
+            throw $this->createNotFoundException('Catégorie non trouvée');
+        }
+
+        return $this->render('article/index.html.twig', [
+            'product' => $product,
+            'producer' => $producer,
+            'category' => $category
+        ]);
+    }
 }
