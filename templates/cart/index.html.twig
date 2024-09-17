@@ -52,9 +52,12 @@
 						</div>
 						<div class="cart__container-item widthAuto">
 							<div class="cart__container-text">
-								<a class="size18" href="{{ path('cart_delete', {id: element.product.id})}}">
-									<i class="fa-solid fa-trash-can"></i>
-								</a>
+								<form method="post" action="{{ path('cart_delete', {id: element.product.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit?')">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ element.product.id) }}">
+									<button type="submit" class="size18 cart__container-supp">
+										<i class="fa-solid fa-trash-can"></i>
+									</button>
+								</form>
 							</div>
 						</div>
 					{% else %}

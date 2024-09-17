@@ -54,7 +54,10 @@
 		<div class="header__cart">
 			<a class="cart__number" href="{{ path('cart_index')}}">
 				<img class="header__cart-image" src="{{ asset('images/icons/Shopping-Cart-01-256.png')}}" alt="icone représentant un panier en blanc">
-				<div class="cart__number-container">{{ cart_total_quantity() }}</div>
+				{% set totalQuantity = cart_total_quantity() %}
+				{% if totalQuantity >= 1 %}
+					<div class="cart__number-container">{{ cart_total_quantity() }}</div>
+				{% endif %}
 			</a>
 		</div>
 		<div class="header__account">
