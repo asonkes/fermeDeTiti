@@ -10,72 +10,97 @@
 
 		<div class="simpleBox">
 			<div class="cart">
-				<h3>Votre Panier:
-					{{ cart_total_quantity() }}
-					article(s)</h3>
-				<div class="cart__container">
+				{% if cart_total_quantity() > 0 %}
+					<h3>Votre Panier:
+						{{ cart_total_quantity() }}
+						article(s)</h3>
+				{% endif %}
+				<div class="cart__container-parent">
 					{% for element in data %}
-						<div class="cart__container-image">
-							<img class="image" src=" {{ asset('images/articles/' ~ element.product.image)}} ">
-						</div>
-						<div class="cart__container-item">
-							<div class="cart__container-text">
-								<p class="text">Nom:</p>
-								{{ element.product.name }}
+						<div class="cart__container">
+							<div class="cart__container-image">
+								<img class="image" src="{{ asset('images/articles/' ~ element.product.image)}} ">
 							</div>
-							<div class="cart__container-text">
-								<p class="text">Prix:</p>
-								{{ element.product.price }}
-								€
-							</div>
-						</div>
-						<div class="cart__container-item">
-							<div class="cart__container-text">
-								<p class="text">Quantité:</p>
-								<div class="cart__container-icon">
-									<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_add', {id: element.product.id})}}">
-										<i class="fa-solid fa-plus"></i>
-									</a>
-									<div class="paddingAll5 cart__container-icon--flex">
-										{{element.quantity}}
-									</div>
-									<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_remove', {id: element.product.id})}}">
-										<i class="fa-solid fa-minus"></i>
-									</a>
+							<div class="cart__container-item">
+								<div class="cart__container-text">
+									<p class="text">Nom:</p>
+									{{ element.product.name }}
+								</div>
+								<div class="cart__container-text">
+									<p class="text">Prix:</p>
+									{{ element.product.price }}
+									€
 								</div>
 							</div>
-							<div class="cart__container-text">
-								<p class="text">Total:</p>
-								{{ (element.product.price * element.quantity) | number_format(2, ',', ' ')  }}
-								€
+							<div class="cart__container-item">
+								<div class="cart__container-text">
+									<p class="text">Quantité:</p>
+									<div class="cart__container-icon">
+										<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_add', {id: element.product.id})}}">
+											<i class="fa-solid fa-plus"></i>
+										</a>
+										<div class="paddingAll5 cart__container-icon--flex">
+											{{element.quantity}}
+										</div>
+										<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_remove', {id: element.product.id})}}">
+											<i class="fa-solid fa-minus"></i>
+										</a>
+									</div>
+								</div>
+								<div class="cart__container-text">
+									<p class="text">Total:</p>
+									{{ (element.product.price * element.quantity) | number_format(2, ',', ' ')  }}
+									€
+								</div>
 							</div>
-						</div>
-						<div class="cart__container-item widthAuto">
-							<div class="cart__container-text">
-								<form method="post" action="{{ path('cart_delete', {id: element.product.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit?')">
-									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ element.product.id) }}">
-									<button type="submit" class="size18 cart__container-supp">
-										<i class="fa-solid fa-trash-can"></i>
-									</button>
-								</form>
+							<div class="cart__container-item widthAuto">
+								<div class="cart__container-text">
+									<form method="post" action="{{ path('cart_delete', {id: element.product.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit?')">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ element.product.id) }}">
+										<button type="submit" class="size18 cart__container-supp">
+											<i class="fa-solid fa-trash-can"></i>
+										</button>
+									</form>
+								</div>
 							</div>
 						</div>
 					{% else %}
-						<tr>
-							<td>Votre panier est vide</td>
-						</tr>
+						<h2 class="padding20 txtAlign">OUPSSS!!! Votre panier est vide</h2>
+						<div class="cart__container2">
+							<div class="cart__container2-image">
+								<img class="width100 image2" src="{{ asset('images/backgroundImages/fermier-triste-legumes-recoltes_1308-172954.png')}}" alt="fermier triste des récoltes ">
+								<p class="txtAlign padding10">Besoin d'inspiration? Découvrez nos offres !</p>
+								<div class="button button--padding">
+									<button class="button__container button__container--large">
+										<a class="button__link button__link--textSmall" href="{{ path('home')}}#categories">
+											Je découvre
+											<i class="fa-solid fa-chevron-right home__button-icon"></i>
+										</a>
+									</button>
+								</div>
+							</div>
+						</div>
 					{% endfor %}
 				</div>
-				<tfoot>
-					<tr>
-						<td>Total</td>
-						<td>{{ total | number_format(2, ',', ' ') }}
-							€</td>
-						<td>
-							<a href="{{ path('cart_empty')}}">Vider</a>
-						</td>
-					</tr>
-				</tfoot>
+
+				{% if total > 0 %}
+					<div class="cart__total padding20">
+						<p>Total:</p>
+						<div>{{ total | number_format(2, ',', ' ') }}
+							€</div>
+						<form method="post" action="{{ path('cart_empty')}}" onsubmit="return confirm('Êtes-vous sûr de vouloir vider le panier?')">
+							<input type="hidden" name="_token" value="{{ csrf_token('empty')}}">
+							<button class="dashboard__button dashboard__button-danger" type="submit" class="size18 cart__container-supp">
+								Vider
+							</button>
+						</form>
+					</div>
+					<div class="button button--padding">
+						<button class="button__container button__container--large">
+							<a class="button__link button__link--textSmall" href="{{ path('orders_add')}}">Valider mon panier</a>
+						</button>
+					</div>
+				{% endif %}
 			</div>
 		</div>
 	</section>
