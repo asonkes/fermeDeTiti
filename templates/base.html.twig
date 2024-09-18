@@ -39,8 +39,10 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
+			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
+
+		{{ encore_entry_link_tags('app') }}
 
 		<!-- JS du carroussels -->
 		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
