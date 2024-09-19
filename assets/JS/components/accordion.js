@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const accordionText = document.querySelectorAll('.accordion__text');
-    console.log('accordionText', accordionText);
 
     const accordionActive = document.querySelector('.accordion__text-active');
-    console.log('accordionActive', accordionActive);
 
     if(accordionActive) {
         const accordionRemove = document.querySelector('.accordion__remove');

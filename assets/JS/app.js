@@ -25,3 +25,6 @@ import './components/accordion';
 
 // Import des fichiers JS pour faire apparaître l'image sélectionnée dans un form
 import './components/formDashboard';
+
+// import des fichiers JS pour rendre la barre de recherche dynamique
+import './components/searchBar';

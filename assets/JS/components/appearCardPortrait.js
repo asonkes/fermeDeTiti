@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Sélectionner le conteneur de la grille et toutes les cartes
-    const grid = document.querySelector('.grid');
     const cards = document.querySelectorAll('.card__portrait');
     const products = document.querySelector('.products');
     
     // Fonction pour ajouter les classes `active` aux éléments progressivement
     function AppearCardPortrait() {
-                cards.forEach((card, index) => {
+                cards.forEach((card) => {
                         const cardTitle = card.querySelector('.card__portrait-title');
                         const cardContent = card.querySelector('.card__portrait-content');
                         
