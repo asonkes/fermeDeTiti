@@ -6,6 +6,10 @@
     position: relative;
     z-index: 2;
 
+    &.active {
+        display: none;
+    }
+
     &__nav {
         width: 100%;
     }

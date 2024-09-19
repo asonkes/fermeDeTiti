@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     searchInput.value = '';  // Effacer la valeur de la barre de recherche
 
+    const pagination = document.querySelector('.pagination');
+
     // Écouter les frappes de touches dans la barre de recherche
     searchInput.addEventListener('keyup', () => {
         // Supprimer les espaces et mettre en minuscules la saisie
