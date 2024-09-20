@@ -31,8 +31,12 @@
 		<!-- CSS permettant de télécharger les fonts de "font awesome" -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+
 		<link href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+
 		<link
 		href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Marck+Script&display=swap" rel="stylesheet">
 
@@ -42,12 +46,6 @@
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
-
-		<!-- JS du carroussels -->
-		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-
-		<!-- JS pour importation fontawesome-->
-		<script src="https://kit.fontawesome.com/2cbf82340f.js" crossorigin="anonymous"></script>
 
 	</head>
 	<body>
@@ -59,6 +57,10 @@
 		{% include 'includes/_partials/_footer.html.twig' %}
 
 		{% block javascripts %}
+
+			<!-- JS pour importation fontawesome-->
+			<script src="https://kit.fontawesome.com/2cbf82340f.js" crossorigin="anonymous"></script>
+
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</body>

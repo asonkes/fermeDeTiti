@@ -37,5 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         appearCardCircle();
     });
+
+    window.addEventListener('load', (e) => {
+        e.preventDefault();
+        appearCardCircle();
+    })
     }
 });

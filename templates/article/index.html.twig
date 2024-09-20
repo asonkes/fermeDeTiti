@@ -69,7 +69,7 @@
 
 							<button class="button__container button__container--large">
 								{% if product.stock > 0 %}
-									<a class="button__link button__link--textSmall" href="{{ path('cart_add', {id: product.id})}}">Ajouter au panier</a>
+									<a class="button__link button__link--textSmall addProduct" href="#">Ajouter au panier</a>
 									<i class="fa-solid fa-chevron-right home__button-icon"></i>
 								{% else %}
 									<p class="button__link button__link--textSmall danger">Temporairement indisponible</p>
@@ -80,5 +80,30 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</section>{% endblock %}
+		<div class="popUp">
+			<div class="popUp__container">
+				<div class="popUp__icon-close">
+					<i class="fa-solid fa-xmark"></i>
+				</div>
+				<div class="popUp__icon-container">
+					<div class="popUp__icon-check">
+						<i class="fa-solid fa-check"></i>
+					</div>
+					<div class="popUp__text">
+						Ce produit a été ajouté à votre panier !
+					</div>
+				</div>
+				<div class="popUp__button">
+					<button class="button--marginTop2 button__container button__container--large">
+						<a class="button__link button__link--textSmall" href="#">Je continue mon shopping</a>
+					</button>
+					<button class="button--marginTop2 button__container button__container--large">
+						<a class="button__link button__link--textSmall" href="{{ path('cart_add', {id: product.id})}}">Je termine ma commande</a>
+					</button>
+				</div>
+
+				<h3 class="popUp__text2">Vous aimeriez voir aussi...</h3>
+			</div>
+		</div>
+	</section>
+{% endblock %}

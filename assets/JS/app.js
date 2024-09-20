@@ -28,3 +28,6 @@ import './components/formDashboard';
 
 // import des fichiers JS pour rendre la barre de recherche dynamique
 import './components/searchBar';
+
+// import des fichers JS pour rendre la popUP sur la page article fonctionnelle
+import './components/popUp';

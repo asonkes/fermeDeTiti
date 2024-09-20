@@ -2,7 +2,6 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 // Carroussel fait avec Swiper JS
-document.addEventListener('DOMContentLoaded', () => {
     const swiper = new Swiper('.swiper', {
 
         // If we need pagination
@@ -16,4 +15,3 @@ document.addEventListener('DOMContentLoaded', () => {
           prevEl: '.swiper-button-prev',
         }
       });
-})

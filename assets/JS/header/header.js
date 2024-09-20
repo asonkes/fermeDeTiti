@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const home = document.querySelector('.home');
-    const article = document.querySelector('.article');
-    const products = document.querySelector('.products');
 
     const header = document.querySelector('.header');
     const subMenu = document.querySelector('.menu__submenu');

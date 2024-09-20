@@ -31,6 +31,10 @@
 @use "./components/pagination";
 @use "./components/searchBar";
 @use "./components/simpleBox";
+
+// import Swiper styles
+//@use "../../node_modules/swiper/swiper-bundle.min.css";
 @use "./components/swiper";
 @use "./components/switch";
 @use "./components/tabel";
+@use "./components/popUp";
