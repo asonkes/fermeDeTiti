@@ -4,10 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Products;
 use App\Repository\ProductsRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
@@ -61,6 +62,30 @@ class CartController extends AbstractController
 
         // On redirige vers la page du panier
         return $this->redirectToRoute('cart_index');
+    }
+
+    #[Route('/addRedirect/{id}/{slug}', name: 'addRedirect')]
+    public function addRedirect(Products $product, SessionInterface $session, string $slug): Response
+    {
+        // On récupère l'id du produit
+        $id = $product->getId();
+
+        // On récupère le panier existant
+        // [] ==> si pas de panier ==> tableau vide
+        $panier = $session->get('panier', []);
+
+        // On ajoute le produit dans le panier s'il n'y est pas encore
+        // Sinon on incrémente sa quantité
+        if (empty($panier[$id])) {
+            $panier[$id] = 1;
+        } else {
+            $panier[$id]++;
+        }
+
+        $session->set('panier', $panier);
+
+        // On redirige vers la page du panier
+        return $this->redirectToRoute('products_index', ['slug' => $slug]);
     }
 
     #[Route('remove/{id}', name: 'remove')]
