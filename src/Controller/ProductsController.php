@@ -55,10 +55,14 @@ class ProductsController extends AbstractController
             throw $this->createNotFoundException('Catégorie non trouvée');
         }
 
+        //Récupération des autres produits du producteur
+        $otherProducts = $productsRepository->findOtherProductsByProducer($producer->getId(), $product->getId(), 6);
+
         return $this->render('article/index.html.twig', [
             'product' => $product,
             'producer' => $producer,
-            'category' => $category
+            'category' => $category,
+            'otherProducts' => $otherProducts
         ]);
     }
 }

@@ -63,4 +63,17 @@ class ProductsRepository extends ServiceEntityRepository
 
         return $result;
     }
+
+    // Pour permettre d'afficher les autres produits d'un producteur
+    public function findOtherProductsByProducer(int $producerId, int $currentProductId, int $limit = 6)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.producer = :producerId')
+            ->andWhere('p.id != :currentProductId')
+            ->setParameter('producerId', $producerId)
+            ->setParameter('currentProductId', $currentProductId)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -1,3 +1,5 @@
+@use "../mixins/mixins";
+
 .popUp {
     display: none;
     width: 500px;
@@ -24,6 +26,10 @@
             justify-content: end;
             padding: 15px;
             cursor: pointer;
+
+            .popUp__iconClose {
+                font-size: 25px;
+            }
         }
 
         .popUp__icon-container {
@@ -38,6 +44,10 @@
                 padding: 5px;
                 border-radius: 15px;
                 border: 1px solid var(--black);
+
+                .popUp__iconCheck {
+                    font-size: 20px;
+                }
             }
 
             .popUp__text {

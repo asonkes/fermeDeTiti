@@ -53,13 +53,6 @@
 									{{ producer.city }}
 								</div>
 							</div>
-							<div class="accordion__text">
-								<div class="accordion__text-container accordion__text-container--textLarge">
-									Autres produits de ce producteur
-									<i class="fa-solid fa-chevron-right accordion__icon"></i>
-								</div>
-								<div class="accordion__text-container accordion__text-container--textSmall accordion__remove">blablabla</div>
-							</div>
 						</div>
 						<div class="button button--padding">
 							<button class="button__container button__container--large margin20">
@@ -80,14 +73,43 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="productList">
+			<h3 class="productList__text padding10">
+				Autres produits de ce producteur:
+			</h3>
+
+			<div class="productList__container">
+				{% for otherProduct in otherProducts %}
+					<div class="productList__portrait">
+						<p class="productList__portrait-title">{{ otherProduct.name }}</p>
+						<div class="productList__portrait-content">
+							<div class="productList__portrait-image">
+								<a href="{{ path('products_article', {category_slug: category.slug, product_slug: product.slug}) }}">
+									<img class="image" src="{{ asset('images/articles/' ~ otherProduct.image)}}" alt="{{ otherProduct.alt }}">
+								</a>
+							</div>
+							<div class="productList__portrait-informations">
+								<i class="fa-solid fa-heart productList__portrait-icon"></i>
+								<p class="productList__portrait-text">
+									{{ otherProduct.price}}€ /
+									{{ otherProduct.type }}
+								</p>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
 		<div class="popUp">
 			<div class="popUp__container">
 				<div class="popUp__icon-close">
-					<i class="fa-solid fa-xmark"></i>
+					<i class="fa-solid fa-xmark popUp__iconClose"></i>
 				</div>
 				<div class="popUp__icon-container">
 					<div class="popUp__icon-check">
-						<i class="fa-solid fa-check"></i>
+						<i class="fa-solid fa-check popUp__iconCheck"></i>
 					</div>
 					<div class="popUp__text">
 						Ce produit a été ajouté à votre panier !
@@ -95,7 +117,7 @@
 				</div>
 				<div class="popUp__button">
 					<button class="button--marginTop2 button__container button__container--large">
-						<a class="button__link button__link--textSmall" href="#">Je continue mon shopping</a>
+						<a class="button__link button__link--textSmall" href="{{ path('home')}}#categories">Je continue mon shopping</a>
 					</button>
 					<button class="button--marginTop2 button__container button__container--large">
 						<a class="button__link button__link--textSmall" href="{{ path('cart_add', {id: product.id})}}">Je termine ma commande</a>

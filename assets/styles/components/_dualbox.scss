@@ -13,6 +13,10 @@
         padding: 40px;
     }
 
+    @include mixins.s-xs {
+        padding: 10px;
+    }
+
     &__container {
         width: 75%;
         height: 100%;
@@ -41,6 +45,10 @@
             max-width: 90%;
         }
 
+        @include mixins.s-xs {
+            display: block;
+        }
+
         @include mixins.s {
             max-width: 100%;
         }
@@ -48,6 +56,10 @@
         .dualbox__item-left {
             max-width: 100%;
             height: 610px;
+
+            @include mixins.s-xs {
+                padding-bottom: 5px;
+            }
 
             .dualbox__title {
                 max-width: 100%;
@@ -114,6 +126,10 @@
         .dualbox__item-right {
             max-width: 100%;
             height: 610px;
+
+            @include mixins.s-xs {
+                padding-top: 5px;
+            }
 
             .dualbox__iframe {
                 width: 100%;
