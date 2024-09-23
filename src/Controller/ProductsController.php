@@ -58,11 +58,15 @@ class ProductsController extends AbstractController
         //Récupération des autres produits du producteur
         $otherProducts = $productsRepository->findOtherProductsByProducer($producer->getId(), $product->getId(), 6);
 
+        // Récupération des autres produits2
+        $otherProducts2 = $productsRepository->findOtherProducts2(4);
+
         return $this->render('article/index.html.twig', [
             'product' => $product,
             'producer' => $producer,
             'category' => $category,
-            'otherProducts' => $otherProducts
+            'otherProducts' => $otherProducts,
+            'otherProducts2' => $otherProducts2
         ]);
     }
 }

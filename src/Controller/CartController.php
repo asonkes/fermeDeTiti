@@ -53,9 +53,9 @@ class CartController extends AbstractController
         // On ajoute le produit dans le panier s'il n'y est pas encore
         // Sinon on incrémente sa quantité
         if (empty($panier[$id])) {
-            $panier[$id] = 1;
+            $panier[$id] = 1; // Si le produit n'est pas encore dans le panier, on l'ajoute avec la quantité de 1
         } else {
-            $panier[$id]++;
+            $panier[$id]++; // Si le produit est déjà dans le panier, on incrémente la quantité
         }
 
         $session->set('panier', $panier);
@@ -65,7 +65,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/addRedirect/{id}/{slug}', name: 'addRedirect')]
-    public function addRedirect(Products $product, SessionInterface $session, string $slug): Response
+    public function addRedirect(Products $product, SessionInterface $session, Request $request): Response
     {
         // On récupère l'id du produit
         $id = $product->getId();
@@ -84,8 +84,13 @@ class CartController extends AbstractController
 
         $session->set('panier', $panier);
 
-        // On redirige vers la page du panier
-        return $this->redirectToRoute('products_index', ['slug' => $slug]);
+        // Redirection
+        // $referer ==> permet de récupérer l'url où l'utilisateur se trouvait
+        // headers permet de récupérer les en$têtes envoyés par le navigateur
+        // get(referer) ==> permet de récupérer l'url où l'utilisateur se trouvait
+        // On redirige l'utilisateur vers la même page
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer . '?added=1');
     }
 
     #[Route('remove/{id}', name: 'remove')]

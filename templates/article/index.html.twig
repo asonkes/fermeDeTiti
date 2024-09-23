@@ -62,7 +62,7 @@
 
 							<button class="button__container button__container--large">
 								{% if product.stock > 0 %}
-									<a class="button__link button__link--textSmall addProduct" href="#">Ajouter au panier</a>
+									<a class="button__link button__link--textSmall addProduct" href="{{ path('cart_addRedirect', {id: product.id, slug: category.slug})}}">Ajouter au panier</a>
 									<i class="fa-solid fa-chevron-right home__button-icon"></i>
 								{% else %}
 									<p class="button__link button__link--textSmall danger">Temporairement indisponible</p>
@@ -111,20 +111,43 @@
 					<div class="popUp__icon-check">
 						<i class="fa-solid fa-check popUp__iconCheck"></i>
 					</div>
-					<div class="popUp__text">
+					<p class="popUp__text">
 						Ce produit a été ajouté à votre panier !
-					</div>
+					</p>
 				</div>
 				<div class="popUp__button">
 					<button class="button--marginTop2 button__container button__container--large">
-						<a class="button__link button__link--textSmall" href="{{ path('cart_addRedirect', {id: product.id, slug: category.slug})}}">Je continue mon shopping</a>
+						<a class="button__link button__link--textSmall" href="{{ path('products_index', {slug: category.slug})}}">Je continue mon shopping</a>
 					</button>
 					<button class="button--marginTop2 button__container button__container--large">
 						<a class="button__link button__link--textSmall" href="{{ path('cart_add', {id: product.id})}}">Je termine ma commande</a>
 					</button>
 				</div>
 
-				<h3 class="popUp__text2">Vous aimeriez voir aussi...</h3>
+				<div class="productList2">
+					<h3 class="padding20 productList2__title">Vous aimeriez voir aussi...</h3>
+					<div class="productList2__container">
+						{% for otherProduct2 in otherProducts2 %}
+							<div class="productList2__portrait">
+								<p class="productList2__portrait-title">{{ otherProduct2.name }}</p>
+								<div class="productList2__portrait-content">
+									<div class="productList2__portrait-image">
+										<a href="{{ path('products_article', {category_slug: category.slug, product_slug: otherProduct2.slug}) }}">
+											<img class="image" src="{{ asset('images/articles/' ~ otherProduct2.image)}}" alt="{{ otherProduct2.alt }}">
+										</a>
+									</div>
+									<div class="productList2__portrait-informations">
+										<i class="fa-solid fa-heart productList2__portrait-icon"></i>
+										<p class="productList2__portrait-text">
+											{{ otherProduct2.price}}€ /
+											{{ otherProduct2.type }}
+										</p>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>

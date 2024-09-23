@@ -98,3 +98,89 @@
         }
     }
 }
+
+.productList2 {
+    width: 100%;
+    height: 100%;
+    margin: 20px 0;
+
+    .productList2__title {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: var(--vert);
+    }
+
+    &__container {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        font-family: var(--font-family1);
+        padding: 0 30px;
+
+        .productList2__portrait {
+            width: 150px;
+            height: 200px;
+
+            &-title {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 13px;
+            }
+
+            &-content {
+                width: 100%;
+                height: 145px;
+                border: 1px solid var(--brun);
+                border-radius: 10px;
+                background-color: var(--vert);
+            }
+
+            &-image {
+                width: 148px;
+                height: 110px;
+
+                .image {
+                    max-width: 100%;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 10px;
+
+                    &:hover {
+                        transform: scale(0.95);
+                        transition: all 0.5s ease-in-out;
+                    }
+                }
+            }
+
+            &-informations {
+                width: 100%;
+                height: 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+            }
+
+            &-icon {
+                font-size: 16px;
+                color: var(--black);
+
+                &:hover {
+                    color: red;
+                }
+            }
+
+            &-text {
+                font-size: 10px;
+                color: var(--black);
+            }
+        }
+    }
+}

@@ -76,4 +76,25 @@ class ProductsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    // Pour permettre de mettre d'autres produits de manière aléatoire dans la PopUp
+    public function findOtherProducts2(int $limit = 4)
+    {
+        // Récupérer le nombre total de produits
+        $totalProducts = $this->createQueryBuilder('p')
+            ->select('COUNT(p.name)')
+            ->getQuery()
+            // On exécute la requête et retourne le résultat sous forme de valeur unique(nbr total de produit)
+            ->getSingleScalarResult();
+
+        // Déterminer un offset aléatoire
+        // Donc si 10 produits mais limite de 4 ===>> le offset(ceux quon voir pas sera de 6)
+        $offset = rand(0, max(0, $totalProducts - $limit));
+
+        return $this->createQueryBuilder('p')
+            ->setFirstResult($offset) // Définit l'offset aléatoire
+            ->setMaxResults($limit) // Limite le nombre de résultats
+            ->getQuery()
+            ->getResult();
+    }
 }
