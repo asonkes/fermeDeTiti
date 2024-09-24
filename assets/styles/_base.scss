@@ -57,3 +57,11 @@ section {
 .txtAlign {
     text-align: center;
 }
+
+.iconHeart {
+    color: var(--black);
+
+    &.active {
+        color: red;
+    }
+}

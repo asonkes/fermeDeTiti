@@ -37,6 +37,12 @@
             grid-template-columns: 1fr;
         }
 
+        .grid__container-enfant {
+            width: 100%;
+            position: absolute;
+            margin: 0 -625px;
+        }
+
         .card__circle {
             width: 275px;
             height: 330px;
@@ -179,11 +185,9 @@
             }
 
             &-icon {
+                color: var(--black);
                 font-size: 22px;
-
-                &:hover {
-                    color: red;
-                }
+                cursor: pointer;
             }
 
             &-text {

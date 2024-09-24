@@ -12,4 +12,15 @@
         height: 70vh;
         align-items: center;
     }
+
+    &--column {
+        flex-direction: column;
+    }
+
+    &__text {
+        font-family: var(--font-family1);
+        font-size: 20px;
+        text-align: center;
+        color: var(--vert);
+    }
 }

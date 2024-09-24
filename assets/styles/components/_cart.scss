@@ -108,25 +108,13 @@
                 width: 100%;
             }
         }
-    }
-}
 
-.cart__number {
-    display: flex;
-    flex-direction: row;
-    position: relative;
+        .cart__container3-image {
+            width: 400px;
 
-    &-container {
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 15px;
-        color: var(--white);
-        background-color: var(--vert2);
-        right: -15px;
-        border: 1px solid var(--white);
+            .image3 {
+                width: 100%;
+            }
+        }
     }
 }

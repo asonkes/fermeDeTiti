@@ -31,3 +31,6 @@ import './components/searchBar';
 
 // import des fichers JS pour rendre la popUP sur la page article fonctionnelle
 import './components/popUp';
+
+// import des fichiers JS pour rendre les coeurs fonctionnels
+import './components/heart';

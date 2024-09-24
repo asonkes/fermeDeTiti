@@ -99,10 +99,12 @@
 
         .header__cart,
         .header__account,
-        .header__language {
-            padding: 0 10px;
+        .header__language,
+        .header__heart {
+            padding: 0 15px;
 
-            &-image {
+            &-image,
+            &-icon {
                 width: 25px;
                 height: 25px;
                 transform: scale(1);
@@ -117,5 +119,27 @@
                 display: none;
             }
         }
+    }
+}
+
+.cart__number,
+.favoris__number {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    &-container {
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        color: var(--white);
+        background-color: var(--vert2);
+        right: -15px;
+        border: 1px solid var(--white);
+        font-size: 12px;
     }
 }

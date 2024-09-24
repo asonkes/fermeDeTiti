@@ -85,10 +85,7 @@
             &-icon {
                 font-size: 16px;
                 color: var(--black);
-
-                &:hover {
-                    color: red;
-                }
+                cursor: pointer;
             }
 
             &-text {
@@ -171,10 +168,7 @@
             &-icon {
                 font-size: 16px;
                 color: var(--black);
-
-                &:hover {
-                    color: red;
-                }
+                cursor: pointer;
             }
 
             &-text {
@@ -182,5 +176,13 @@
                 color: var(--black);
             }
         }
+    }
+}
+
+.iconHeart {
+    color: var(--black);
+
+    &.active {
+        color: red;
     }
 }
