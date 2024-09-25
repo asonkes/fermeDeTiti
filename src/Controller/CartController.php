@@ -58,7 +58,19 @@ class CartController extends AbstractController
             $panier[$id]++; // Si le produit est déjà dans le panier, on incrémente la quantité
         }
 
+        // On hydrate(sauvegarde) le panier dans la session
         $session->set('panier', $panier);
+
+        // On récupère les favoris existants
+        $favoris = $session->get('favoris', []);
+
+        // Si le produit est dans les favoris, on le supprime
+        if (!empty($favoris[$id])) {
+            unset($favoris[$id]);
+
+            // On hydrate(sauvegarde) le nouveau panier
+            $session->set('favoris', $favoris);
+        }
 
         // On redirige vers la page du panier
         return $this->redirectToRoute('cart_index');

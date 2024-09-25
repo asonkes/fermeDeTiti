@@ -39,6 +39,11 @@
             }
         }
 
+        &--medium {
+            width: 100%;
+            border-radius: 30px;
+        }
+
         &--small {
             width: 200px;
             border-radius: 20px;
@@ -68,6 +73,7 @@
 
     &__color-white {
         color: var(--white);
+        cursor: pointer;
     }
 }
 

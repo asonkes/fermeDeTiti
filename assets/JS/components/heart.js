@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hearts.forEach(heart => {
         heart.addEventListener('click', () => {
-            heart.classList.toggle('active');
+            heart.classList.add('active');
         })
     })
 });

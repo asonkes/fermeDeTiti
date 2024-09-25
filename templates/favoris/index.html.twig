@@ -22,7 +22,7 @@
 					produit(s) dans vos "Coups de Coeur".
 				</h3>
 			{% endif %}
-			<div class="grid">
+			<div class="grid grid--padding">
 				<div class="grid__container">
 					{% for element in data %}
 						<div class="card__portrait">
@@ -34,14 +34,24 @@
 									</a>
 								</div>
 								<div class="card__portrait-informations">
-									<a href=" {{ path('favoris_delete', {id: element.product.id}) }} ">
-										<i class="fa-solid fa-trash-can card__portrait-icon"></i>
-									</a>
+									<form method="post" action=" {{ path('favoris_delete', {id: element.product.id})}}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce coup de coeur ?')">
+										<input type="hidden" name="token" value="{{ csrf_token('delete')}}">
+										<button type="submit" class="button__container">
+											<i class="fa-solid fa-trash-can card__portrait-icon"></i>
+										</button>
+									</form>
 									<p class="card__portrait-text">
 										{{ element.product.price}}€ /
 										{{ element.product.type }}
 									</p>
 								</div>
+							</div>
+							<div class="button button--padding">
+								<button class="button__container button__container--medium">
+									<a class="button__link button__link--textSmall" href=" {{ path('cart_add', {id: element.product.id})}}">
+										Ajouter au panier
+									</a>
+								</button>
 							</div>
 						</div>
 					{% else %}
@@ -68,11 +78,10 @@
 
 			{% if favoris_total_quantity() > 0 %}
 				<div class="button button--padding">
-					<button class="button__container button__container--large dashboard__button-danger">
-						<a class="button__link button__link--textSmall button__color-white" href="{{ path('favoris_empty')}}">
-							Vider vos favoris
-						</a>
-					</button>
+					<form method="post" action="{{ path('favoris_empty')}}" onsubmit="return confirm('Êtes-vous sûr de vouloir vider vos favoris ?')">
+						<input type="hidden" name="_token" value="{{ csrf_token('empty')}}">
+						<button class="button__container button__container--large dashboard__button-danger button__color-white button__link" type="submit">Vider vos favoris</button>
+					</form>
 				</div>
 			{% endif %}
 		</div>

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Products;
 use App\Repository\ProductsRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -55,6 +56,36 @@ class FavorisController extends AbstractController
         return $this->redirectToRoute('favoris_index');
     }
 
+    #[Route('/addRedirect/{id}/{slug}', name: 'addRedirect')]
+    public function addRedirect(Products $product, SessionInterface $session, Request $request): Response
+    {
+        // On récupère l'id du produit
+        $id = $product->getId();
+
+        // On récupère le panier existant
+        $favoris = $session->get('favoris', []);
+
+        if (empty($favoris[$id])) {
+            $favoris[$id] = true;
+        } else {
+            $this->addFlash('danger', 'Vous avez déjà choisit cet article comme favori');
+        }
+
+        // On sauvegarde(hydrate) les nouvelles informations
+        $session->set('favoris', $favoris);
+
+        // Récupérer l'URL de la page d'origine
+        $referer = $request->headers->get('referer');
+
+        // Si l'URL de la page précédente est disponible, on y redirige l'utilisateur
+        if ($referer) {
+            return $this->redirect($referer);
+        }
+
+        // Si aucune catégorie n'est trouvée, on peut rediriger vers une page par défaut
+        return $this->redirectToRoute('home');
+    }
+
     #[Route('/delete/{id}', name: 'delete')]
     public function delete(Products $product, SessionInterface $session): Response
     {
@@ -66,7 +97,7 @@ class FavorisController extends AbstractController
 
         // On va supprimer le favori
         if (!empty($favoris[$id])) {
-            // unset (on retire l'id du tu tableau des favoris)
+            // unset (on retire l'id du tableau des favoris)
             unset($favoris[$id]);
         }
 
