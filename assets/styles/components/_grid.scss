@@ -9,10 +9,6 @@
     position: relative;
     z-index: 2;
 
-    &--padding {
-        padding: 40px 0 90px 0;
-    }
-
     &__container {
         max-width: 100%;
         height: 100%;
@@ -20,6 +16,11 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 80px;
         font-family: var(--font-family1);
+
+        & .card__portrait-content--enfant {
+            display: block;
+            grid-column: 1/-1;
+        }
 
         @include mixins.xxl {
             gap: 60px;
@@ -41,10 +42,10 @@
             grid-template-columns: 1fr;
         }
 
-        .grid__container-enfant {
-            width: 100%;
-            position: absolute;
-            margin: 0 -625px;
+        @include mixins.s-xs {
+            display: block !important;
+            width: auto;
+            gap: 10px;
         }
 
         .card__circle {
@@ -99,6 +100,14 @@
                     transform: scale(1);
                     transition: all 2s ease-in-out;
                 }
+
+                &--enfant {
+                    width: 100%;
+                    height: 100%;
+                    position: sticky;
+                    margin: 0 auto;
+                    display: block !important;
+                }
             }
 
             &-image {
@@ -122,6 +131,10 @@
 
             &--margin {
                 margin: 0 0 20px 0;
+            }
+
+            @include mixins.s-xs {
+                width: auto;
             }
 
             &-title {
@@ -175,6 +188,10 @@
                     height: 100%;
                     object-fit: cover;
                     border-radius: 10px;
+
+                    &--height {
+                        height: 77%;
+                    }
 
                     &:hover {
                         transform: scale(0.95);

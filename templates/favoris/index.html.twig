@@ -22,7 +22,8 @@
 					produit(s) dans vos "Coups de Coeur".
 				</h3>
 			{% endif %}
-			<div class="grid grid--padding">
+
+			<div class="grid">
 				<div class="grid__container">
 					{% for element in data %}
 						<div class="card__portrait">
@@ -30,7 +31,14 @@
 							<div class="card__portrait-content">
 								<div class="card__portrait-image">
 									<a href="#">
-										<img class="image" src="{{ asset('images/articles/' ~ element.product.image)}}" alt="{{ element.product.alt }}">
+										<div class="button">
+											<button class="button__container button__container--medium">
+												<a class="button__link button__link--textSmall" href=" {{ path('cart_add', {id: element.product.id})}}">
+													Ajouter au panier
+												</a>
+											</button>
+										</div>
+										<img class="image image--height" src="{{ asset('images/articles/' ~ element.product.image)}}" alt="{{ element.product.alt }}">
 									</a>
 								</div>
 								<div class="card__portrait-informations">
@@ -46,16 +54,9 @@
 									</p>
 								</div>
 							</div>
-							<div class="button button--padding">
-								<button class="button__container button__container--medium">
-									<a class="button__link button__link--textSmall" href=" {{ path('cart_add', {id: element.product.id})}}">
-										Ajouter au panier
-									</a>
-								</button>
-							</div>
 						</div>
 					{% else %}
-						<div class="grid__container-enfant">
+						<div class="card__portrait-content--enfant">
 							<h2 class="padding20 txtAlign">Vous n'avez pas de coups de Coeur sélectionné</h2>
 							<div class="cart__container2">
 								<div class="cart__container3-image">
@@ -71,6 +72,7 @@
 									</div>
 								</div>
 							</div>
+
 						</div>
 					{% endfor %}
 				</div>

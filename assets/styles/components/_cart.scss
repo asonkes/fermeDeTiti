@@ -110,7 +110,8 @@
         }
 
         .cart__container3-image {
-            width: 400px;
+            max-width: 400px;
+            width: 100%;
 
             .image3 {
                 width: 100%;
