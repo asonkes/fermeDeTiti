@@ -30,14 +30,14 @@
 							<p class="card__portrait-title">{{ element.product.name }}</p>
 							<div class="card__portrait-content">
 								<div class="card__portrait-image">
-									<a href="#">
-										<div class="button">
-											<button class="button__container button__container--medium">
-												<a class="button__link button__link--textSmall" href=" {{ path('cart_add', {id: element.product.id})}}">
-													Ajouter au panier
-												</a>
-											</button>
-										</div>
+									<div class="button">
+										<button class="button__container button__container--medium">
+											<a class="button__link button__link--textSmall" href=" {{ path('cart_add', {id: element.product.id})}}">
+												Ajouter au panier
+											</a>
+										</button>
+									</div>
+									<a href="{{ path('products_article', {category_slug: element.category.slug, product_slug: element.product.slug}) }}">
 										<img class="image image--height" src="{{ asset('images/articles/' ~ element.product.image)}}" alt="{{ element.product.alt }}">
 									</a>
 								</div>
@@ -72,12 +72,10 @@
 									</div>
 								</div>
 							</div>
-
 						</div>
 					{% endfor %}
 				</div>
 			</div>
-
 			{% if favoris_total_quantity() > 0 %}
 				<div class="button button--padding">
 					<form method="post" action="{{ path('favoris_empty')}}" onsubmit="return confirm('Êtes-vous sûr de vouloir vider vos favoris ?')">

@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FavorisController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(SessionInterface $session, ProductsRepository $productsRepository): Response
+    public function index(Products $product, SessionInterface $session, ProductsRepository $productsRepository): Response
     {
         // On récupère la session
         $favoris = $session->get('favoris', []);
@@ -22,12 +22,17 @@ class FavorisController extends AbstractController
         // On initialise les variables
         $data = [];
 
+        $category = $product->getCategories();
+
         // Puisque plusieurs data ==> foreach
         foreach ($favoris as $id => $quantity) {
             $product = $productsRepository->find($id);
 
+            $category = $product->getCategories();
+
             $data[] = [
-                'product' => $product
+                'product' => $product,
+                'category' => $category
             ];
         }
 
