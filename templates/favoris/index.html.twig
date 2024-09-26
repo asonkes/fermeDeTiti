@@ -24,7 +24,7 @@
 			{% endif %}
 
 			<div class="grid">
-				<div class="grid__container">
+				<div class="grid__container--size2">
 					{% for element in data %}
 						<div class="card__portrait">
 							<p class="card__portrait-title">{{ element.product.name }}</p>
@@ -44,7 +44,7 @@
 								<div class="card__portrait-informations">
 									<form method="post" action=" {{ path('favoris_delete', {id: element.product.id})}}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce coup de coeur ?')">
 										<input type="hidden" name="token" value="{{ csrf_token('delete')}}">
-										<button type="submit" class="button__container">
+										<button type="submit" class="button__container button__link--supp">
 											<i class="fa-solid fa-trash-can card__portrait-icon"></i>
 										</button>
 									</form>

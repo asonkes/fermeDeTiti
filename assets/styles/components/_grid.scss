@@ -9,6 +9,10 @@
     position: relative;
     z-index: 2;
 
+    @include mixins.md {
+        padding: 5px;
+    }
+
     &__container {
         max-width: 100%;
         height: 100%;
@@ -16,6 +20,23 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 80px;
         font-family: var(--font-family1);
+
+        &--size2 {
+            @extend .grid__container;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+
+            @include mixins.lg {
+                grid-template-columns: 1fr 1fr 1fr !important;
+            }
+
+            @include mixins.md-lt {
+                grid-template-columns: 1fr 1fr !important;
+            }
+
+            @include mixins.s {
+                grid-template-columns: 1fr !important;
+            }
+        }
 
         & .card__portrait-content--enfant {
             display: block;
@@ -42,12 +63,6 @@
             grid-template-columns: 1fr;
         }
 
-        @include mixins.s-xs {
-            display: block !important;
-            width: auto;
-            gap: 10px;
-        }
-
         .card__circle {
             width: 275px;
             height: 330px;
@@ -55,6 +70,10 @@
             @include mixins.md-lt {
                 width: 265px;
                 height: 320px;
+            }
+
+            @include mixins.s-xs {
+                width: auto;
             }
 
             &-title {
@@ -126,15 +145,11 @@
         }
 
         .card__portrait {
-            width: 250px;
-            height: 350px;
+            width: 200px;
+            height: 300px;
 
             &--margin {
                 margin: 0 0 20px 0;
-            }
-
-            @include mixins.s-xs {
-                width: auto;
             }
 
             &-title {

@@ -29,7 +29,8 @@
         display: flex;
         gap: 20px;
         font-family: var(--font-family1);
-        overflow-x: auto;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
         padding: 10px;
         border: 1px solid black;
 

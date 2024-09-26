@@ -27,7 +27,7 @@ class ProductsController extends AbstractController
 
         // Pagination commence
         // (1, $category->getSlug(), 2) ==> 1 est le numéro de la page et 2 la limite
-        $products = $productsRepository->findProductsPaginated($page, $category->getSlug(), 6);
+        $products = $productsRepository->findProductsPaginated($page, $category->getSlug(), 8);
 
         return $this->render('products/index.html.twig', [
             'category' => $category,
