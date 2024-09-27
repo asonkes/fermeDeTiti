@@ -4,7 +4,7 @@
 			<li class="menu__item">
 				<a href="{{ path('home')}}" class="menu__link">Accueil</a>
 			</li>
-			<li class="menu__item">
+			<li class="menu__item menu__itemSpecial">
 				<a href="{{ path('home')}}#categories" class="menu__link menu__link--special">
 					Nos Produits
 					<i class="fa-solid fa-chevron-right menu__link-icon"></i>
@@ -85,10 +85,10 @@
 		<div class="burger__cart-parent">
 			<div class="burger__language">
 				<a class="language__block" href="#">
-					<img class="burger__account-image" src="{{ asset('images/icons/555625.png')}}" alt="icone représentant le drapeau de la Belgique">
+					<img class="burger__account-image" src="{{ asset('images/icons/555625.png')}}" alt="icône représentant le drapeau de la Belgique">
 				</a>
-				<a class="account__language" href="#">
-					<img class="burger__account-image" src="{{ asset('images/icons/2151356.png')}}" alt="icone représentant le drapeau de la hollande">
+				<a class="language__block" href="#">
+					<img class="burger__account-image" src="{{ asset('images/icons/2151356.png')}}" alt="icône représentant le drapeau de la Hollande">
 				</a>
 			</div>
 			<div class="burger__cart">
@@ -120,11 +120,11 @@
 		<ul class="burger__menu">
 			<li class="burger__menu-item">
 				<a href=" {{ path('home')}}" class="burger__menu-link">Accueil</a>
-			</li>
+			</li>burger__menu-item
 			<li class="burger__menu-item">
 				<a href="{{ path('home')}}#categories" class="burger__menu-link">Nos Produits</a>
 			</li>
-			<li class="burger__menu-item">
+			<li class="">
 				<a href="{{ path('products_index', {slug: 'boissons'})}}" class="burger__menu-link">Boissons</a>
 			</li>
 			<li class="burger__menu-item">

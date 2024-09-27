@@ -175,8 +175,10 @@
     display: flex;
     flex-direction: row;
     position: relative;
+    text-decoration: none;
 }
 
-.burger__language {
+.language__block {
     margin-top: 4px;
+    text-decoration: none;
 }

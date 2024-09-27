@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Products;
+use App\Repository\CategoriesRepository;
 use App\Repository\ProductsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FavorisController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(Products $product, SessionInterface $session, ProductsRepository $productsRepository): Response
+    public function index(Products $product, SessionInterface $session, ProductsRepository $productsRepository, Request $request): Response
     {
         // On récupère la session
         $favoris = $session->get('favoris', []);
@@ -24,20 +25,33 @@ class FavorisController extends AbstractController
 
         $category = $product->getCategories();
 
-        // Puisque plusieurs data ==> foreach
-        foreach ($favoris as $id => $quantity) {
-            $product = $productsRepository->find($id);
+        // On va chercher le numéro de page dans l'url
+        $page = $request->query->getInt('page', 1);
 
-            $category = $product->getCategories();
+        // Limite des articles pour pouvoir être nécessaire pour commencer la pagination
+        $limit = 8;
 
-            $data[] = [
-                'product' => $product,
-                'category' => $category
-            ];
+        // Obtenir les IDs des produits dans les favoris
+        $favorisIds = array_keys($favoris);
+
+        if (!empty($favorisIds)) {
+            // Paginer les favoris en fonction des IDs
+            $products = $productsRepository->findFavorisPaginated($favorisIds, $page, $limit);
+
+            // Remplir les données pour la vue
+            foreach ($products['items'] as $product) {
+                $category = $product->getCategories();
+                $data[] = [
+                    'product' => $product,
+                    'category' => $category
+                ];
+            }
         }
 
         return $this->render('favoris/index.html.twig', [
-            'data' => $data
+            'data' => $data,
+            'products' => $products
+
         ]);
     }
 

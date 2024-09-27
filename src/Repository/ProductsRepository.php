@@ -97,4 +97,27 @@ class ProductsRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    // Fonction pour la pagination des favoris
+    public function findFavorisPaginated(array $favorisIds, int $page, int $limit)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->where('p.id IN (:favorisIds)')
+            ->setParameter('favorisIds', $favorisIds)
+            ->getQuery();
+
+        $paginator = new Paginator($query);
+
+        // Pagination
+        $paginator->getQuery()
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
+
+        return [
+            'items' => $paginator->getIterator(),
+            'total' => $paginator->count(),
+            'pages' => ceil($paginator->count() / $limit),
+            'page' => $page
+        ];
+    }
 }

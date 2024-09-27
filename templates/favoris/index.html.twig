@@ -76,6 +76,11 @@
 					{% endfor %}
 				</div>
 			</div>
+
+			<div class="pagination">
+				{% include 'includes/_components/_pagination2.html.twig' %}
+			</div>
+
 			{% if favoris_total_quantity() > 0 %}
 				<div class="button button--padding">
 					<form method="post" action="{{ path('favoris_empty')}}" onsubmit="return confirm('Êtes-vous sûr de vouloir vider vos favoris ?')">

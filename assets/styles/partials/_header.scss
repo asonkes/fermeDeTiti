@@ -67,8 +67,12 @@
         display: flex;
         align-items: center;
 
+        &__itemSpecial {
+            width: 210px !important;
+        }
+
         &__item {
-            width: 210px;
+            width: 170px;
             height: fit-content;
             text-align: center;
 
