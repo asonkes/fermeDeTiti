@@ -127,3 +127,56 @@
         }
     }
 }
+
+.burger2 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .burger__cart-parent {
+        display: flex;
+        align-items: center;
+    }
+
+    .burger__language {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 25px;
+    }
+
+    .burger__cart,
+    .burger__account,
+    .burger__heart,
+    .burger__language {
+        padding: 0 15px;
+
+        &-image,
+        &-icon {
+            width: 30px;
+            height: 30px;
+            transform: scale(1);
+            transition: 0.3s ease-in-out;
+
+            &:hover {
+                transform: scale(1.3);
+            }
+        }
+
+        &-image.active {
+            display: none;
+        }
+    }
+
+
+}
+
+.cart__number,
+.favoris__number,
+.account__block {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.burger__language {
+    margin-top: 4px;
+}

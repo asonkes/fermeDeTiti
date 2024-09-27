@@ -23,7 +23,7 @@
         height: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 40px;
+        gap: 80px;
         //border: 4px solid orange;
 
         @include mixins.xl {
@@ -58,6 +58,13 @@
         .dualbox__item-left {
             max-width: 100%;
             height: 550px;
+            //border: 4px solid red;
+
+            &--size {
+                @include mixins.md-lt {
+                    height: 250px;
+                }
+            }
 
             @include mixins.s-xs {
                 padding-bottom: 5px;
@@ -65,7 +72,6 @@
 
             .dualbox__title {
                 max-width: 100%;
-                height: 15%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -73,9 +79,11 @@
                 text-underline-offset: 8px;
                 font-size: 32px;
                 font-family: var(--font-family3);
+                padding: 20px;
 
-                @include mixins.md-lt-lt {
-                    font-size: 30px;
+                @include mixins.lg {
+                    font-size: 28px;
+                    padding: 10px;
                 }
 
                 @include mixins.xs {
@@ -85,25 +93,26 @@
 
             .dualbox__content {
                 max-width: 100%;
-                height: 80%;
+                height: 85%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 padding: 0 20px;
 
+                @include mixins.lg {
+                    padding: 0 5px;
+                }
+
+                @include mixins.md-lt {
+                    height: 90%;
+                    padding: 0 5px;
+                }
+
                 &-text {
                     font-family: var(--font-family3);
                     font-size: 19px;
                     padding: 10px;
-
-                    @include mixins.s {
-                        font-size: 17px;
-                    }
-
-                    @include mixins.xs {
-                        font-size: 16px;
-                    }
                 }
             }
 
@@ -116,7 +125,9 @@
         }
 
         .dualbox__item-left--history {
-            background-image: url('../../../public/images/backgroundImages/fond-papier-grunge_1048-10849.webp');
+            background-image: url('../../../public/images/backgroundImages/conception-papier-vierge_1176-318.webp');
+            background-position: center;
+            background-position-y: -320px;
             border-radius: 20px;
         }
 

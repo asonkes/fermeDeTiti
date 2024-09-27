@@ -15,12 +15,32 @@
         display: block;
     }
 
+    @include mixins.lg {
+        top: 60px;
+    }
+
+    @include mixins.s {
+        top: 50px;
+    }
+
+    @include mixins.s-xs {
+        max-width: 320px;
+    }
+
     &__container {
         font-family: var(--font-family1);
         display: flex;
         flex-direction: column;
         position: sticky;
         top: 66px;
+
+        @include mixins.lg {
+            top: 60px;
+        }
+
+        @include mixins.s {
+            top: 50px;
+        }
 
         .popUp__icon-close {
             width: 100%;

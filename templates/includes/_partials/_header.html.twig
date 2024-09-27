@@ -44,12 +44,10 @@
 			{% endif %}
 		</ul>
 	</nav>
-
 	<div class="header__icon">
 		<div class="header__language">
-			<a href="#">
-				<img class="header__language-image" src="{{ asset('images/icons/555625.png')}}" alt="icone représentant le drapeau de la Belgique">
-			</a>
+			<a href="#"><img class="header__language-image" src="{{ asset('images/icons/555625.png')}}" alt="icone représentant le drapeau de la Belgique"></a>
+			<a href="#"><img class="header__language-image" src="{{ asset('images/icons/2151356.png')}}" alt="icone représentant le drapeau de la hollande"></a>
 		</div>
 		<div class="header__cart">
 			<a class="cart__number" href="{{ path('cart_index')}}">
@@ -78,11 +76,46 @@
 </header>
 
 <header class="burger">
-	<a href="#" class="burger__link">
-		<span class="burger__icon">
-			<span class="burger__span"></span>
-		</span>
-	</a>
+	<div class="burger2">
+		<a href=" #" class=" burger__link">
+			<span class="burger__icon">
+				<span class="burger__span"></span>
+			</span>
+		</a>
+		<div class="burger__cart-parent">
+			<div class="burger__language">
+				<a class="language__block" href="#">
+					<img class="burger__account-image" src="{{ asset('images/icons/555625.png')}}" alt="icone représentant le drapeau de la Belgique">
+				</a>
+				<a class="account__language" href="#">
+					<img class="burger__account-image" src="{{ asset('images/icons/2151356.png')}}" alt="icone représentant le drapeau de la hollande">
+				</a>
+			</div>
+			<div class="burger__cart">
+				<a class="cart__number" href="{{ path('cart_index')}}">
+					<img class="burger__cart-image" src="{{ asset('images/icons/Shopping-Cart-01-256.png')}}" alt="icone représentant un panier en blanc">
+					{% set totalQuantity = cart_total_quantity() %}
+					{% if totalQuantity >= 1 %}
+						<div class="cart__number-container">{{ cart_total_quantity() }}</div>
+					{% endif %}
+				</a>
+			</div>
+			<div class="burger__heart">
+				<a class="favoris__number" href=" {{ path('favoris_index')}} ">
+					<img class="burger__heart-image" src="{{ asset('images/icons/Heart-WF-256.png')}}" alt="icone représentant un coeur pour les coups de coeur">
+					{% set totalQuantity = favoris_total_quantity() %}
+					{% if totalQuantity >= 1 %}
+						<div class="favoris__number-container">{{ favoris_total_quantity() }}</div>
+					{% endif %}
+				</a>
+			</div>
+			<div class="burger__account">
+				<a class="account__block" href=" {{ path('app_login')}} ">
+					<img class="burger__account-image" src="{{ asset('images/icons/Business-Man-Add-02-256.png')}}" alt="icone représentant le compte de l'utilisateur en blanc">
+				</a>
+			</div>
+		</div>
+	</div>
 	<nav class="burger__nav">
 		<ul class="burger__menu">
 			<li class="burger__menu-item">
@@ -114,15 +147,6 @@
 			</li>
 			<li class="burger__menu-item">
 				<a href="{{ path('home')}}#contact" class="burger__menu-link">Contact</a>
-			</li>
-			<li class="burger__menu-item">
-				<a href="{{ path('cart_index')}}" class="burger__menu-link">Mon Panier</a>
-			</li>
-			<li class="burger__menu-item">
-				<a href="{{ path('favoris_index')}}" class="burger__menu-link">Vos Coups de Coeur</a>
-			</li>
-			<li class="burger__menu-item">
-				<a href="{{ path('app_login')}}" class="burger__menu-link">Connexion</a>
 			</li>
 		</ul>
 	</nav>

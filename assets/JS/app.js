@@ -2,7 +2,7 @@
 import '../styles/index.scss';
 
 // Import des fichiers JS pour fermer les messages Flashs
-import './components/FlashMessageClose';
+import './components/flashMessageClose';
 
 // Import des fichiers JS pour header et footer
 import './header/header';
@@ -34,3 +34,6 @@ import './components/popUp';
 
 // import des fichiers JS pour rendre les coeurs fonctionnels
 import './components/heart';
+
+// import des fichiers JS pour rendre les drapeaux dynamiques (changement de langue)
+import './components/flags';

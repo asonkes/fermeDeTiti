@@ -8,6 +8,10 @@ body,
 section {
     width: 100%;
     min-height: 100vh;
+
+    &.active {
+        overflow: hidden;
+    }
 }
 
 .padding5 {
@@ -64,4 +68,8 @@ section {
     &.active {
         color: red;
     }
+}
+
+.color__vert {
+    color: var(--vert);
 }
