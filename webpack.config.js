@@ -21,6 +21,18 @@ Encore
      */
     .addEntry('app', './assets/JS/app.js')
 
+    // JS pour le Swiper(bundle)
+    .addEntry('swip', './assets/JS/components/swiper.js')
+
+    // JS pour l'apparition de la PopUp dans la page "article"
+    .addEntry('pop', './assets/JS/components/popUp.js')
+
+    // JS pour la fonctionnalité de la barre de recherche dans la page "products"
+    .addEntry('search', './assets/JS/components/searchBar.js')
+
+    // JS pour la fonctionnalité de l'accordion dans la page "article"
+    .addEntry('accord', './assets/JS/components/accordion.js')
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

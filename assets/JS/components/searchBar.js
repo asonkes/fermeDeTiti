@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const pagination = document.querySelector('.pagination');
 
+    if(searchInput) {
     // Écouter les frappes de touches dans la barre de recherche
     searchInput.addEventListener('keyup', () => {
         // Supprimer les espaces et mettre en minuscules la saisie
@@ -42,4 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    }
+
 });

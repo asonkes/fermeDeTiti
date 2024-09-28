@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const burgerLink = document.querySelector('.burger__link');
-    console.log(burgerLink, 'burgerLink');
 
     burgerLink.addEventListener('click', (e) => {
         e.preventDefault();

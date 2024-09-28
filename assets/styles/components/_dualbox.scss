@@ -125,9 +125,9 @@
         }
 
         .dualbox__item-left--history {
-            background-image: url('../../../public/images/backgroundImages/conception-papier-vierge_1176-318.webp');
-            background-position: center;
-            background-position-y: -320px;
+            background-image: url('/public/images/backgroundImages/conception-papier-vierge_1176-318.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
             border-radius: 20px;
         }
 

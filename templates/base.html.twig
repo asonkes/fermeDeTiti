@@ -41,11 +41,9 @@
 		href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Marck+Script&display=swap" rel="stylesheet">
 
 		<!-- CSS du carroussel (swiper) -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> {% block stylesheets %}{% endblock %}
 
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
+		{{ encore_entry_link_tags('app') }}
 
 	</head>
 	<body>
@@ -53,15 +51,15 @@
 		{% include 'includes/_components/_flashMessageActivate.html.twig' %}
 		{% include 'includes/_components/_flashMessage.html.twig' %}
 
+		<!-- JS pour importation fontawesome-->
+		<script src="https://kit.fontawesome.com/2cbf82340f.js" crossorigin="anonymous"></script>
+
+		{{ encore_entry_script_tags('app') }}
+		{% block javascripts %}{% endblock %}
+
 		{% block body %}{% endblock %}
+
 		{% include 'includes/_partials/_footer.html.twig' %}
 
-		{% block javascripts %}
-
-			<!-- JS pour importation fontawesome-->
-			<script src="https://kit.fontawesome.com/2cbf82340f.js" crossorigin="anonymous"></script>
-
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
 	</body>
 </html>

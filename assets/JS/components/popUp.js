@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
         popUpOpen.classList.add('active');
     }
 
+    if(popUpClose) {
     // Fermer la pop-up au clic sur l'icône de fermeture (croix)
     popUpClose.addEventListener('click', () => {
         popUpOpen.classList.remove('active');
     });
+    }
 
     // Fermer la pop-up en cliquant en dehors de la pop-up
     document.addEventListener('click', (event) => {
