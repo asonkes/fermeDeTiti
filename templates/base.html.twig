@@ -54,10 +54,10 @@
 		<!-- JS pour importation fontawesome-->
 		<script src="https://kit.fontawesome.com/2cbf82340f.js" crossorigin="anonymous"></script>
 
+		{% block body %}{% endblock %}
+
 		{{ encore_entry_script_tags('app') }}
 		{% block javascripts %}{% endblock %}
-
-		{% block body %}{% endblock %}
 
 		{% include 'includes/_partials/_footer.html.twig' %}
 
