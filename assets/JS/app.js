@@ -11,6 +11,9 @@ import './burger/burger';
 // Import des fichiers JS faisant partie de la page "home"
 import './components/moveLogo';
 
+// Import des fichiers JS faisant fonctionner l'accordion de la page article
+import './components/accordion';
+
 // Import des fichiers JS faisant partie de la page "categories"
 import './components/appearCardCircle';
 

@@ -44,22 +44,21 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> {% block stylesheets %}{% endblock %}
 
 		{{ encore_entry_link_tags('app') }}
-
 	</head>
 	<body>
 		{% include 'includes/_partials/_header.html.twig' %}
+
 		{% include 'includes/_components/_flashMessageActivate.html.twig' %}
 		{% include 'includes/_components/_flashMessage.html.twig' %}
+
+		{% block body %}{% endblock %}
 
 		<!-- JS pour importation fontawesome-->
 		<script src="https://kit.fontawesome.com/2cbf82340f.js" crossorigin="anonymous"></script>
 
-		{% block body %}{% endblock %}
-
-		{{ encore_entry_script_tags('app') }}
-		{% block javascripts %}{% endblock %}
-
 		{% include 'includes/_partials/_footer.html.twig' %}
 
+		{% block javascripts %}{% endblock %}
+		{{ encore_entry_script_tags('app') }}
 	</body>
 </html>

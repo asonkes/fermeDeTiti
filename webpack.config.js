@@ -30,9 +30,6 @@ Encore
     // JS pour la fonctionnalité de la barre de recherche dans la page "products"
     .addEntry('search', './assets/JS/components/searchBar.js')
 
-    // JS pour la fonctionnalité de l'accordion dans la page "article"
-    .addEntry('accord', './assets/JS/components/accordion.js')
-
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 
