@@ -4,12 +4,12 @@
 {% endblock %}
 
 {% block body %}
-	<section class="section section--padding burger__effect" id="contact">
+	<section class="section section--padding" id="contact">
 		<div class="section__bg-overlay"></div>
 		<h2 class="section__title-h2">Inscription</h2>
 
 		<div class="simpleBox">
-			<form class="form form--maxWidth form--flex form--supp" method="post">
+			<div class="form form--maxWidth form--flex form--supp" method="post">
 
 				{{ form_start(registrationForm) }}
 
@@ -94,7 +94,7 @@
 				</div>
 
 				{{ form_end(registrationForm) }}
-			</form>
+			</div>
 		</div>
 	</section>
 {% endblock %}

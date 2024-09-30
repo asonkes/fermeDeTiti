@@ -19,7 +19,7 @@
 
 		<div class="button button--marginTop">
 			<button class="button__container button__container--large">
-				<a class="button__link button__link--textSmall" href="{{ path('home') }}#contact">Contactez-nous</a>
+				<a class="button__link button__link--textSmall" href="{{ path('home_index') }}#contact">Contactez-nous</a>
 				<i class="fa-solid fa-chevron-right home__button-icon"></i>
 			</button>
 		</div>
@@ -93,36 +93,33 @@
 		<div class="dualbox dualbox--padding2">
 			<div class="dualbox__container dualbox__container--resize">
 				<div class="dualbox__item-left">
-					<form class="form" action="contact" method="post">
+					<div class="form">
+						{{ form_start(form) }}
 						<ul class="form__ul">
 							<li class="form__li">
-								<label class="form__label" for="firstName">Nom:</label>
-								<input class="form__input" type="text" placeholder="Entrez votre nom" id="firstname" name="user_name">
+								{{ form_row(form.firstname)}}
 							</li>
 							<li class="form__li">
-								<label class="form__label" for="lastName">Prénom :</label>
-								<input class="form__input" type="text" placeholder="Entrez votre nom" id="lastName" name="user_lastName">
+								{{ form_row(form.lastname)}}
 							</li>
 							<li class="form__li">
-								<label class="form__label" for="mail">E-mail :</label>
-								<input class="form__input" type="text" placeholder="Entrez votre addresse mail" id="mail" name="user_mail">
+								{{ form_row(form.email) }}
 							</li>
 							<li class="form__li">
-								<label class="form__label" for="adress">Adresse :</label>
-								<input class="form__input" type="text" placeholder="Entrez votre addresse" id="address" name="user_address">
+								{{ form_row(form.address)}}
 							</li>
 							<li class="form__li">
-								<label class="form__label" for="message">Message :</label>
-								<textarea class="form__textarea" placeholder="Entrez votre addresse" name="user_message" id="message"></textarea>
+								{{ form_row(form.message) }}
 							</li>
 						</ul>
 
 						<div class="button">
-							<button class="button__container button__container--small">
-								<a class="button__link button__link--textSmall" href="#">Envoyer</a>
+							<button class="button__container button__container--small button__link button__link--textSmall" type="submit">
+								Envoyer
 							</button>
 						</div>
-					</form>
+						{{ form_end(form) }}
+					</div>
 				</div>
 				<div class="dualbox__item-right">
 					<iframe class="dualbox__iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12741.12678008157!2d4.045140484686441!3d50.67985695246992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3b3e64ef7ccd1%3A0xa73a34d132379dc6!2sLa%20Ferme%20de%20Warelles!5e0!3m2!1sfr!2sbe!4v1722945582588!5m2!1sfr!2sbe" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
