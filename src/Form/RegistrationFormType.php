@@ -97,7 +97,7 @@ class RegistrationFormType extends AbstractType
                     'autocomplete' => 'new-password',
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
-                'label' => 'Nom',
+                'label' => 'Mot de passe',
                 'label_attr' => [
                     'class' => 'form__label form__label--supp'
                 ],

@@ -101,14 +101,25 @@ class ProductsRepository extends ServiceEntityRepository
     // Fonction pour la pagination des favoris
     public function findFavorisPaginated(array $favorisIds, int $page, int $limit)
     {
+        if (empty($favorisIds)) {
+            return [
+                'items' => [], // Aucune produit, mais la structure reste la même
+                'total' => 0,
+                'pages' => 1, // Une seule page par défaut
+                'page' => 1 // Toujours page 1
+            ];
+        }
+
+        // Création de la requête pour récupérer les produits correspondant aux IDs des favoris
         $query = $this->createQueryBuilder('p')
             ->where('p.id IN (:favorisIds)')
             ->setParameter('favorisIds', $favorisIds)
             ->getQuery();
 
+        // Création du Paginator
         $paginator = new Paginator($query);
 
-        // Pagination
+        // Définition des limites pour la pagination
         $paginator->getQuery()
             ->setFirstResult(($page - 1) * $limit)
             ->setMaxResults($limit);

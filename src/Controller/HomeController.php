@@ -11,10 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mailer\MailerInterface;
 
-#[Route('/', name: 'home_')]
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'home')]
     public function index(Request $request, CategoriesRepository $categoriesRepository, MailerInterface $mailer): Response
     {
         $categories = $categoriesRepository->findAll();
@@ -29,7 +28,7 @@ class HomeController extends AbstractController
             $this->sendEmail(
                 $contactFormData['email'],
                 'jacadi@gmail.com',
-                'Contact Form Submission',
+                'Question client',
                 [
                     'firstname' => $contactFormData['firstname'],
                     'lastname' => $contactFormData['lastname'],
@@ -42,7 +41,7 @@ class HomeController extends AbstractController
 
             $this->addFlash('success', 'Votre message a été envoyé avec succès!');
 
-            return $this->redirectToRoute('home_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('home/index.html.twig', [

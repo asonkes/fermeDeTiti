@@ -2,10 +2,10 @@
 	<nav class="header__nav">
 		<ul class="menu">
 			<li class="menu__item">
-				<a href="{{ path('home_index')}}" class="menu__link">Accueil</a>
+				<a href="{{ path('home')}}" class="menu__link">Accueil</a>
 			</li>
 			<li class="menu__item menu__itemSpecial">
-				<a href="{{ path('home_index')}}#categories" class="menu__link menu__link--special">
+				<a href="{{ path('home')}}#categories" class="menu__link menu__link--special">
 					Nos Produits
 					<i class="fa-solid fa-chevron-right menu__link-icon"></i>
 				</a>
@@ -31,10 +31,10 @@
 				</ul>
 			</li>
 			<li class="menu__item">
-				<a href="{{ path('home_index')}}#history" class="menu__link">Notre Histoire</a>
+				<a href="{{ path('home')}}#history" class="menu__link">Notre Histoire</a>
 			</li>
 			<li class="menu__item">
-				<a href="{{ path('home_index') }}#contact" class="menu__link">Contact</a>
+				<a href="{{ path('home') }}#contact" class="menu__link">Contact</a>
 			</li>
 
 			{% if is_granted('ROLE_ADMIN') %}
@@ -119,10 +119,10 @@
 	<nav class="burger__nav">
 		<ul class="burger__menu">
 			<li class="burger__menu-item">
-				<a href=" {{ path('home_index')}}" class="burger__menu-link">Accueil</a>
+				<a href=" {{ path('home')}}" class="burger__menu-link">Accueil</a>
 			</li>burger__menu-item
 			<li class="burger__menu-item">
-				<a href="{{ path('home_index')}}#categories" class="burger__menu-link">Nos Produits</a>
+				<a href="{{ path('home')}}#categories" class="burger__menu-link">Nos Produits</a>
 			</li>
 			<li class="">
 				<a href="{{ path('products_index', {slug: 'boissons'})}}" class="burger__menu-link">Boissons</a>
@@ -143,10 +143,10 @@
 				<a href="{{ path('products_index', {slug: 'bières'})}}" class="burger__menu-link">Bières</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="{{ path('home_index')}}#history" class="burger__menu-link">Notre Histoire</a>
+				<a href="{{ path('home')}}#history" class="burger__menu-link">Notre Histoire</a>
 			</li>
 			<li class="burger__menu-item">
-				<a href="{{ path('home_index')}}#contact" class="burger__menu-link">Contact</a>
+				<a href="{{ path('home')}}#contact" class="burger__menu-link">Contact</a>
 			</li>
 		</ul>
 	</nav>

@@ -9,7 +9,7 @@
 		<h2 class="section__title-h2">Vos Coups de Coeur</h2>
 
 		<div class="section__link">
-			<a class="section__link-container" href="{{ path('home_index')}}#categories">
+			<a class="section__link-container" href="{{ path('home')}}#categories">
 				<i class="fa-solid fa-chevron-right section__link-icon"></i>
 				Retour
 			</a>
@@ -25,42 +25,44 @@
 
 			<div class="grid">
 				<div class="grid__container--size2">
-					{% for element in data %}
-						<div class="card__portrait">
-							<p class="card__portrait-title">{{ element.product.name }}</p>
-							<div class="card__portrait-content">
-								<div class="card__portrait-image">
-									<div class="button">
-										<button class="button__container button__container--medium">
-											<a class="button__link button__link--textSmall" href=" {{ path('cart_add', {id: element.product.id})}}">
-												Ajouter au panier
-											</a>
-										</button>
+					{% if data is not empty %}
+						{% for element in data %}
+							<div class="card__portrait">
+								<p class="card__portrait-title">{{ element.product.name }}</p>
+								<div class="card__portrait-content">
+									<div class="card__portrait-image">
+										<div class="button">
+											<button class="button__container button__container--medium">
+												<a class="button__link button__link--textSmall" href="{{ path('cart_add', {id: element.product.id})}}">
+													Ajouter au panier
+												</a>
+											</button>
+										</div>
+										<a href="{{ path('products_article', {category_slug: element.category.slug, product_slug: element.product.slug}) }}">
+											<img class="image image--height" src="{{ asset('images/articles/' ~ element.product.image)}}" alt="{{ element.product.alt }}">
+										</a>
 									</div>
-									<a href="{{ path('products_article', {category_slug: element.category.slug, product_slug: element.product.slug}) }}">
-										<img class="image image--height" src="{{ asset('images/articles/' ~ element.product.image)}}" alt="{{ element.product.alt }}">
-									</a>
-								</div>
-								<div class="card__portrait-informations">
-									<form method="post" action=" {{ path('favoris_delete', {id: element.product.id})}}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce coup de coeur ?')">
-										<input type="hidden" name="token" value="{{ csrf_token('delete')}}">
-										<button type="submit" class="button__container button__link--supp">
-											<i class="fa-solid fa-trash-can card__portrait-icon"></i>
-										</button>
-									</form>
-									<p class="card__portrait-text">
-										{{ element.product.price}}€ /
-										{{ element.product.type }}
-									</p>
+									<div class="card__portrait-informations">
+										<form method="post" action="{{ path('favoris_delete', {id: element.product.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce coup de coeur ?')">
+											<input type="hidden" name="token" value="{{ csrf_token('delete') }}">
+											<button type="submit" class="button__container button__link--supp">
+												<i class="fa-solid fa-trash-can card__portrait-icon"></i>
+											</button>
+										</form>
+										<p class="card__portrait-text">
+											{{ element.product.price }}€ /
+											{{ element.product.type }}
+										</p>
+									</div>
 								</div>
 							</div>
-						</div>
+						{% endfor %}
 					{% else %}
 						<div class="card__portrait-content--enfant">
 							<h2 class="padding20 txtAlign color__vert">Vous n'avez pas de coups de Coeur sélectionné</h2>
 							<div class="cart__container2">
 								<div class="cart__container3-image">
-									<img class="width100 image3" src="{{ asset('images/backgroundImages/coeur-forme-de-legumes-et-de-fruits-1024x1024.webp')}}" alt="coeur formé avec différentes ortes de légumes">
+									<img class="width100 image3" src="{{ asset('images/backgroundImages/coeur-forme-de-legumes-et-de-fruits-1024x1024.webp') }}" alt="coeur formé avec différentes sortes de légumes">
 									<p class="txtAlign padding10">Encore une petite envie de shopping ?</p>
 									<div class="button button--padding">
 										<button class="button__container button__container--large">
@@ -73,12 +75,14 @@
 								</div>
 							</div>
 						</div>
-					{% endfor %}
+					{% endif %}
 				</div>
 			</div>
 
 			<div class="pagination">
-				{% include 'includes/_components/_pagination2.html.twig' %}
+				{% if products.pages > 1 %}
+					{% include 'includes/_components/_pagination2.html.twig' %}
+				{% endif %}
 			</div>
 
 			{% if favoris_total_quantity() > 0 %}

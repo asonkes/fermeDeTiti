@@ -15,43 +15,34 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FavorisController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(Products $product, SessionInterface $session, ProductsRepository $productsRepository, Request $request): Response
+    public function index(Products $product, Products $products, SessionInterface $session, ProductsRepository $productsRepository, Request $request): Response
     {
-        // On récupère la session
+        // Récupérer les favoris de la session
         $favoris = $session->get('favoris', []);
-
-        // On initialise les variables
-        $data = [];
-
-        $category = $product->getCategories();
-
-        // On va chercher le numéro de page dans l'url
-        $page = $request->query->getInt('page', 1);
-
-        // Limite des articles pour pouvoir être nécessaire pour commencer la pagination
-        $limit = 8;
-
-        // Obtenir les IDs des produits dans les favoris
         $favorisIds = array_keys($favoris);
 
-        if (!empty($favorisIds)) {
-            // Paginer les favoris en fonction des IDs
-            $products = $productsRepository->findFavorisPaginated($favorisIds, $page, $limit);
+        // Récupérer la page actuelle depuis l'URL
+        $page = $request->query->getInt('page', 1);
 
-            // Remplir les données pour la vue
-            foreach ($products['items'] as $product) {
-                $category = $product->getCategories();
-                $data[] = [
-                    'product' => $product,
-                    'category' => $category
-                ];
-            }
+        // Limite des articles par page
+        $limit = 8;
+
+        // Récupération des produits paginés ou liste vide si aucun favori
+        $products = $productsRepository->findFavorisPaginated($favorisIds, $page, $limit);
+
+        // Préparer les données pour Twig
+        $data = [];
+        foreach ($products['items'] as $product) {
+            $category = $product->getCategories(); // Récupérer la catégorie
+            $data[] = [
+                'product' => $product,
+                'category' => $category,
+            ];
         }
 
         return $this->render('favoris/index.html.twig', [
-            'data' => $data,
-            'products' => $products
-
+            'data' => $data, // Passer les produits formatés avec les catégories
+            'products' => $products,
         ]);
     }
 

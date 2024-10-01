@@ -96,7 +96,7 @@ class ContactFormType extends AbstractType
                 ],
                 'attr' => [
                     'placeholder' => 'Entrez votre message',
-                    'class' => 'form form__textarea',
+                    'class' => 'form__input form__textarea'
                 ],
                 'constraints' => [
                     new Assert\NotBlank([
