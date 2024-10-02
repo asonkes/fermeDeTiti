@@ -18,7 +18,7 @@ class Orders
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 20, unique: true)]
+    #[ORM\Column(length: 30, unique: true)]
     private ?string $reference = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
@@ -30,6 +30,12 @@ class Orders
      */
     #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'orders', orphanRemoval: true, cascade: ['persist'])]
     private Collection $ordersDetails;
+
+    #[ORM\Column]
+    private ?int $total = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $status = null;
 
     public function __construct()
     {
@@ -92,6 +98,30 @@ class Orders
                 $ordersDetail->setOrders(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTotal(): ?int
+    {
+        return $this->total;
+    }
+
+    public function setTotal(int $total): static
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
