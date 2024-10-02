@@ -28,3 +28,6 @@ import './components/heart';
 
 // import des fichiers JS pour rendre les drapeaux dynamiques (changement de langue)
 import './components/flags';
+
+// import des fichiers JS pour rendre 
+import './components/form.js';

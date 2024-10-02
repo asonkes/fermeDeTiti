@@ -29,8 +29,16 @@ section {
     padding: 20px 0;
 }
 
+.margin5 {
+    margin: 0 5px;
+}
+
 .margin10 {
     margin: 10px 0;
+}
+
+.margin15 {
+    margin: 15px 0;
 }
 
 .margin20 {
@@ -71,4 +79,8 @@ section {
 
 .color__vert {
     color: var(--vert);
+}
+
+.fontSize18 {
+    font-size: 18px;
 }

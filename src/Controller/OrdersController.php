@@ -5,8 +5,11 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Entity\Orders;
 use App\Entity\OrdersDetails;
+use App\Form\ValidateFormType;
+use App\Repository\UsersRepository;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -15,6 +18,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/commandes', name: 'orders_')]
 class OrdersController extends AbstractController
 {
+    #[Route('/', name: 'index')]
+    public function index(Users $user, Request $request, EntityManagerInterface $em): Response
+    {
+        // Récupérer l'utilisateur connecté
+        $user = $this->getUser();
+
+        // le $user permet de préremplir le formulaire.
+        $form = $this->createForm(ValidateFormType::class, $user);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // On sauvegarde les modifications de l'utilisateur
+
+            $em->persist($user);
+
+            $em->flush();
+        }
+
+        // Redirection vers la page d'accueil
+        return $this->render('orders/index.html.twig', [
+            'user' => $user,
+            'form' => $form->createView()
+        ]);
+    }
+
     #[Route('/ajout', name: 'add')]
     public function add(Users $user, SessionInterface $session, ProductsRepository $productsRepository, EntityManagerInterface $em): Response
     {
@@ -46,6 +74,9 @@ class OrdersController extends AbstractController
         // Générer la référence de commande formatée
         $orderReference = sprintf('CMD-%s-%s-%d', date('Ymd'), $lastname, $randomNumber);
         $order->setReference($orderReference);
+
+        // Initialiser le statut de la commande à "en attente de paiement"
+        $order->setStatus('en attente de paiement');
 
         // Calcul du total et ajout des détails de la commande
         $total = 0;
@@ -80,9 +111,16 @@ class OrdersController extends AbstractController
         $session->remove('panier');
 
         // Message de succès
-        $this->addFlash('success', 'Votre commande a été créée avec succès!');
+        $this->addFlash('success', 'Votre commande a été enregistrée avec succès!');
 
+        // Redirection vers la page commandes
+        return $this->redirectToRoute('orders_index');
+    }
+
+    #[Route('/validate', name: 'validate')]
+    public function validate(): Response
+    {
         // Redirection vers la page d'accueil
-        return $this->redirectToRoute('home');
+        return $this->render('orders/validate.html.twig');
     }
 }

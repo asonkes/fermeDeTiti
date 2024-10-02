@@ -19,6 +19,12 @@
         padding: 20px;
     }
 
+    &--spec {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
     &__container {
         height: 50px;
         background-color: var(--vert);
