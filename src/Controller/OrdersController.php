@@ -6,7 +6,7 @@ use App\Entity\Users;
 use App\Entity\Orders;
 use App\Entity\OrdersDetails;
 use App\Form\ValidateFormType;
-use App\Repository\UsersRepository;
+use App\Repository\OrdersRepository;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class OrdersController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(Users $user, Request $request, EntityManagerInterface $em): Response
+    public function index(Users $user, Orders $order, OrdersRepository $ordersRepository, Request $request, EntityManagerInterface $em): Response
     {
         // Récupérer l'utilisateur connecté
         $user = $this->getUser();
@@ -27,18 +27,32 @@ class OrdersController extends AbstractController
         // le $user permet de préremplir le formulaire.
         $form = $this->createForm(ValidateFormType::class, $user);
 
+        // Récupérer la commande de l'utilisateur 
+        $order = $ordersRepository->findOneBy(['users' => $user]);
+
+        // Récupérer la commande de l'utilisateur
+        $subtotal = $order->getSubtotal();
+
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            // On sauvegarde les modifications de l'utilisateur
 
-            $em->persist($user);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                // On sauvegarde les modifications de l'utilisateur
+                $this->addFlash('success', 'Vos données ont bien été modifiées');
 
-            $em->flush();
+                $em->persist($user);
+
+                $em->flush();
+            } else {
+                $this->addFlash('danger', "Erreurs dans vos modifications, elles n'ont pas été enregistrées ! Veuillez les modifier svp !!!");
+            }
         }
 
         // Redirection vers la page d'accueil
         return $this->render('orders/index.html.twig', [
             'user' => $user,
+            'order' => $order,
+            'subtotal' => $subtotal,
             'form' => $form->createView()
         ]);
     }
@@ -79,7 +93,7 @@ class OrdersController extends AbstractController
         $order->setStatus('en attente de paiement');
 
         // Calcul du total et ajout des détails de la commande
-        $total = 0;
+        $subtotal = 0;
 
         // On parcourt le panier pour créer les détails de la commande
         foreach ($panier as $item => $quantity) {
@@ -91,7 +105,7 @@ class OrdersController extends AbstractController
 
             // Calcul du sous-total
             $subtotal = $price * $quantity;
-            $total += $subtotal;
+            $subtotal += $subtotal;
 
             // On créé le détail de commande
             $orderDetails->setProducts($product);
@@ -100,7 +114,7 @@ class OrdersController extends AbstractController
 
             // On ajoute les détails à la commande
             $order->addOrdersDetail($orderDetails);
-            $order->setTotal($total);
+            $order->setSubTotal($subtotal);
         }
 
         // Sauvegarder la commande en base de données

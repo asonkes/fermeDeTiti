@@ -4,73 +4,111 @@
 {% endblock %}
 
 {% block body %}
-	<section class="section section--padding" id="contact">
+	<section class="section burger__effect article ">
 		<div class="section__bg-overlay"></div>
 		<h2 class="section__title-h2">Votre adresse de facturation</h2>
-
-		<div class="simpleBox">
-			<div class="form form--maxWidth form--flex form--supp" method="post">
-				<div>
-					<p class="padding5 fontSize18">{{ user.firstname }}</p>
-					<p class="padding5 fontSize18">{{ user.lastname }}</p>
-					<p class="padding5 fontSize18">{{ user.address }}</p>
-					<p class="padding5 fontSize18">{{ user.zipcode }}</p>
-					<p class="padding5 fontSize18">{{ user.city }}</p>
+		<div class="dualbox">
+			<div class="dualbox__container">
+				<div class="dualbox__item-left dualbox__item-left--size form form--supp">
+					<p>Frais de livraison</p>
+					<p>Vous avez plusieurs options:</p>
+					<p>Livraison à Enghien = 0€</p>
+					<p>Livraison entre 5 à 10km = 5€</p>
+					<p>Livraison entre 10 à 15km = 10€</p>
+					<p>Livraison au-delà de 15km ==> vous pouvez venir chercher votre commande.</p>
 				</div>
 
-				<button class="button--marginTop2 button__container button__container--small" id="formModified">
-					<a class="button__link button__link--textSmall" href="#">Modifier</a>
-				</button>
-
-				<div class="form form--maxWidth form--flex form--supp margin15" id="formParent" method="post">
-					{{ form_start(form) }}
-					<ul class="form__ul">
-						<li class="form__li">
-							{{ form_row(form.firstname)}}
-						</li>
-						<li class="form__li">
-							{{ form_row(form.lastname)}}
-						</li>
-						<li class="form__li">
-							{{ form_row(form.address) }}
-						</li>
-						<li class="form__li">
-							{{ form_row(form.zipcode)}}
-						</li>
-						<li class="form__li">
-							{{ form_row(form.city) }}
-						</li>
-					</ul>
-
-					<div class="button--spec">
-						<button class="button__container button__container--small button__link button__link--textSmall margin5" id="formCancel" type="submit">
-							Annuler
-						</button>
-						<button class="button__container button__container--small button__link button__link--textSmall margin5" id="formValidate" type="submit">
-							Valider
-						</button>
+				<div class=" dualbox__item-right form form--maxWidth form--flex form--supp" method="post">
+					<div>
+						<p class="padding5 fontSize18">{{ user.firstname }}</p>
+						<p class="padding5 fontSize18">{{ user.lastname }}</p>
+						<p class="padding5 fontSize18">{{ user.address }}</p>
+						<p class="padding5 fontSize18">{{ user.zipcode }}</p>
+						<p class="padding5 fontSize18">{{ user.city }}</p>
 					</div>
-					{{ form_end(form) }}
-				</div>
 
-				<div>
-					<p>Sous-total:
-					</p>
-				</div>
+					<button class="button--marginTop2 button__container button__container--small" id="formModified">
+						<a class="button__link button__link--textSmall" href="#">Modifier</a>
+					</button>
 
-				<div>
-					<p>Frais de livraison:
-					</p>
-				</div>
+					<div class="form form--maxWidth form--flex form--supp margin15" id="formParent" method="post">
+						{{ form_start(form, {'attr': {'class': 'listStyle'}}) }}
+						<div class="form__ul">
+							<div class="form__li">
+								{{ form_label(form.firstname) }}
+								{% if form.firstname.vars.errors|length > 0 %}
+									<div class="error-message">
+										{{ form_errors(form.firstname) }}
+									</div>
+								{% endif %}
+								{{ form_widget(form.firstname)}}
+							</div>
+							<div class="form__li">
+								{{ form_label(form.lastname)}}
+								{% if form.lastname.vars.errors|length > 0 %}
+									<div class="error-message">
+										{{ form_errors(form.lastname)}}
+									</div>
+								{% endif %}
+								{{ form_widget(form.lastname)}}
+							</div>
+							<div class="form__li">
+								{{ form_label(form.address) }}
+								{% if form.address.vars.errors|length > 0 %}
+									<div class="error-message">
+										{{ form_errors(form.address)}}
+									</div>
+								{% endif %}
+								{{ form_widget(form.address) }}
+							</div>
+							<div class="form__li">
+								{{ form_label(form.zipcode)}}
+								{% if form.zipcode.vars.errors|length > 0 %}
+									<div class="error-message">
+										{{ form_errors(form.zipcode)}}
+									</div>
+								{% endif %}
+								{{ form_widget(form.zipcode)}}
+							</div>
+							<div class="form__li">
+								{{ form_label(form.city) }}
+								{% if form.city.vars.errors|length > 0 %}
+									<div class="error-message">
+										{{ form_errors.city}}
+									</div>
+								{% endif %}
+								{{ form_widget(form.city) }}
+							</div>
+						</div>
 
-				<div>
-					<p>Total:
-					</p>
-				</div>
+						<div class="button--spec">
+							<button class="button__container button__container--small button__link button__link--textSmall margin5" id="formCancel" type="submit">
+								Annuler
+							</button>
+							<button class="button__container button__container--small button__link button__link--textSmall margin5" id="formValidate" type="submit">
+								Valider
+							</button>
+						</div>
+						{{ form_end(form) }}
+					</div>
 
-				<button class="button--marginTop2 button__container button__container--small">
-					<a class="button__link button__link--textSmall" href="{{ path('orders_validate')}}">Valider</a>
-				</button>
+					<div class="padding__spec">
+						<p class="padding5 fontSize18">Sous-total:
+							{{ order.subtotal}}
+							€
+						</p>
+						<p class="padding5 fontSize18">Frais de livraison:
+						</p>
+
+						<p class="padding5 fontSize18">Total:
+						</p>
+					</div>
+
+					<button class="button--marginTop2 button__container button__container--small">
+						<a class="button__link button__link--textSmall" href="{{ path('orders_validate')}}">Valider</a>
+					</button>
+				</div>
 			</div>
-		</section>
-	{% endblock %}
+		</div>
+	</section>
+{% endblock %}

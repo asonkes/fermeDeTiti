@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formModified = document.getElementById('formModified');
 
-    if(formModified ) {
+    if(formModified) {
         formModified.addEventListener('click', () => {
             const formParent = document.getElementById('formParent');
 

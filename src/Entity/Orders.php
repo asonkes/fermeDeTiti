@@ -32,7 +32,7 @@ class Orders
     private Collection $ordersDetails;
 
     #[ORM\Column]
-    private ?int $total = null;
+    private ?int $subtotal = null;
 
     #[ORM\Column(length: 100)]
     private ?string $status = null;
@@ -102,14 +102,14 @@ class Orders
         return $this;
     }
 
-    public function getTotal(): ?int
+    public function getSubtotal(): ?int
     {
-        return $this->total;
+        return $this->subtotal;
     }
 
-    public function setTotal(int $total): static
+    public function setSubtotal(int $subtotal): static
     {
-        $this->total = $total;
+        $this->subtotal = $subtotal;
 
         return $this;
     }

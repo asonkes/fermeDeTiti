@@ -32,7 +32,7 @@ class ValidateFormType extends AbstractType
                     ]),
                     new Regex([
                         'pattern' => '/^\D+$/',
-                        'message' => 'Votre prénom ne peut pas contenir de chiffres.',
+                        'message' => 'Votre prénom ne peut pas contenir de chiffres.'
                     ])
                 ]
             ])
@@ -80,9 +80,9 @@ class ValidateFormType extends AbstractType
                     new Positive([
                         'message' => 'Le code postal indiqué ne peut être négatif'
                     ]),
-                    new Length([
-                        'max' => '4',
-                        'maxMessage' => 'Le code postal doit contenir maximum chiffres '
+                    new Regex([
+                        'pattern' => '/^\d{4}$/',
+                        'message' => 'Le code postal doit contenir exactement 4 chiffres'
                     ])
                 ],
                 'attr' => [
