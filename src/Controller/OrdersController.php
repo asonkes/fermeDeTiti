@@ -6,6 +6,7 @@ use App\Entity\Users;
 use App\Entity\Orders;
 use App\Entity\OrdersDetails;
 use App\Form\ValidateFormType;
+use App\Service\GeocodingService;
 use App\Repository\OrdersRepository;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,6 +19,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/commandes', name: 'orders_')]
 class OrdersController extends AbstractController
 {
+    private GeocodingService $geocodingService;
+
+    public function __construct(GeocodingService $geocodingService)
+    {
+        $this->geocodingService = $geocodingService;
+    }
+
     #[Route('/', name: 'index')]
     public function index(Users $user, Orders $order, OrdersRepository $ordersRepository, Request $request, EntityManagerInterface $em): Response
     {
@@ -27,33 +35,57 @@ class OrdersController extends AbstractController
         // le $user permet de préremplir le formulaire.
         $form = $this->createForm(ValidateFormType::class, $user);
 
-        // Récupérer la commande de l'utilisateur 
+        // Récupérer la dernière commande de l'utilisateur connecté qui est en attente de paiement
         $order = $ordersRepository->findOneBy(['users' => $user]);
 
-        // Récupérer la commande de l'utilisateur
-        $subtotal = $order->getSubtotal();
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                // On sauvegarde les modifications de l'utilisateur
-                $this->addFlash('success', 'Vos données ont bien été modifiées');
-
-                $em->persist($user);
-
-                $em->flush();
-            } else {
-                $this->addFlash('danger', "Erreurs dans vos modifications, elles n'ont pas été enregistrées ! Veuillez les modifier svp !!!");
-            }
+        // Vérifier si l'utilisateur a bien une commande en attente
+        if (!$order) {
+            $this->addFlash('danger', 'Aucune commande en attente de paiement trouvée pour cet utilisateur.');
+            return $this->redirectToRoute('home');
         }
 
-        // Redirection vers la page d'accueil
+        // Calculer les sous-totaux, frais de livraison et totaux pour cette commande
+        $subtotal = $order->getSubtotal();
+
+        // Récupérer les informations de l'utilisateur pour le calcul de la distance
+        $address = $user->getAddress();
+        $zipcode = $user->getZipcode();
+        $city = $user->getCity();
+
+        // Obtenir les coordonnées de l'utilisateur
+        $userCoordinates = $this->geocodingService->getCoordinates($address, $zipcode, $city);
+
+        // Informations de la ferme (fixes)
+        $farmAddress = 'rue noir mouchon, 15';
+        $farmZipcode = '7850';
+        $farmCity = 'enghien';
+
+        // Obtenir les coordonnées de la ferme
+        $farmCoordinates = $this->geocodingService->getCoordinates($farmAddress, $farmZipcode, $farmCity);
+
+        // Calculer la distance
+        $distance = $this->calculateDistance($userCoordinates, $farmCoordinates);
+
+        // Calculer les frais de livraison
+        $deliveryFee = $this->calculateDeliveryFee($distance);
+        $order->setDeliveryFee($deliveryFee);
+
+        // Calculer le total
+        $total = $subtotal + $deliveryFee;
+        $order->setTotal($total);
+
+        // Sauvegarder les changements dans la base de données
+        $em->persist($order);
+        $em->flush();
+
+        // Redirection vers la page d'accueil ou retour de la vue avec la commande
         return $this->render('orders/index.html.twig', [
             'user' => $user,
             'order' => $order,
             'subtotal' => $subtotal,
-            'form' => $form->createView()
+            'deliveryFee' => $deliveryFee,
+            'total' => $total,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -93,10 +125,11 @@ class OrdersController extends AbstractController
         $order->setStatus('en attente de paiement');
 
         // Calcul du total et ajout des détails de la commande
-        $subtotal = 0;
+        $subtotal = 0.00;
 
         // On parcourt le panier pour créer les détails de la commande
         foreach ($panier as $item => $quantity) {
+
             $orderDetails = new OrdersDetails();
 
             // On va chercher le produit
@@ -104,8 +137,7 @@ class OrdersController extends AbstractController
             $price = $product->getPrice();
 
             // Calcul du sous-total
-            $subtotal = $price * $quantity;
-            $subtotal += $subtotal;
+            $subtotal += $price * $quantity;
 
             // On créé le détail de commande
             $orderDetails->setProducts($product);
@@ -114,8 +146,9 @@ class OrdersController extends AbstractController
 
             // On ajoute les détails à la commande
             $order->addOrdersDetail($orderDetails);
-            $order->setSubTotal($subtotal);
         }
+
+        $order->setSubTotal($subtotal);
 
         // Sauvegarder la commande en base de données
         $em->persist($order);
@@ -136,5 +169,45 @@ class OrdersController extends AbstractController
     {
         // Redirection vers la page d'accueil
         return $this->render('orders/validate.html.twig');
+    }
+
+    private function calculateDistance(array $coord1, array $coord2): float
+    {
+        $earthRadius = 6371; // Rayon de la terre en km
+
+        // Convertir les degrés en radians
+        $latFrom = deg2rad($coord1['latitude']);
+        $lonFrom = deg2rad($coord1['longitude']);
+        $latTo = deg2rad($coord2['latitude']);
+        $lonTo = deg2rad($coord2['longitude']);
+
+        $latDelta = $latTo - $latFrom;
+        $lonDelta = $lonTo - $lonFrom;
+
+        $a = sin($latDelta / 2) * sin($latDelta / 2) +
+            cos($latFrom) * cos($latTo) *
+            sin($lonDelta / 2) * sin($lonDelta / 2);
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+
+        return $earthRadius * $c; // Retourner la distance en kilomètres
+    }
+
+    // Méthode pour calculer les frais de livraison en fonction de la distance
+    private function calculateDeliveryFee(float $distance): float
+    {
+        $baseFee = 0.0; // Livraison gratuite jusqu'à 5 km
+        $additionalFee1 = 5.0; // Frais pour la distance entre 5 et 10 km
+        $additionalFee2 = 10.0; // Frais pour la distance entre 10 et 15 km
+        $maxDistance = 15.0; // Distance maximale pour livraison
+
+        if ($distance <= 5) {
+            return $baseFee; // Gratuit
+        } elseif ($distance > 5 && $distance <= 10) {
+            return $additionalFee1; // 5€ de frais
+        } elseif ($distance > 10 && $distance <= 15) {
+            return $additionalFee2; // 10€ de frais
+        } else {
+            throw new \Exception("Pas de livraison pour une telle distance mais vous pouvez venir chercher votre colis à la ferme.");
+        }
     }
 }

@@ -6,6 +6,7 @@ use App\Entity\Trait\CreatedAtTrait;
 use App\Repository\OrdersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OrdersRepository::class)]
@@ -31,11 +32,17 @@ class Orders
     #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'orders', orphanRemoval: true, cascade: ['persist'])]
     private Collection $ordersDetails;
 
-    #[ORM\Column]
-    private ?int $subtotal = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    private ?string $subtotal = null;
 
     #[ORM\Column(length: 100)]
     private ?string $status = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $deliveryFee = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    private ?string $Total = null;
 
     public function __construct()
     {
@@ -60,12 +67,12 @@ class Orders
         return $this;
     }
 
-    public function getUsers(): ?users
+    public function getUsers(): ?Users
     {
         return $this->users;
     }
 
-    public function setUsers(?users $users): static
+    public function setUsers(?Users $users): static
     {
         $this->users = $users;
 
@@ -102,12 +109,12 @@ class Orders
         return $this;
     }
 
-    public function getSubtotal(): ?int
+    public function getSubtotal(): ?string
     {
         return $this->subtotal;
     }
 
-    public function setSubtotal(int $subtotal): static
+    public function setSubtotal(string $subtotal): static
     {
         $this->subtotal = $subtotal;
 
@@ -122,6 +129,30 @@ class Orders
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getDeliveryFee(): ?int
+    {
+        return $this->deliveryFee;
+    }
+
+    public function setDeliveryFee(?int $deliveryFee): static
+    {
+        $this->deliveryFee = $deliveryFee;
+
+        return $this;
+    }
+
+    public function getTotal(): ?string
+    {
+        return $this->Total;
+    }
+
+    public function setTotal(?string $Total): static
+    {
+        $this->Total = $Total;
 
         return $this;
     }
