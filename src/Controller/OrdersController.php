@@ -36,7 +36,10 @@ class OrdersController extends AbstractController
         $form = $this->createForm(ValidateFormType::class, $user);
 
         // Récupérer la dernière commande de l'utilisateur connecté qui est en attente de paiement
-        $order = $ordersRepository->findOneBy(['users' => $user]);
+        $order = $ordersRepository->findOneBy(
+            ['users' => $user, 'status' => 'en attente de paiement'], // Condition pour la commande
+            ['id' => 'DESC'] // Trier par ID décroissant pour obtenir la plus récente
+        );
 
         // Vérifier si l'utilisateur a bien une commande en attente
         if (!$order) {
