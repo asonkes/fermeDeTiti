@@ -1,6 +1,16 @@
 {{ form_start(userForm) }}
 
 <div>
+	{{ form_label(userForm.password)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(userForm.password) }}
+	</div>
+
+	{{ form_widget(userForm.password) }}
+</div>
+
+<div>
 	{{ form_label(userForm.email)}}
 
 	<div class='danger fontSizeSmall listStyleNone'>

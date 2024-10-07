@@ -19,6 +19,8 @@ class ProductsController extends AbstractController
     #[Route('/produits', name: 'products')]
     public function index(Products $products, ProductsRepository $productsRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $products = $productsRepository->findAll([]);
 
         return $this->render('admin/products/index.html.twig', [

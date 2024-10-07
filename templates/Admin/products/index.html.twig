@@ -8,11 +8,20 @@
 		<div class="section__bg-overlay"></div>
 		<h2 class="section__title-h2">Administration des Produits</h2>
 
+		<div class="section__link">
+			<a class="section__link-container" href="{{ path('admin_index')}}">
+				<i class="fa-solid fa-chevron-right section__link-icon"></i>
+				Retour
+			</a>
+		</div>
+
 		<div class="simpleBox">
 			<table>
 				<thead>
 					<tr>
 						<th>Id</th>
+						<th>Catégorie de Référence</th>
+						<th>Producer de Référence</th>
 						<th>Nom</th>
 						<th>Image</th>
 						<th>Prix</th>
@@ -28,6 +37,12 @@
 						<tr>
 							<th>
 								{{product.id}}
+							</th>
+							<th>
+								{{product.categories.name}}
+							</th>
+							<th>
+								{{product.producer.name}}
 							</th>
 							<th>
 								{{product.name}}

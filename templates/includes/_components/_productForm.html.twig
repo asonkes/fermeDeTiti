@@ -11,6 +11,22 @@
 </div>
 
 <div>
+	{{ form_label(productForm.categories)}}
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.categories) }}
+	</div>
+	{{ form_widget(productForm.categories) }}
+</div>
+
+<div>
+	{{ form_label(productForm.producer)}}
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(productForm.producer) }}
+	</div>
+	{{ form_widget(productForm.producer) }}
+</div>
+
+<div>
 	{{ form_label(productForm.price)}}
 	<div class='danger fontSizeSmall listStyleNone'>
 		{{ form_errors(productForm.price) }}
@@ -42,22 +58,6 @@
 		{{ form_errors(productForm.type) }}
 	</div>
 	{{ form_widget(productForm.type) }}
-</div>
-
-<div>
-	{{ form_label(productForm.categories)}}
-	<div class='danger fontSizeSmall listStyleNone'>
-		{{ form_errors(productForm.categories) }}
-	</div>
-	{{ form_widget(productForm.categories) }}
-</div>
-
-<div>
-	{{ form_label(productForm.producer)}}
-	<div class='danger fontSizeSmall listStyleNone'>
-		{{ form_errors(productForm.producer) }}
-	</div>
-	{{ form_widget(productForm.producer) }}
 </div>
 
 <div>

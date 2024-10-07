@@ -17,6 +17,8 @@ class ProducersController extends AbstractController
     #[Route('/producteurs', name: 'producers')]
     function index(Producer $producer, ProducerRepository $producerRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $producer = $producerRepository->findAll([]);
 
         return $this->render('admin/producers/index.html.twig', [

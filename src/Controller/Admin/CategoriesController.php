@@ -19,6 +19,8 @@ class CategoriesController extends AbstractController
     #[Route('/categories', name: 'categories')]
     function index(Categories $categories, CategoriesRepository $categoriesRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $categories = $categoriesRepository->findAll([]);
 
         return $this->render('admin/categories/index.html.twig', [

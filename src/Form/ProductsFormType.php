@@ -37,6 +37,14 @@ class ProductsFormType extends AbstractType
                     'class' => 'form__label'
                 ]
             ])
+            ->add('categories', EntityType::class, [
+                'class' => Categories::class,
+                'choice_label' => 'id',
+            ])
+            ->add('producer', EntityType::class, [
+                'class' => Producer::class,
+                'choice_label' => 'id',
+            ])
             ->add('image', FileType::class, [
                 'constraints' => [
                     new NotBlank([
@@ -55,7 +63,7 @@ class ProductsFormType extends AbstractType
             ->add('price', MoneyType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Indiquez insérer votre prix'
+                        'message' => 'Veuillez insérer votre prix'
                     ]),
                     new Positive([
                         'message' => 'Le montant indiqué ne peut être négatif'

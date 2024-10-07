@@ -17,6 +17,8 @@ class UsersController extends AbstractController
     #[Route('/utilisateurs', name: 'users')]
     public function index(Users $users, UsersRepository $usersRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $users = $usersRepository->findAll([]);
 
         return $this->render('admin/users/index.html.twig', [
