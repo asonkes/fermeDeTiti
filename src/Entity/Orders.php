@@ -32,17 +32,17 @@ class Orders
     #[ORM\OneToMany(targetEntity: OrdersDetails::class, mappedBy: 'orders', orphanRemoval: true, cascade: ['persist'])]
     private Collection $ordersDetails;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $subtotal = null;
 
     #[ORM\Column(length: 100)]
     private ?string $status = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $deliveryFee = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?string $deliveryFee = '0.00';
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
-    private ?string $Total = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    private ?string $total = null;
 
     public function __construct()
     {
@@ -133,12 +133,12 @@ class Orders
         return $this;
     }
 
-    public function getDeliveryFee(): ?int
+    public function getDeliveryFee(): ?string
     {
         return $this->deliveryFee;
     }
 
-    public function setDeliveryFee(?int $deliveryFee): static
+    public function setDeliveryFee(?string $deliveryFee): static
     {
         $this->deliveryFee = $deliveryFee;
 
@@ -147,12 +147,12 @@ class Orders
 
     public function getTotal(): ?string
     {
-        return $this->Total;
+        return $this->total;
     }
 
-    public function setTotal(?string $Total): static
+    public function setTotal(?string $total): static
     {
-        $this->Total = $Total;
+        $this->total = $total;
 
         return $this;
     }

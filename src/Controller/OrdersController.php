@@ -71,7 +71,9 @@ class OrdersController extends AbstractController
 
         // Calculer les frais de livraison
         $deliveryFee = $this->calculateDeliveryFee($distance);
-        $order->setDeliveryFee($deliveryFee);
+
+        // Calcul du total et ajout des détails de la commande
+        $total = 0.00;
 
         // Calculer le total
         $total = $subtotal + $deliveryFee;
@@ -174,7 +176,7 @@ class OrdersController extends AbstractController
         return $this->render('orders/validate.html.twig');
     }
 
-    private function calculateDistance(array $coord1, array $coord2): float
+    private function calculateDistance(array $coord1, array $coord2): string
     {
         $earthRadius = 6371; // Rayon de la terre en km
 
@@ -196,12 +198,12 @@ class OrdersController extends AbstractController
     }
 
     // Méthode pour calculer les frais de livraison en fonction de la distance
-    private function calculateDeliveryFee(float $distance): float
+    private function calculateDeliveryFee(float $distance): string
     {
-        $baseFee = 0.0; // Livraison gratuite jusqu'à 5 km
-        $additionalFee1 = 5.0; // Frais pour la distance entre 5 et 10 km
-        $additionalFee2 = 10.0; // Frais pour la distance entre 10 et 15 km
-        $maxDistance = 15.0; // Distance maximale pour livraison
+        $baseFee = 0.00; // Livraison gratuite jusqu'à 5 km
+        $additionalFee1 = 5.00; // Frais pour la distance entre 5 et 10 km
+        $additionalFee2 = 10.00; // Frais pour la distance entre 10 et 15 km
+        $maxDistance = 15.00; // Distance maximale pour livraison
 
         if ($distance <= 5) {
             return $baseFee; // Gratuit

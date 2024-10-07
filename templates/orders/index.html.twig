@@ -88,10 +88,10 @@
 							{{ subtotal }}
 							€</p>
 						<p class="padding5 fontSize18">Frais de livraison:
-							{{ deliveryFee }}
+							{{ deliveryFee | number_format(2, '.', '')}}
 							€</p>
 						<p class="padding5 fontSize18">Total:
-							{{ total }}
+							{{ total | number_format(2, '.', '') }}
 							€</p>
 					</div>
 				{% endif %}
