@@ -1,0 +1,31 @@
+{{ form_start(ordersDetailsForm) }}
+
+<div>
+	{{ form_label(ordersDetailsForm.quantity)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(ordersDetailsForm.quantity) }}
+	</div>
+
+	{{ form_widget(ordersDetailsForm.quantity) }}
+</div>
+
+<div>
+	{{ form_label(ordersDetailsForm.price)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(ordersDetailsForm.price) }}
+	</div>
+
+	{{ form_widget(ordersDetailsForm.price) }}
+</div>
+
+<div class="button">
+	<div class="button__container button__container--flex button__container--small">
+		<button class="button__link button__link--textSmall button__link--supp" type="submit">
+			{{ button_label|default('Ajouter') }}
+		</button>
+	</div>
+</div>
+
+{{ form_end(categoryForm) }}

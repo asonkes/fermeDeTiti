@@ -37,14 +37,6 @@ class ProductsFormType extends AbstractType
                     'class' => 'form__label'
                 ]
             ])
-            ->add('categories', EntityType::class, [
-                'class' => Categories::class,
-                'choice_label' => 'id',
-            ])
-            ->add('producer', EntityType::class, [
-                'class' => Producer::class,
-                'choice_label' => 'id',
-            ])
             ->add('image', FileType::class, [
                 'constraints' => [
                     new NotBlank([

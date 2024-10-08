@@ -3,12 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Orders;
-use App\Entity\Products;
 use App\Entity\OrdersDetails;
 use App\Form\OrdersDetailsFormType;
-use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Form\OrdersDetailsFormTypePhpType;
 use App\Repository\OrdersDetailsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,22 +27,23 @@ class OrdersDetailsController extends AbstractController
         ]);
     }
 
-    #[Route('/details_des_commandes/edition/{id}', name: 'ordersDetails_edit')]
-    public function edit(Orders $orders, Request $request, EntityManagerInterface $em): Response
+    #[Route('/details_des_commandes/edition/{ordersId}/{productsId}', name: 'admin_ordersDetails_edit')]
+    public function edit(int $ordersId, int $productsId, OrdersDetailsRepository $ordersDetailsRepository, Request $request, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $orders = new Orders();
+        // Récupérer les détails de commande
+        $ordersDetails = $ordersDetailsRepository->findOneBy([
+            'orders' => $ordersId,
+            'products' => $productsId
+        ]);
 
-        // On va créer le formulaire
-        $ordersDetailsForm = $this->createForm(OrdersDetailsFormType::class, $orders);
-
-        // On traite le formulaire
+        // Traitement du formulaire
+        $ordersDetailsForm = $this->createForm(OrdersDetailsFormType::class, $ordersDetails);
         $ordersDetailsForm->handleRequest($request);
 
-        // On va voir si le forulaire ets soumis et valide
         if ($ordersDetailsForm->isSubmitted() && $ordersDetailsForm->isValid()) {
-            $em->persist($orders);
+            $em->persist($ordersDetails);
             $em->flush();
 
             $this->addFlash('success', 'Commande modifiée avec succès');
@@ -53,9 +51,10 @@ class OrdersDetailsController extends AbstractController
             return $this->redirectToRoute('admin_ordersDetails');
         }
 
-        return $this->redirectToRoute('admin_orderDetails', [
-            'OrdersDetailsForm' => $ordersDetailsForm,
-            'orders' => $orders
+        // Rendu de la vue
+        return $this->render('admin/ordersDetails/edit.html.twig', [
+            'ordersDetailsForm' => $ordersDetailsForm->createView(),
+            'ordersDetails' => $ordersDetails
         ]);
     }
 

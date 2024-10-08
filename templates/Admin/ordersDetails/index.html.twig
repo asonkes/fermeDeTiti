@@ -42,7 +42,9 @@
 								{{orderDetails.price}}
 							</th>
 							<th>
-								<a class="margin10 dashboard__button dashboard__button-modify" href="#">Modifier</a>
+								<a class="margin10 dashboard__button dashboard__button-modify" href="{{ path('admin_ordersDetails_edit', {ordersId: ordersDetails.orders.id, productsId: ordersDetails.products.id}) }}">
+									Modifier
+								</a>
 
 								<button class="margin10 dashboard__button dashboard__button-danger" type="submit">Supprimer</button>
 							</th>

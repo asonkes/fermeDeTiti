@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Édition des Commandes
+{% endblock %}
+
+{% block body %}
+	<section class="section section--padding burger__effect">
+		<div class="section__bg-overlay"></div>
+		<h2 class="section__title-h2">Administration des Commandes</h2>
+
+		<div class="simpleBox">
+			<div class="form form--maxWidth form--flex form--supp" method="post">
+				{% include 'includes/_components/_ordersForm.html.twig' with{'button_label': 'Modifier'} %}
+			</div>
+		</div>
+	</section>
+{% endblock %}

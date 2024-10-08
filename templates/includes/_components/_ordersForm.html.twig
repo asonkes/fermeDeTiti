@@ -1,0 +1,71 @@
+{{ form_start(ordersForm) }}
+
+<div>
+	{{ form_label(ordersForm.users)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(ordersForm.users) }}
+	</div>
+
+	{{ form_widget(ordersForm.users) }}
+</div>
+
+<div>
+	{{ form_label(ordersForm.reference)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		<p>Cette donnée n'est pas modifiable</p>
+	</div>
+
+	{{ form_widget(ordersForm.reference) }}
+</div>
+
+<div>
+	{{ form_label(ordersForm.subtotal)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(ordersForm.subtotal) }}
+	</div>
+
+	{{ form_widget(ordersForm.subtotal) }}
+</div>
+
+<div>
+	{{ form_label(ordersForm.status)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(ordersForm.status) }}
+	</div>
+
+	{{ form_widget(ordersForm.status) }}
+</div>
+
+<div>
+	{{ form_label(ordersForm.deliveryFee)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		<p>Cette donnée n'est pas modifiable</p>
+	</div>
+
+	{{ form_widget(ordersForm.deliveryFee) }}
+</div>
+
+<div>
+	{{ form_label(ordersForm.total)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(ordersForm.total) }}
+	</div>
+
+	{{ form_widget(ordersForm.total) }}
+</div>
+
+<div class="button">
+	<div class="button__container button__container--flex button__container--small">
+		<button class="button__link button__link--textSmall button__link--supp" type="submit">
+			{{ button_label|default('Ajouter') }}
+		</button>
+	</div>
+</div>
+
+{{ form_end(ordersForm) }}
