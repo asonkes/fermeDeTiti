@@ -23,7 +23,7 @@ class OrdersFormType extends AbstractType
                 'attr' => [
                     'class' => 'form__input form__input--supp form__input--margin'
                 ],
-                'label' => 'Catégories',
+                'label' => "Nom de l'Utilisateur",
                 'label_attr' => [
                     'class' => 'form__label'
                 ]
@@ -68,7 +68,7 @@ class OrdersFormType extends AbstractType
             ->add('deliveryFee', NumberType::class, [
                 'attr' => [
                     'class' => 'form__input form__input--supp form__input--margin',
-                    //'readonly' => true,
+                    'readonly' => true,
                 ],
                 'label' => 'Frais de Livraison',
                 'label_attr' => [

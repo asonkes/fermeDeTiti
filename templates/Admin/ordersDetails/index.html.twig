@@ -42,11 +42,12 @@
 								{{orderDetails.price}}
 							</th>
 							<th>
-								<a class="margin10 dashboard__button dashboard__button-modify" href="{{ path('admin_ordersDetails_edit', {ordersId: ordersDetails.orders.id, productsId: ordersDetails.products.id}) }}">
-									Modifier
-								</a>
+								<a class="margin10 dashboard__button dashboard__button-modify" href="{{ path('admin_ordersDetails_edit', {orderId: orderDetails.orders.id, productId: orderDetails.products.id})}}">Modifier</a>
 
-								<button class="margin10 dashboard__button dashboard__button-danger" type="submit">Supprimer</button>
+								<form method="post" action="{{ path('admin_ordersDetails_delete', {orderId: orderDetails.orders.id, productId: orderDetails.products.id})}}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer les détails de cette commande ?')">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete_' ~ orderDetails.orders.id ~ '_' ~ orderDetails.products.id) }}">
+									<button class="margin10 dashboard__button dashboard__button-danger" type="submit">Supprimer</button>
+								</form>
 							</th>
 						</tr>
 					{% endfor %}

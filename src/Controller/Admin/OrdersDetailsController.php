@@ -27,45 +27,51 @@ class OrdersDetailsController extends AbstractController
         ]);
     }
 
-    #[Route('/details_des_commandes/edition/{ordersId}/{productsId}', name: 'admin_ordersDetails_edit')]
-    public function edit(int $ordersId, int $productsId, OrdersDetailsRepository $ordersDetailsRepository, Request $request, EntityManagerInterface $em): Response
+    #[Route('/details_des_commandes/edition/{orderId}/{productId}', name: 'ordersDetails_edit')]
+    public function edit(int $orderId, int $productId, OrdersDetails $ordersDetails, OrdersDetailsRepository $ordersDetailsRepository, Request $request, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        // Récupérer les détails de commande
         $ordersDetails = $ordersDetailsRepository->findOneBy([
-            'orders' => $ordersId,
-            'products' => $productsId
+            'orders' => $orderId,
+            'products' => $productId
         ]);
 
-        // Traitement du formulaire
+        // On va créer le formulaire
         $ordersDetailsForm = $this->createForm(OrdersDetailsFormType::class, $ordersDetails);
+
+        // On traite le formulaire
         $ordersDetailsForm->handleRequest($request);
 
+        // On va voir si le forulaire ets soumis et valide
         if ($ordersDetailsForm->isSubmitted() && $ordersDetailsForm->isValid()) {
             $em->persist($ordersDetails);
             $em->flush();
 
-            $this->addFlash('success', 'Commande modifiée avec succès');
+            $this->addFlash('success', 'Les Détails de la commande sont bien modifiés avec succès');
 
             return $this->redirectToRoute('admin_ordersDetails');
         }
 
-        // Rendu de la vue
         return $this->render('admin/ordersDetails/edit.html.twig', [
-            'ordersDetailsForm' => $ordersDetailsForm->createView(),
+            'ordersDetailsForm' => $ordersDetailsForm,
             'ordersDetails' => $ordersDetails
         ]);
     }
 
-    #[Route('/details_des_commandes/suppression/{id}', name: 'ordersDetails_delete')]
-    public function delete(Orders $orders, Request $request, EntityManagerInterface $em): Response
+    #[Route('/details_des_commandes/suppression/{orderId}/{productId}', name: 'ordersDetails_delete')]
+    public function delete(int $orderId, int $productId, OrdersDetailsRepository $ordersDetailsRepository, Request $request, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
+        $ordersDetails = $ordersDetailsRepository->findOneBy([
+            'orders' => $orderId,
+            'products' => $productId
+        ]);
+
         //Ajouter un token pour sécuriser la suppression
-        if ($this->isCsrfTokenValid('delete' . $orders->getId(), $request->request->get('_token'))) {
-            $em->remove($orders);
+        if ($this->isCsrfTokenValid('delete_' . $orderId . '_' . $productId, $request->request->get('_token'))) {
+            $em->remove($ordersDetails);
             $em->flush();
 
             $this->addFlash('success', 'Les détails de cette commande ont été supprimées avec succès');

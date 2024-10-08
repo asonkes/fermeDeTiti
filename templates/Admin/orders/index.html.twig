@@ -56,7 +56,7 @@
 							<th>
 								<a class="margin10 dashboard__button dashboard__button-modify" href="{{ path('admin_orders_edit', {id: order.id})}}">Modifier</a>
 
-								<form method="post" action="{{ path('admin_orders_delete', {id: order.id})}}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?');">
+								<form method="post" action="{{ path('admin_orders_delete', {id: order.id})}}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')">
 									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ order.id) }}">
 									<button class="margin10 dashboard__button dashboard__button-danger" type="submit">Supprimer</button>
 								</form>

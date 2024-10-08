@@ -8,6 +8,13 @@
 		<div class="section__bg-overlay"></div>
 		<h2 class="section__title-h2">Administration d'édition de Produits</h2>
 
+		<div class="section__link">
+			<a class="section__link-container" href="{{ path('admin_index')}}">
+				<i class="fa-solid fa-chevron-right section__link-icon"></i>
+				Retour
+			</a>
+		</div>
+
 		<div class="simpleBox">
 			<div class="form form--maxWidth form--flex form--supp" method="post">
 				{% include 'includes/_components/_productForm.html.twig' with{'button_label': 'Modifier'} %}

@@ -1,6 +1,26 @@
 {{ form_start(ordersDetailsForm) }}
 
 <div>
+	{{ form_label(ordersDetailsForm.orders)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(ordersDetailsForm.orders) }}
+	</div>
+
+	{{ form_widget(ordersDetailsForm.orders) }}
+</div>
+
+<div>
+	{{ form_label(ordersDetailsForm.products)}}
+
+	<div class='danger fontSizeSmall listStyleNone'>
+		{{ form_errors(ordersDetailsForm.products) }}
+	</div>
+
+	{{ form_widget(ordersDetailsForm.products) }}
+</div>
+
+<div>
 	{{ form_label(ordersDetailsForm.quantity)}}
 
 	<div class='danger fontSizeSmall listStyleNone'>
@@ -28,4 +48,4 @@
 	</div>
 </div>
 
-{{ form_end(categoryForm) }}
+{{ form_end(ordersDetailsForm) }}
