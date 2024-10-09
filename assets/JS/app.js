@@ -31,3 +31,7 @@ import './components/flags';
 
 // import des fichiers JS pour rendre 
 import './components/form.js';
+
+// import des fichiers JS pour iubenda(cookie + politique de confidentialité)
+import './iubenda/confidentialite.js';
+import './iubenda/cookie.js';

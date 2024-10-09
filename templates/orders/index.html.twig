@@ -88,11 +88,25 @@
 							{{ subtotal }}
 							€</p>
 						<p class="padding5 fontSize18">Frais de livraison:
-							{{ deliveryFee | number_format(2, '.', '')}}
-							€</p>
+							{% if distance < 5 %}
+								Offert
+							{% elseif distance > 5 and distance < 10 %}
+								{{ deliveryFee}}
+								€
+							{% elseif distance > 10 and distance < 15 %}
+								{{ deliveryFee}}
+								€
+							{% elseif distance > 15 %}
+								<br>
+								<span class="red size15 paddingTop5">Pas de livraison au-delà de 15km, mais vous pouvez venir chercher votre colis à la ferme</span>
+								<br>
+
+							{% endif %}
+						</p>
 						<p class="padding5 fontSize18">Total:
 							{{ total | number_format(2, '.', '') }}
-							€</p>
+							€
+						</p>
 					</div>
 				{% endif %}
 

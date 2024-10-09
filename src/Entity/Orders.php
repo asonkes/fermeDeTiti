@@ -41,7 +41,7 @@ class Orders
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $deliveryFee = '0.00';
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $total = null;
 
     public function __construct()

@@ -91,6 +91,7 @@ class OrdersController extends AbstractController
             'deliveryFee' => $deliveryFee,
             'total' => $total,
             'form' => $form->createView(),
+            'distance' => $distance
         ]);
     }
 
@@ -212,7 +213,7 @@ class OrdersController extends AbstractController
         } elseif ($distance > 10 && $distance <= 15) {
             return $additionalFee2; // 10€ de frais
         } else {
-            throw new \Exception("Pas de livraison pour une telle distance mais vous pouvez venir chercher votre colis à la ferme.");
+            return 0.00;
         }
     }
 }
