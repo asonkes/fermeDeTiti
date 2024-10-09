@@ -17,8 +17,26 @@ class ValidateFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', TextType::class, [
+            ->add('lastname', TextType::class, [
                 'label' => 'Nom',
+                'label_attr' => [
+                    'class' => 'form__label'
+                ],
+                'attr' => [
+                    'class' => 'form__input2',
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le champ ne peut pas être vide.',
+                    ]),
+                    new Regex([
+                        'pattern' => '/^\D+$/',
+                        'message' => 'Votre nom ne peut pas contenir de chiffres.',
+                    ])
+                ]
+            ])
+            ->add('firstname', TextType::class, [
+                'label' => 'Prénom',
                 'label_attr' => [
                     'class' => 'form__label'
                 ],
@@ -36,42 +54,28 @@ class ValidateFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('lastname', TextType::class, [
-                'label' => 'Prénom',
-                'label_attr' => [
-                    'class' => 'form__label'
-                ],
-                'attr' => [
-                    'class' => 'form__input2',
-                ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Le champ ne peut pas être vide.',
-                    ]),
-                    new Regex([
-                        'pattern' => '/^\D+$/',
-                        'message' => 'Votre nom ne peut pas contenir de chiffres.',
-                    ])
-                ]
-            ])
             ->add('address', TextType::class, [
                 'label' => 'Adresse',
                 'label_attr' => [
                     'class' => 'form__label'
                 ],
+                'attr' => [
+                    'class' => 'form__input2'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez insérer votre addresse'
                     ])
-                ],
-                'attr' => [
-                    'class' => 'form__input2'
                 ]
             ])
             ->add('zipcode', NumberType::class, [
                 'label' => 'Code Postal',
                 'label_attr' => [
                     'class' => 'form__label'
+                ],
+                'attr' => [
+                    'class' => 'form__input2',
+                    'min' => 0
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -90,16 +94,15 @@ class ValidateFormType extends AbstractType
                         'pattern' => '/^\d{4}$/',
                         'message' => 'Le code postal doit contenir exactement 4 chiffres'
                     ])
-                ],
-                'attr' => [
-                    'class' => 'form__input2',
-                    'min' => 0
                 ]
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville',
                 'label_attr' => [
                     'class' => 'form__label'
+                ],
+                'attr' => [
+                    'class' => 'form__input2'
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -109,9 +112,6 @@ class ValidateFormType extends AbstractType
                         'max' => 50,
                         'maxMessage' => "Le nom de votre ville ne peut dépasser 50 caractères"
                     ])
-                ],
-                'attr' => [
-                    'class' => 'form__input2'
                 ]
             ]);
     }
