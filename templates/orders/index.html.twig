@@ -17,69 +17,69 @@
 					<p class="padding5 fontSize18">{{ user.city }}</p>
 				</div>
 
-				<button class="button--marginTop2 button__container button__container--small" id="formModified">
+				<button class="button--marginTop2 button__container button__container--small" id="buttonModified">
 					<a class="button__link button__link--textSmall" href="#">Modifier</a>
 				</button>
 
-				<div class="form form--maxWidth form--flex form--supp margin15" id="formParent" method="post">
-					{{ form_start(form, {'attr': {'class': 'listStyle'}}) }}
+				<div class="form form--maxWidth form--flex form--supp margin15" id="form" method="post">
+					{{ form_start(validateForm, {'attr': {'class': 'listStyle'}}) }}
 					<div class="form__ul">
 						<div class="form__li">
-							{{ form_label(form.firstname) }}
-							{% if form.firstname.vars.errors|length > 0 %}
+							{{ form_label(validateForm.firstname) }}
+							{% if validateForm.firstname.vars.errors|length > 0 %}
 								<div class="error-message">
-									{{ form_errors(form.firstname) }}
+									{{ form_errors(validateForm.firstname) }}
 								</div>
 							{% endif %}
-							{{ form_widget(form.firstname)}}
+							{{ form_widget(validateForm.firstname)}}
 						</div>
 						<div class="form__li">
-							{{ form_label(form.lastname)}}
-							{% if form.lastname.vars.errors|length > 0 %}
+							{{ form_label(validateForm.lastname)}}
+							{% if validateForm.lastname.vars.errors|length > 0 %}
 								<div class="error-message">
-									{{ form_errors(form.lastname)}}
+									{{ form_errors(validateForm.lastname)}}
 								</div>
 							{% endif %}
-							{{ form_widget(form.lastname)}}
+							{{ form_widget(validateForm.lastname)}}
 						</div>
 						<div class="form__li">
-							{{ form_label(form.address) }}
-							{% if form.address.vars.errors|length > 0 %}
+							{{ form_label(validateForm.address) }}
+							{% if validateForm.address.vars.errors|length > 0 %}
 								<div class="error-message">
-									{{ form_errors(form.address)}}
+									{{ form_errors(validateForm.address)}}
 								</div>
 							{% endif %}
-							{{ form_widget(form.address) }}
+							{{ form_widget(validateForm.address) }}
 						</div>
 						<div class="form__li">
-							{{ form_label(form.zipcode)}}
-							{% if form.zipcode.vars.errors|length > 0 %}
+							{{ form_label(validateForm.zipcode)}}
+							{% if validateForm.zipcode.vars.errors|length > 0 %}
 								<div class="error-message">
-									{{ form_errors(form.zipcode)}}
+									{{ form_errors(validateForm.zipcode)}}
 								</div>
 							{% endif %}
-							{{ form_widget(form.zipcode)}}
+							{{ form_widget(validateForm.zipcode)}}
 						</div>
 						<div class="form__li">
-							{{ form_label(form.city) }}
-							{% if form.city.vars.errors|length > 0 %}
+							{{ form_label(validateForm.city) }}
+							{% if validateForm.city.vars.errors|length > 0 %}
 								<div class="error-message">
-									{{ form_errors.city}}
+									{{ form_errors(validateForm.city)}}
 								</div>
 							{% endif %}
-							{{ form_widget(form.city) }}
+							{{ form_widget(validateForm.city) }}
 						</div>
 					</div>
 
 					<div class="button--spec">
-						<button class="button__container button__container--small button__link button__link--textSmall margin5" id="formCancel" type="submit">
+						<button class="button__container button__container--small button__link button__link--textSmall margin5" id="buttonCancel" type="submit">
 							Annuler
 						</button>
-						<button class="button__container button__container--small button__link button__link--textSmall margin5" id="formValidate" type="submit">
+						<button class="button__container button__container--small button__link button__link--textSmall margin5" id="buttonValidate" type="submit">
 							Valider
 						</button>
 					</div>
-					{{ form_end(form) }}
+					{{ form_end(validateForm) }}
 				</div>
 
 				{% if order %}
@@ -100,7 +100,6 @@
 								<br>
 								<span class="red size15 paddingTop5">Pas de livraison au-delà de 15km, mais vous pouvez venir chercher votre colis à la ferme</span>
 								<br>
-
 							{% endif %}
 						</p>
 						<p class="padding5 fontSize18">Total:

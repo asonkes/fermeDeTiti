@@ -1,17 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const formModified = document.getElementById('formModified');
+    const buttonModified = document.getElementById('buttonModified');
+    const form = document.getElementById('form');
+    const buttonCancel = document.getElementById('buttonCancel');
+    const buttonValidate = document.getElementById('buttonValidate');
 
-    if(formModified) {
-        formModified.addEventListener('click', () => {
-            const formParent = document.getElementById('formParent');
-
-            const formCancel = document.getElementById('formCancel');
-            
-            const formValidate = document.getElementById('formValidate');
-    
-            formParent.classList.add('active');
-            formCancel.classList.remove('active');
-            formValidate.classList.remove('active');
-        })
+    if (buttonModified) {
+        buttonModified.addEventListener('click', () => {
+            form.classList.add('active'); // Ouvre le formulaire
+            buttonCancel.classList.remove('active'); // Cache le bouton Annuler
+            buttonValidate.classList.remove('active'); // Cache le bouton Valider
+        });
     }
-})
+
+    // Optionnel : Si le formulaire est soumis avec des erreurs, assurez-vous qu'il reste ouvert
+    const errorMessage = document.querySelector('.error-message');
+    if (errorMessage) {
+        form.classList.add('active'); // Assurez-vous que le formulaire est actif si des erreurs sont présentes
+    }
+});

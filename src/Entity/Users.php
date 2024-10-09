@@ -47,7 +47,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
-    #[ORM\Column(length: 4)]
+    #[ORM\Column]
     private ?string $zipcode = null;
 
     #[ORM\Column(length: 150)]

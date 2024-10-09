@@ -80,6 +80,12 @@ class ValidateFormType extends AbstractType
                     new Positive([
                         'message' => 'Le code postal indiqué ne peut être négatif'
                     ]),
+                    new Length([
+                        'min' => 4,
+                        'max' => 4,
+                        'minMessage' => 'Le code postal doit contenir exactement {{ limit }} chiffres',
+                        'maxMessage' => 'Le code postal doit contenir exactement {{ limit }} chiffres',
+                    ]),
                     new Regex([
                         'pattern' => '/^\d{4}$/',
                         'message' => 'Le code postal doit contenir exactement 4 chiffres'

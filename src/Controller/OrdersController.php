@@ -33,7 +33,14 @@ class OrdersController extends AbstractController
         $user = $this->getUser();
 
         // le $user permet de préremplir le formulaire.
-        $form = $this->createForm(ValidateFormType::class, $user);
+        $validateForm = $this->createForm(ValidateFormType::class, $user);
+
+        $validateForm->handleRequest($request);
+
+        if ($validateForm->isSubmitted() && $validateForm->isValid()) {
+            $em->persist($user);
+            $em->flush();
+        }
 
         // Récupérer la dernière commande de l'utilisateur connecté qui est en attente de paiement
         $order = $ordersRepository->findOneBy(
@@ -58,6 +65,11 @@ class OrdersController extends AbstractController
         // Obtenir les coordonnées de l'utilisateur
         $userCoordinates = $this->geocodingService->getCoordinates($address, $zipcode, $city);
 
+        // Vérifiez si les coordonnées ont été récupérées avec succès
+        if ($userCoordinates === null) {
+            $this->addFlash('danger', "Erreur lors de la récupération des coordonnées. Vérifiez l'adresse, le code postal et la ville.");
+        }
+
         // Informations de la ferme (fixes)
         $farmAddress = 'rue noir mouchon, 15';
         $farmZipcode = '7850';
@@ -65,6 +77,11 @@ class OrdersController extends AbstractController
 
         // Obtenir les coordonnées de la ferme
         $farmCoordinates = $this->geocodingService->getCoordinates($farmAddress, $farmZipcode, $farmCity);
+
+        // Vérifiez si les coordonnées de la ferme ont été récupérées avec succès
+        if ($farmCoordinates === null) {
+            $this->addFlash('danger', 'Erreur lors de la récupération des coordonnées de la ferme.');
+        }
 
         // Calculer la distance
         $distance = $this->calculateDistance($userCoordinates, $farmCoordinates);
@@ -90,8 +107,8 @@ class OrdersController extends AbstractController
             'subtotal' => $subtotal,
             'deliveryFee' => $deliveryFee,
             'total' => $total,
-            'form' => $form->createView(),
-            'distance' => $distance
+            'distance' => $distance,
+            'validateForm' => $validateForm
         ]);
     }
 

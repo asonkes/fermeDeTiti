@@ -17,6 +17,7 @@ class GeocodingService
     public function getCoordinates(string $address, string $zipcode, string $city): ?array
     {
         $formattedAddress = urlencode("$address, $zipcode, $city");
+
         $url = "https://nominatim.openstreetmap.org/search?format=json&q={$formattedAddress}";
 
         // Faire la requête GET avec désactivation de la vérification SSL et ajout d'un User-Agent
