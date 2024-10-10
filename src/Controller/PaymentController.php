@@ -33,32 +33,20 @@ class PaymentController extends AbstractController
         }
 
         foreach ($order->getOrdersdetails()->getValues() as $ordersDetails) {
-            // Récupérer le total de l'utilisateur qui a passé la commande
-
-            //dd($order);
-
             $product = $ordersDetails->getProducts();
-            //dd($product);
-
-            $productId = $product->getId();
-            //dd($productId);
 
             // Récupérer le nom du produit
             $productName = $product->getName();
-            //dd($productName); // Utiliser dump() au lieu de dd()
 
             $productStripe[] = [
                 'price_data' => [
                     'currency' => 'eur',
                     'unit_amount' => (($ordersDetails->getPrice()) * 100),
-                    //dd($ordersDetails->getPrice()),
                     'product_data' => [
                         'name' => $productName,
-                        //dd($ordersDetails->getProducts($product->getName()))
                     ]
                 ],
                 'quantity' => $ordersDetails->getquantity(),
-                //dd($ordersDetails->getquantity()),
             ];
         }
 
@@ -66,7 +54,6 @@ class PaymentController extends AbstractController
             'price_data' => [
                 'currency' => 'eur',
                 'unit_amount' => (($order->getDeliveryFee()) * 100),
-                //dd($order->getDeliveryFee()),
                 'product_data' => [
                     'name' => 'Livraison à domicile',
                 ]
@@ -96,7 +83,6 @@ class PaymentController extends AbstractController
     #[Route('/success/{reference}', name: 'success')]
     public function stripeSuccess(string $reference, Orders $order, OrdersRepository $ordersRepository): Response
     {
-        // Optionnel : récupérer la commande pour afficher des infos sur la page de confirmation
         $order = $ordersRepository->findOneBy(['reference' => $reference]);
 
         return $this->render('payment/confirmation.html.twig', [
