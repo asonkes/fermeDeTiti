@@ -6,29 +6,26 @@ namespace App\Controller;
 use Stripe\Stripe;
 
 use App\Entity\Orders;
-use App\Entity\OrdersDetails;
 use App\Entity\Products;
-use App\Repository\OrdersDetailsRepository;
 use Stripe\Checkout\Session;
+use App\Entity\OrdersDetails;
 use App\Repository\OrdersRepository;
-use App\Repository\ProductsRepository;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 #[Route('/paiement', name: 'payment_')]
 class PaymentController extends AbstractController
 {
-    #[Route('/{total}', name: 'index')]
-    public function index(string $total, Orders $order, Products $product, Ordersdetails $ordersDetails, OrdersRepository $ordersRepository): RedirectResponse
+    #[Route('/{reference}', name: 'index')]
+    public function index(string $reference, Orders $order, Products $product, Ordersdetails $ordersDetails, OrdersRepository $ordersRepository): RedirectResponse
     {
         $productStripe = [];
 
-        // Configuration de Stripe avec votre clé secrète
-        Stripe::setApiKey($_ENV['STRIPE_SECRETKEY']);
-
         // Récupérer le total de l'utilisateur qui a passé la commande
-        $order = $ordersRepository->findOneBy(['total' => $total]);
+        $order = $ordersRepository->findOneBy(['reference' => $reference]);
 
         if (!$order) {
             return $this->redirectToRoute('orders_index');
@@ -38,47 +35,81 @@ class PaymentController extends AbstractController
         foreach ($order->getOrdersdetails()->getValues() as $ordersDetails) {
             // Récupérer le total de l'utilisateur qui a passé la commande
 
-            //dd($quantity);
+            //dd($order);
+
+            $product = $ordersDetails->getProducts();
+            //dd($product);
+
             $productId = $product->getId();
             //dd($productId);
+
+            // Récupérer le nom du produit
+            $productName = $product->getName();
+            //dd($productName); // Utiliser dump() au lieu de dd()
 
             $productStripe[] = [
                 'price_data' => [
                     'currency' => 'eur',
-                    'unit_amount' => $ordersDetails->getPrice(),
+                    'unit_amount' => (($ordersDetails->getPrice()) * 100),
                     //dd($ordersDetails->getPrice()),
                     'product_data' => [
-                        'name' => $ordersDetails->getProducts($product->getName()),
+                        'name' => $productName,
                         //dd($ordersDetails->getProducts($product->getName()))
                     ]
                 ],
                 'quantity' => $ordersDetails->getquantity(),
-                dd($ordersDetails->getquantity()),
+                //dd($ordersDetails->getquantity()),
             ];
         }
 
+        $productStripe[] = [
+            'price_data' => [
+                'currency' => 'eur',
+                'unit_amount' => (($order->getDeliveryFee()) * 100),
+                //dd($order->getDeliveryFee()),
+                'product_data' => [
+                    'name' => 'Livraison à domicile',
+                ]
+            ],
+            'quantity' => 1,
+        ];
+
+        // Configuration de Stripe avec votre clé secrète
+        Stripe::setApiKey($_ENV['STRIPE_SECRETKEY']);
+
         $checkout_session = Session::create([
+            'customer_email' => $this->getUser()->getEmail(),
             'payment_method_types' => ['card'],
             'line_items' => [
-                [
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            // Utilisation de la référence de la commande
-                            'name' => 'Commande' . $order->getReference(),
-                        ],
-                        // On convertit en centimes pour stripe
-                        'unit_amount' => $total * 100
-                    ],
-                    'quantity' => 1,
-                ],
+                $productStripe
             ],
             'mode' => 'payment',
-            'success_url' => $this->generateUrl('payment_success', [], true),
-            'cancel_url' => $this->generateUrl('payment_cancel', [], true),
+            'success_url' => $this->generateUrl('payment_success', ['reference' => $order->getReference()], UrlGeneratorInterface::ABSOLUTE_URL),
+
+            'cancel_url' => $this->generateUrl('payment_cancel', ['reference' => $order->getReference()], UrlGeneratorInterface::ABSOLUTE_URL),
         ]);
 
         // Rediriger vers la session de paiement stripe
         return new RedirectResponse($checkout_session->url);
+    }
+
+    #[Route('/success/{reference}', name: 'success')]
+    public function stripeSuccess(string $reference, Orders $order, OrdersRepository $ordersRepository): Response
+    {
+        // Optionnel : récupérer la commande pour afficher des infos sur la page de confirmation
+        $order = $ordersRepository->findOneBy(['reference' => $reference]);
+
+        return $this->render('payment/confirmation.html.twig', [
+            'order' => $order
+        ]);
+    }
+
+
+    #[Route('/annulation/{reference}', name: 'cancel')]
+    public function stripeCancel(string $reference, Orders $order, OrdersRepository $ordersRepository): Response
+    {
+        return $this->render('payment/annulation.html.twig', [
+            'order' => $order
+        ]);
     }
 }

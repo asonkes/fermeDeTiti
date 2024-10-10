@@ -110,7 +110,7 @@
 				{% endif %}
 
 				<button class="button--marginTop2 button__container button__container--small">
-					<a class="button__link button__link--textSmall" href="{{ path('payment_index', {total: total})}}">Payer avec Stripe</a>
+					<a class="button__link button__link--textSmall" href="{{ path('payment_index', {reference: order.reference})}}">Payer avec Stripe</a>
 				</button>
 			</div>
 		</div>
