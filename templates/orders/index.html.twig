@@ -6,7 +6,7 @@
 {% block body %}
 	<section class="section burger__effect">
 		<div class="section__bg-overlay"></div>
-		<h2 class="section__title-h2">Votre adresse de facturation</h2>
+		<h2 class="section__title-h2">Livraison et Paiement</h2>
 		<div class="simpleBox">
 			<div class="form form--maxWidth form--flex form--supp" method="post">
 				<div>
@@ -104,13 +104,13 @@
 						</p>
 						<p class="padding5 fontSize18">Total:
 							{{ total | number_format(2, '.', '') }}
-							€
+							€ TTC
 						</p>
 					</div>
 				{% endif %}
 
 				<button class="button--marginTop2 button__container button__container--small">
-					<a class="button__link button__link--textSmall" href="{{ path('orders_validate')}}">Valider</a>
+					<a class="button__link button__link--textSmall" href="{{ path('payment_index', {total: total})}}">Payer avec Stripe</a>
 				</button>
 			</div>
 		</div>
