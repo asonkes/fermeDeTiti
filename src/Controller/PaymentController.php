@@ -10,6 +10,7 @@ use App\Entity\Products;
 use Stripe\Checkout\Session;
 use App\Entity\OrdersDetails;
 use App\Repository\OrdersRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -81,11 +82,23 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/success/{reference}', name: 'success')]
-    public function stripeSuccess(string $reference, Orders $order, OrdersRepository $ordersRepository): Response
+    public function stripeSuccess(string $reference, Orders $order, OrdersRepository $ordersRepository, EntityManagerInterface $em): Response
     {
         $order = $ordersRepository->findOneBy(['reference' => $reference]);
 
-        return $this->render('payment/confirmation.html.twig', [
+        if ($order) {
+
+            $status = $order->getStatus();
+            //dd($status);
+
+            $order->setStatus('payé');
+            $em->persist($order);
+            $em->flush();
+        }
+
+        $this->addFlash('success', 'Votre paiement a été effectué avec succès, un grand merci pour votre confiance. Un mail vous a été envoyé.');
+
+        return $this->redirectToRoute('home', [
             'order' => $order
         ]);
     }
@@ -94,6 +107,7 @@ class PaymentController extends AbstractController
     #[Route('/annulation/{reference}', name: 'cancel')]
     public function stripeCancel(string $reference, Orders $order, OrdersRepository $ordersRepository): Response
     {
+
         return $this->render('payment/annulation.html.twig', [
             'order' => $order
         ]);

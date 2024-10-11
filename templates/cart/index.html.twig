@@ -36,14 +36,14 @@
 								<div class="cart__container-text">
 									<p class="text">Quantité:</p>
 									<div class="cart__container-icon">
-										<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_add', {id: element.product.id})}}">
-											<i class="fa-solid fa-plus"></i>
+										<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_remove', {id: element.product.id})}}">
+											<i class="fa-solid fa-minus"></i>
 										</a>
 										<div class="paddingAll5 cart__container-icon--flex">
 											{{element.quantity}}
 										</div>
-										<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_remove', {id: element.product.id})}}">
-											<i class="fa-solid fa-minus"></i>
+										<a class="paddingAll5 cart__button cart__button-container" href="{{ path('cart_add', {id: element.product.id})}}">
+											<i class="fa-solid fa-plus"></i>
 										</a>
 									</div>
 								</div>
@@ -65,7 +65,7 @@
 							</div>
 						</div>
 					{% else %}
-						<h2 class="padding20 txtAlign color__vert">OUPSSS!!! Votre panier est vide</h2>
+						<h2 class="padding20 txtAlign vert">OUPSSS!!! Votre panier est vide</h2>
 						<div class="cart__container2">
 							<div class="cart__container2-image">
 								<img class="width100 image2" src="{{ asset('images/backgroundImages/fermier-triste-legumes-recoltes_1308-172954.webp')}}" alt="fermier triste des récoltes ">
