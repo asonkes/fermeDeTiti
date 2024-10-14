@@ -9,7 +9,9 @@ use App\Entity\Orders;
 use App\Entity\Products;
 use Stripe\Checkout\Session;
 use App\Entity\OrdersDetails;
+use App\Repository\OrdersDetailsRepository;
 use App\Repository\OrdersRepository;
+use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -82,33 +84,58 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/success/{reference}', name: 'success')]
-    public function stripeSuccess(string $reference, Orders $order, OrdersRepository $ordersRepository, EntityManagerInterface $em): Response
+    public function stripeSuccess(string $reference, Orders $order, OrdersDetails $ordersDetails, Products $product, OrdersRepository $ordersRepository, EntityManagerInterface $em, ProductsRepository $productsRepository, OrdersDetailsRepository $ordersDetailsRepository): Response
     {
         $order = $ordersRepository->findOneBy(['reference' => $reference]);
 
-        if ($order) {
 
+        if ($order) {
             $status = $order->getStatus();
-            //dd($status);
 
             $order->setStatus('payé');
             $em->persist($order);
             $em->flush();
+
+            $ordersDetails = $order->getOrdersDetails()->getValues($ordersDetails);
+            //dd($ordersDetails);
+
+            // On Récupère la quantité des détails de la commande
+            foreach ($order->getOrdersdetails()->getValues() as $ordersDetails) {
+                $quantity = $ordersDetails->getQuantity();
+                //dd($quantity);
+
+                $product = $ordersDetails->getProducts();
+                //dd($product);
+
+                $stock = $product->getStock();
+                //dd($stock);
+
+                $product->setStock($stock - $quantity);
+                //dd($stock);
+                //dd($quantity);
+
+
+                $em->persist($product);
+                $em->flush();
+            }
         }
 
         $this->addFlash('success', 'Votre paiement a été effectué avec succès, un grand merci pour votre confiance. Un mail vous a été envoyé.');
 
         return $this->redirectToRoute('home', [
-            'order' => $order
+            'order' => $order,
+            'ordersDetails' => $ordersDetails
         ]);
     }
 
 
     #[Route('/annulation/{reference}', name: 'cancel')]
-    public function stripeCancel(string $reference, Orders $order, OrdersRepository $ordersRepository): Response
+    public function stripeCancel(string $reference, Orders $order): Response
     {
 
-        return $this->render('payment/annulation.html.twig', [
+        $this->addFlash('danger', "Votre paiement ne s'est pas effectuée correctement. Veuillez réessayer. Si vous rencontrer encore un problème, veuillez nous contacter à l'adresse : 'infos_warelles@gmail.com. Merci' ");
+
+        return $this->redirectToRoute('orders_index', [
             'order' => $order
         ]);
     }
