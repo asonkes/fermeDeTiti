@@ -46,6 +46,13 @@
 							</th>
 							<th>
 								{{order.status}}
+								<div class="padding20">
+									<label class="switch">
+										<input type="checkbox" class="order-status-toggle" {{ order.status == 'Fait' ? 'checked' : '' }}>
+										<span class="slider"></span>
+									</label>
+									<span class="status">{{ order.status == 'Fait' ? 'Fait' : 'A faire' }}</span>
+								</div>
 							</th>
 							<th>
 								{{order.deliveryFee}}

@@ -59,70 +59,64 @@ class UserFormType extends AbstractType
                 ]
             ])
             ->add('address', TextType::class, [
+                'label' => 'Addresse',
+                'label_attr' => [
+                    'class' => 'form__label'
+                ],
+                'attr' => [
+                    'class' => 'form__input form__input--supp form__input--margin'
+                ],
                 'constraints' => [
-                    'label' => 'Addresse',
-                    'label_attr' => [
-                        'class' => 'form__label'
-                    ],
-                    'attr' => [
-                        'class' => 'form__input form__input--supp form__input--margin'
-                    ],
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => 'Veuillez insérer votre addresse'
-                        ])
-                    ]
+                    new NotBlank([
+                        'message' => 'Veuillez insérer votre addresse'
+                    ])
                 ]
             ])
             ->add('zipcode', NumberType::class, [
+                'label' => 'Code Postal',
+                'label_attr' => [
+                    'class' => 'form__label'
+                ],
+                'attr' => [
+                    'class' => 'form__input form__input--supp form__input--margin',
+                    'min' => 0
+                ],
                 'constraints' => [
-                    'label' => 'Code Postal',
-                    'label_attr' => [
-                        'class' => 'form__label'
-                    ],
-                    'attr' => [
-                        'class' => 'form__input form__input--supp form__input--margin',
-                        'min' => 0
-                    ],
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => 'Veuillez insérer votre code postal'
-                        ]),
-                        new Positive([
-                            'message' => 'Le code postal indiqué ne peut être négatif'
-                        ]),
-                        new Length([
-                            'min' => 4,
-                            'max' => 4,
-                            'minMessage' => 'Le code postal doit contenir exactement {{ limit }} chiffres',
-                            'maxMessage' => 'Le code postal doit contenir exactement {{ limit }} chiffres',
-                        ]),
-                        new Regex([
-                            'pattern' => '/^\d{4}$/',
-                            'message' => 'Le code postal doit contenir exactement 4 chiffres'
-                        ])
-                    ]
+                    new NotBlank([
+                        'message' => 'Veuillez insérer votre code postal'
+                    ]),
+                    new Positive([
+                        'message' => 'Le code postal indiqué ne peut être négatif'
+                    ]),
+                    new Length([
+                        'min' => 4,
+                        'max' => 4,
+                        'minMessage' => 'Le code postal doit contenir exactement {{ limit }} chiffres',
+                        'maxMessage' => 'Le code postal doit contenir exactement {{ limit }} chiffres',
+                    ]),
+                    new Regex([
+                        'pattern' => '/^\d{4}$/',
+                        'message' => 'Le code postal doit contenir exactement 4 chiffres'
+                    ])
                 ]
             ])
             ->add('city', TextType::class, [
+                'label' => 'Ville',
+                'label_attr' => [
+                    'class' => 'form__label'
+                ],
+                'attr' => [
+                    'class' => 'form__input form__input--supp form__input--margin',
+                    'maxlength' => 50
+                ],
                 'constraints' => [
-                    'label' => 'Ville',
-                    'label_attr' => [
-                        'class' => 'form__label'
-                    ],
-                    'attr' => [
-                        'class' => 'form__input form__input--supp form__input--margin',
-                        'maxlength' => 50
-                    ],
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => "Veuillez insérer votre ville"
-                        ]),
-                        new Length([
-                            'max' => 50,
-                            'maxMessage' => "Le nom de votre ville ne peut dépasser 50 caractères"
-                        ])
-                    ]
+                    new NotBlank([
+                        'message' => "Veuillez insérer votre ville"
+                    ]),
+                    new Length([
+                        'max' => 50,
+                        'maxMessage' => "Le nom de votre ville ne peut dépasser 50 caractères"
+                    ])
                 ]
             ])
             ->add('email', EmailType::class, [

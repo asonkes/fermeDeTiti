@@ -46,6 +46,9 @@ class CartController extends AbstractController
         // On récupère l'id du produit
         $id = $product->getId();
 
+        $stock = $product->getStock();
+        //dd($stock);
+
         // On récupère le panier existant
         // [] ==> si pas de panier ==> tableau vide
         $panier = $session->get('panier', []);
@@ -55,7 +58,12 @@ class CartController extends AbstractController
         if (empty($panier[$id])) {
             $panier[$id] = 1; // Si le produit n'est pas encore dans le panier, on l'ajoute avec la quantité de 1
         } else {
-            $panier[$id]++; // Si le produit est déjà dans le panier, on incrémente la quantité
+            if ($panier[$id] < $stock) {
+                //dd($panier[$id]);
+                $panier[$id]++;
+            } else {
+                $this->addFlash('danger', 'La quantité maximale en stock est atteinte.');
+            }
         }
 
         // On hydrate(sauvegarde) le panier dans la session
