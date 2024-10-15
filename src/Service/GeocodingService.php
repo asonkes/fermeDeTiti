@@ -24,7 +24,7 @@ class GeocodingService
         $response = $this->client->request('GET', $url, [
             'verify' => true, // Désactiver la vérification SSL (pour test)
             'headers' => [
-                'User-Agent' => 'MonApplication/1.0 (http://https://127.0.0.1:8000)'
+                'User-Agent' => 'MonApplication/1.0 (https://fermedewarelles.audrey-sonkes.be/)'
             ],
         ]);
 
