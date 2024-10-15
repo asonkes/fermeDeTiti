@@ -84,10 +84,9 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/success/{reference}', name: 'success')]
-    public function stripeSuccess(string $reference, Orders $order, OrdersDetails $ordersDetails, Products $product, OrdersRepository $ordersRepository, EntityManagerInterface $em, ProductsRepository $productsRepository, OrdersDetailsRepository $ordersDetailsRepository): Response
+    public function stripeSuccess(string $reference, Orders $order, OrdersDetails $ordersDetails, Products $product, OrdersRepository $ordersRepository, EntityManagerInterface $em): Response
     {
         $order = $ordersRepository->findOneBy(['reference' => $reference]);
-
 
         if ($order) {
             $status = $order->getStatus();
@@ -97,23 +96,16 @@ class PaymentController extends AbstractController
             $em->flush();
 
             $ordersDetails = $order->getOrdersDetails()->getValues($ordersDetails);
-            //dd($ordersDetails);
 
             // On Récupère la quantité des détails de la commande
             foreach ($order->getOrdersdetails()->getValues() as $ordersDetails) {
                 $quantity = $ordersDetails->getQuantity();
-                //dd($quantity);
 
-                $product = $ordersDetails->getProducts();
-                //dd($product);
+                $product = $ordersDetails->getProducts();;
 
                 $stock = $product->getStock();
-                //dd($stock);
 
                 $product->setStock($stock - $quantity);
-                //dd($stock);
-                //dd($quantity);
-
 
                 $em->persist($product);
                 $em->flush();
