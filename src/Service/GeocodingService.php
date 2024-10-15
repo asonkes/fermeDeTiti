@@ -17,28 +17,25 @@ class GeocodingService
     public function getCoordinates(string $address, string $zipcode, string $city): ?array
     {
         $formattedAddress = urlencode("$address, $zipcode, $city");
+
         $url = "https://nominatim.openstreetmap.org/search?format=json&q={$formattedAddress}";
 
-        try {
-            $response = $this->client->request('GET', $url, [
-                'verify' => true, // Assurez-vous que cela est configuré correctement
-                'headers' => [
-                    'User-Agent' => 'MonApplication/1.0 (https://fermedewarelles.audrey-sonkes.be)'
-                ],
-            ]);
+        // Faire la requête GET avec désactivation de la vérification SSL et ajout d'un User-Agent
+        $response = $this->client->request('GET', $url, [
+            'verify' => true, // Désactiver la vérification SSL (pour test)
+            'headers' => [
+                'User-Agent' => 'MonApplication/1.0 (http://https://127.0.0.1:8000)'
+            ],
+        ]);
 
-            $data = json_decode($response->getBody(), true);
+        $data = json_decode($response->getBody(), true);
 
-            // Vérifier si une adresse a été trouvée
-            if (isset($data[0])) {
-                return [
-                    'latitude' => (float) $data[0]['lat'],
-                    'longitude' => (float) $data[0]['lon'],
-                ];
-            }
-        } catch (\Exception $e) {
-            // Log l'erreur pour avoir plus d'informations
-            error_log($e->getMessage('prob'));
+        // Vérifier si une adresse a été trouvée
+        if (isset($data[0])) {
+            return [
+                'latitude' => (float) $data[0]['lat'],
+                'longitude' => (float) $data[0]['lon'],
+            ];
         }
 
         return null;
