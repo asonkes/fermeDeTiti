@@ -18,7 +18,7 @@ class OrdersController extends AbstractController
     #[Route('/commandes', name: 'orders')]
     public function index(Orders $orders, OrdersRepository $ordersRepository): Response
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $orders = $ordersRepository->findAll([]);
 
@@ -30,7 +30,7 @@ class OrdersController extends AbstractController
     #[Route('/commandes/edition/{id}', name: 'orders_edit')]
     public function edit(Orders $order, Request $request, EntityManagerInterface $em): Response
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         // On créé le formulaire
         $ordersForm = $this->createForm(OrdersFormType::class, $order);
@@ -56,7 +56,7 @@ class OrdersController extends AbstractController
     #[Route('/commandes/suppression/{id}', name: 'orders_delete')]
     public function delete(Orders $order, Request $request, EntityManagerInterface $em): Response
     {
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         // Ajouter un token CSRF pour sécuriser la suppression
         if ($this->isCsrfTokenValid('delete' . $order->getId(), $request->request->get('_token'))) {

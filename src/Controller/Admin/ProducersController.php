@@ -17,6 +17,7 @@ class ProducersController extends AbstractController
     #[Route('/producteurs', name: 'producers')]
     function index(Producer $producer, ProducerRepository $producerRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $producer = $producerRepository->findAll([]);
 
@@ -28,6 +29,7 @@ class ProducersController extends AbstractController
     #[Route('/producteurs/ajout', name: 'producers_add')]
     function add(Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $producer = new Producer();
 
@@ -55,6 +57,7 @@ class ProducersController extends AbstractController
     #[Route('/producteurs/edition/{id}', name: 'producers_edit')]
     function edit(Producer $producer, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', $producer);
 
         // On crée le formulaire
         $producerForm = $this->createForm(ProducerFormType::class, $producer);
@@ -81,6 +84,7 @@ class ProducersController extends AbstractController
     #[Route('/producteurs/suppression/{id}', name: 'producers_delete')]
     function delete(Producer $producer, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         // Ajouter un token CSRF pour sécuriser la suppression
         if ($this->isCsrfTokenValid('delete' . $producer->getId(), $request->request->get('_token'))) {

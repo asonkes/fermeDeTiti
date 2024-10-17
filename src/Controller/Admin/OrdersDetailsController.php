@@ -18,6 +18,7 @@ class OrdersDetailsController extends AbstractController
     #[Route('/details_des_commandes', name: 'ordersDetails')]
     public function index(OrdersDetails $ordersDetails, OrdersDetailsRepository $ordersDetailsRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $ordersDetails = $ordersDetailsRepository->findAll([]);
 
@@ -29,6 +30,7 @@ class OrdersDetailsController extends AbstractController
     #[Route('/details_des_commandes/edition/{orderId}/{productId}', name: 'ordersDetails_edit')]
     public function edit(int $orderId, int $productId, OrdersDetails $ordersDetails, OrdersDetailsRepository $ordersDetailsRepository, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $ordersDetails = $ordersDetailsRepository->findOneBy([
             'orders' => $orderId,
@@ -60,6 +62,7 @@ class OrdersDetailsController extends AbstractController
     #[Route('/details_des_commandes/suppression/{orderId}/{productId}', name: 'ordersDetails_delete')]
     public function delete(int $orderId, int $productId, OrdersDetailsRepository $ordersDetailsRepository, Request $request, EntityManagerInterface $em): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $ordersDetails = $ordersDetailsRepository->findOneBy([
             'orders' => $orderId,
