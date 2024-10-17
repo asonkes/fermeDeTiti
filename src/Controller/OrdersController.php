@@ -194,6 +194,7 @@ class OrdersController extends AbstractController
         return $this->render('orders/validate.html.twig');
     }
 
+    /*
     private function calculateDistance(array $coord1, array $coord2): string
     {
         $earthRadius = 6371; // Rayon de la terre en km
@@ -214,7 +215,9 @@ class OrdersController extends AbstractController
 
         return $earthRadius * $c; // Retourner la distance en kilomètres
     }
+        */
 
+    /*
     // Méthode pour calculer les frais de livraison en fonction de la distance
     private function calculateDeliveryFee(float $distance): string
     {
@@ -233,4 +236,5 @@ class OrdersController extends AbstractController
             return 0.00;
         }
     }
+        */
 }
