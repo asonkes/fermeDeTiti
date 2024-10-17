@@ -37,10 +37,11 @@
 				<a href="{{ path('home') }}#contact" class="menu__link">Contact</a>
 			</li>
 
-
-			<li class="menu__item">
-				<a href="{{ path('admin_test') }}" class="menu__link">Administration</a>
-			</li>
+			{% if is_granted('ROLE_ADMIN') %}
+				<li class="menu__item">
+					<a href="{{ path('admin_test') }}" class="menu__link">Administration</a>
+				</li>
+			{% endif %}
 		</ul>
 	</nav>
 	<div class="header__icon">
