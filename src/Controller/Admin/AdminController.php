@@ -12,7 +12,7 @@ class AdminController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 
         return $this->render('admin/index.html.twig', []);
     }
