@@ -21,16 +21,17 @@ class GeocodingService
         $url = "https://nominatim.openstreetmap.org/search?format=json&q={$formattedAddress}";
 
         // Faire la requête GET avec désactivation de la vérification SSL et ajout d'un User-Agent
-        $response = $this->client->request('GET', $url, [
+        /** $response = $this->client->request('GET', $url, [
             'verify' => true, // Désactiver la vérification SSL (pour test)
             'headers' => [
                 'User-Agent' => 'MonApplication/1.0 (https://fermedewarelles.audrey-sonkes.be)'
             ],
-        ]);
+        ]); */
 
-        $data = json_decode($response->getBody(), true);
+        #$data = json_decode($response->getBody(), true);
 
         // Vérifier si une adresse a été trouvée
+        /*
         if (isset($data[0])) {
             return [
                 'latitude' => (float) $data[0]['lat'],
@@ -38,6 +39,7 @@ class GeocodingService
             ];
         }
 
+        */
         return null;
     }
 }
