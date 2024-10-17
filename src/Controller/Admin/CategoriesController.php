@@ -19,7 +19,7 @@ class CategoriesController extends AbstractController
     #[Route('/categories', name: 'categories')]
     function index(Categories $categories, CategoriesRepository $categoriesRepository): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 
         $categories = $categoriesRepository->findAll([]);
 
@@ -31,7 +31,7 @@ class CategoriesController extends AbstractController
     #[Route('/categories/ajout', name: 'categories_add')]
     function add(Request $request, SluggerInterface $slugger, EntityManagerInterface $em, PictureService $pictureService): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 
         $category = new Categories();
 
@@ -79,7 +79,7 @@ class CategoriesController extends AbstractController
     #[Route('/categories/edition/{id}', name: 'categories_edit')]
     function edit(Categories $category, Request $request, SluggerInterface $slugger, PictureService $pictureService, EntityManagerInterface $em): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', $category);
+
 
         // On créé le formulaire 
         $categoryForm = $this->createForm(CategoriesFormType::class, $category);
@@ -134,7 +134,6 @@ class CategoriesController extends AbstractController
     #[Route('/categories/suppression/{id}', name: 'categories_delete')]
     public function delete(Categories $category, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
 

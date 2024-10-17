@@ -17,7 +17,6 @@ class UsersController extends AbstractController
     #[Route('/utilisateurs', name: 'users')]
     public function index(Users $users, UsersRepository $usersRepository): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $users = $usersRepository->findAll([]);
 
@@ -29,7 +28,6 @@ class UsersController extends AbstractController
     #[Route('/utilisateurs/ajout', name: 'users_add')]
     public function add(Request $request, EntityManagerInterface $em): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $user = new Users();
 
@@ -56,7 +54,6 @@ class UsersController extends AbstractController
     #[Route('/utilisateurs/edition/{id}', name: 'users_edit')]
     public function edit(): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         return $this->redirectToRoute('admin_users');
     }
@@ -64,7 +61,6 @@ class UsersController extends AbstractController
     #[Route('utilisateurs/suppression/{id}', name: 'users_delete')]
     public function delete(Users $user, Request $request, EntityManagerInterface $em): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $em->remove($user);

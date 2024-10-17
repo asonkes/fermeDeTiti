@@ -19,7 +19,6 @@ class ProductsController extends AbstractController
     #[Route('/produits', name: 'products')]
     public function index(Products $products, ProductsRepository $productsRepository): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $products = $productsRepository->findAll([]);
 
@@ -31,7 +30,6 @@ class ProductsController extends AbstractController
     #[Route('/produits/ajout', name: 'products_add')]
     public function addProduct(Request $request, SluggerInterface $slugger, EntityManagerInterface $em, PictureService $pictureService)
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $product = new Products();
 
@@ -79,7 +77,6 @@ class ProductsController extends AbstractController
     #[Route('/produits/edition/{id}', name: 'products_edit')]
     public function edit(Products $product, Request $request, SluggerInterface $slugger, EntityManagerInterface $em, PictureService $pictureService): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', $product);
 
         // On créer le formulaire
         $productForm = $this->createForm(ProductsFormType::class, $product);
@@ -135,7 +132,6 @@ class ProductsController extends AbstractController
     #[Route('/produits/suppression/{id}', name: 'products_delete')]
     public function delete(Products $product, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->request->get('_token'))) {
 
