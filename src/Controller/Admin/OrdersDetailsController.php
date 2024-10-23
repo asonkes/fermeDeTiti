@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\admin;
 
-use App\Entity\Orders;
 use App\Entity\OrdersDetails;
 use App\Form\OrdersDetailsFormType;
 use Doctrine\ORM\EntityManagerInterface;

@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Products;
-use App\Repository\CategoriesRepository;
 use App\Repository\ProductsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

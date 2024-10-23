@@ -64,6 +64,7 @@
         display: flex;
         justify-content: center;
         margin-top: -40px;
+        display: none;
 
         @include mixins.s {
             margin-top: -50px;

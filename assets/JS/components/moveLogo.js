@@ -1,33 +1,27 @@
-// JS permettant de faire pivoter le logo vers la droite ou la gauche en fonction de si on clique sur 'FR' ou 'NL'.
-
 document.addEventListener('DOMContentLoaded', () => {
-    const languageOptionLeft = document.querySelector('.home__language-optionLeft');
-    const languageOptionRight = document.querySelector('.home__language-optionRight');
-    const logo = document.querySelector('.home__logo-image');
+    const logo = document.querySelector('.home__logo-image'); // Sélectionner le logo
 
-    if(languageOptionLeft && languageOptionRight) {
-        languageOptionLeft.addEventListener('mouseout', () => {
-            if(logo) {
-                logo.classList.remove('active');
+    if (logo) {
+        // Écouter le mouvement de la souris sur toute la section home
+        const home = document.querySelector('.home');
+
+        home.addEventListener('mousemove', (event) => {
+            const screenWidth = window.innerWidth; // Largeur de la fenêtre
+            console.log('width' + screenWidth + 'px');
+            
+            const mouseX = event.clientX; // Position X de la souris par rapport à la fenêtre
+            console.log('mouseX' + mouseX + 'px' );
+
+            // Si la souris est dans la moitié gauche de l'écran
+            if (mouseX < screenWidth / 2) {
+                logo.classList.add('active2');  // Ajouter la classe pour le mouvement à gauche
+                logo.classList.remove('active'); // Enlever la classe pour le mouvement à droite
             }
-        })
-    
-        languageOptionRight.addEventListener('mouseout', () => {
-            if(logo) {
-                logo.classList.remove('active2');
+            // Si la souris est dans la moitié droite de l'écran
+            else {
+                logo.classList.add('active'); // Ajouter la classe pour le mouvement à droite
+                logo.classList.remove('active2'); // Enlever la classe pour le mouvement à gauche
             }
-        })
-    
-        languageOptionLeft.addEventListener('mouseover', () => {
-            if(logo) {
-                logo.classList.add('active');
-            }
-        })
-    
-        languageOptionRight.addEventListener('mouseover', () => {
-            if(logo) {
-                logo.classList.add('active2');
-            }
-        })
+        });
     }
-})
+});

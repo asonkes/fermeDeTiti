@@ -9,9 +9,7 @@ use App\Entity\Orders;
 use App\Entity\Products;
 use Stripe\Checkout\Session;
 use App\Entity\OrdersDetails;
-use App\Repository\OrdersDetailsRepository;
 use App\Repository\OrdersRepository;
-use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -65,7 +63,7 @@ class PaymentController extends AbstractController
         ];
 
         // Configuration de Stripe avec votre clé secrète
-        Stripe::setApiKey($_ENV['STRIPE_SECRETKEY']);
+        Stripe::setApiKey($_ENV['STRIPE_PUBLISHABLE_KEY']);
 
         $checkout_session = Session::create([
             'customer_email' => $this->getUser()->getEmail(),
@@ -124,7 +122,6 @@ class PaymentController extends AbstractController
     #[Route('/annulation/{reference}', name: 'cancel')]
     public function stripeCancel(string $reference, Orders $order): Response
     {
-
         $this->addFlash('danger', "Votre paiement ne s'est pas effectuée correctement. Veuillez réessayer. Si vous rencontrer encore un problème, veuillez nous contacter à l'adresse : 'infos_warelles@gmail.com. Merci' ");
 
         return $this->redirectToRoute('orders_index', [

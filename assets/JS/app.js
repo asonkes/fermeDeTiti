@@ -20,14 +20,11 @@ import './components/appearCardCircle';
 // Import des fichiers JS faisant partie de la page "products"
 import './components/appearCardPortrait';
 
-// Import des fichiers JS pour faire apparaître l'image sélectionnée dans un form
+// Import des fichiers JS pour faire apparaître l'image sélectionnée dans un form(administration des produits)
 import './components/formDashboard';
 
 // import des fichiers JS pour rendre les coeurs fonctionnels
 import './components/heart';
-
-// import des fichiers JS pour rendre les drapeaux dynamiques (changement de langue)
-import './components/flags';
 
 // import des fichiers JS pour rendre 
 import './components/form.js';
