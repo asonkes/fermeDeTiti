@@ -5,11 +5,12 @@ namespace App\Controller;
 use App\Form\ContactFormType;
 use App\Repository\CategoriesRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\MailerInterface;
 
 class HomeController extends AbstractController
 {
@@ -23,11 +24,21 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
+            $recaptchaResponse = $request->get('g-recaptcha-response');
+
+            // Vérification du reCAPTCHA
+            $client = HttpClient::create();
+            $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
+                'query' => [
+                    'secret' => ($_ENV['reCAPTCHA_SECRET_KEY']),
+                    'response' => $recaptchaResponse,
+                ],
+            ]);
 
             // Envoi de l'e-mail
             $this->sendEmail(
                 $contactFormData['email'],
-                'jacadi@gmail.com',
+                'infos_warelles@gmail.com',
                 'Question client',
                 [
                     'firstname' => $contactFormData['firstname'],

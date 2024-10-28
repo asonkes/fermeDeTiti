@@ -81,7 +81,7 @@ class SecurityController extends AbstractController
 
                 // Envoi du mail
                 $mailer->send(
-                    'no-reply@monsite.net',
+                    'infos_warelles@gmail.com',
                     $user->getEmail(),
                     'Réinitialisation du mot de passe',
                     'password_reset',

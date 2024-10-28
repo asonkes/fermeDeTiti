@@ -44,17 +44,22 @@
             transition: all 1s ease-out;
             transform: rotate(0);
 
-            &:hover {
-                transform: scale(1.2);
-                filter: blur(0);
-            }
-
             &.active {
                 transform: rotate(15deg);
+
+                &:hover {
+                    transform: scale(1.2);
+                    filter: blur(0);
+                }
             }
 
             &.active2 {
                 transform: rotate(-15deg);
+
+                &:hover {
+                    transform: scale(1.2);
+                    filter: blur(0);
+                }
             }
         }
     }

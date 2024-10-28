@@ -22,7 +22,7 @@ class GeocodingService
 
         // Faire la requête GET avec désactivation de la vérification SSL et ajout d'un User-Agent
         $response = $this->client->request('GET', $url, [
-            'verify' => false, // Désactiver la vérification SSL (pour test)
+            'verify' => true,
             'headers' => [
                 'User-Agent' => 'MonApplication/1.0 (https://fermedewarelles.audrey-sonkes.be)'
             ],

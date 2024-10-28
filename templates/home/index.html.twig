@@ -112,11 +112,14 @@
 							</li>
 						</ul>
 
+						<div class="g-recaptcha" data-sitekey={{app.request.server.get('reCAPTCHA_PUBLISHABLE_KEY')}}></div>
+						<br/>
 						<div class="button">
-							<button class="button__container button__container--small button__link button__link--textSmall" type="submit">
+							<button class="button__container button__container--small button__link button__link--textSmall" type="submit" name="contact">
 								Envoyer
 							</button>
 						</div>
+
 						{{ form_end(form) }}
 					</div>
 				</div>
