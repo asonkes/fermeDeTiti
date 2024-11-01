@@ -63,7 +63,7 @@ class PaymentController extends AbstractController
         ];
 
         // Configuration de Stripe avec votre clé secrète
-        Stripe::setApiKey($_ENV['STRIPE_PUBLISHABLE_KEY']);
+        Stripe::setApiKey($_ENV['STRIPE_SECRETKEY']);
 
         $checkout_session = Session::create([
             'customer_email' => $this->getUser()->getEmail(),
