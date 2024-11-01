@@ -194,6 +194,55 @@ class OrdersController extends AbstractController
         return $this->render('orders/validate.html.twig');
     }
 
+    #[Route('/details_des_commandes', name: 'details')]
+    public function details(Users $user, Orders $orders, OrdersRepository $ordersRepository): Response
+    {
+        $user = $this->getUser();
+
+        $orders = $ordersRepository->findBy(
+            ['users' => $user],
+            ['id' => 'DESC']
+        );
+
+        // Initialiser un tableau pour stocker les informations des produits pour chaque commande
+        $allOrderDetails = [];
+
+        foreach ($orders as $order) {
+
+            $orderDetails = $order->getOrdersDetails();
+
+            // Crée un tableau pour stocker les produits de chaque commande individuellement
+            $productsForOrder = [];
+
+            foreach ($orderDetails as $detail) {
+
+                $product = $detail->getProducts();
+
+                // Récupère les informations nécessaires pour chaque produit
+                $productsForOrder[] = [
+                    'productName' => $product->getName(),
+                    'productImage' => $product->getImage(),
+                    'productPrice' => $product->getPrice(),
+                    'detailQuantity' => $detail->getQuantity()
+                ];
+            }
+
+            // Ajoute chaque commande avec ses produits
+            $allOrderDetails[] = [
+                'order' => $order,
+                'products' => $productsForOrder
+            ];
+        }
+
+        return $this->render(
+            'orders/details.html.twig',
+            [
+                'user' => $user,
+                'allOrderDetails' => $allOrderDetails,
+            ]
+        );
+    }
+
     private function calculateDistance(array $coord1, array $coord2): string
     {
         $earthRadius = 6371; // Rayon de la terre en km

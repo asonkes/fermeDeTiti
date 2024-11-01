@@ -138,15 +138,10 @@
         align-items: center;
     }
 
-    .burger__language {
-        background-color: rgba(255, 255, 255, 0.3);
-        border-radius: 25px;
-    }
-
     .burger__cart,
     .burger__account,
     .burger__heart,
-    .burger__language {
+    .burger__connexion {
         padding: 0 15px;
 
         &-image,
@@ -165,13 +160,12 @@
             display: none;
         }
     }
-
-
 }
 
 .cart__number,
+.account__block,
 .favoris__number,
-.account__block {
+.connexion__block {
     display: flex;
     flex-direction: row;
     position: relative;

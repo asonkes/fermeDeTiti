@@ -35,3 +35,6 @@ import './iubenda/cookie.js';
 
 // import des fichier JS pour la checkBox en Admin(administration des commandes)
 import './components/checkBox.js';
+
+// import des fichier JS pour la checkBox en Admin(administration des commandes)
+import './components/detailsOrders.js';

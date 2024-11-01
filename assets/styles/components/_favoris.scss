@@ -1,0 +1,19 @@
+@use "../mixins/mixins";
+
+.favoris__banner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 10px;
+    background-color: var(--vertSpecial);
+
+    &--text {
+        font-family: var(--font-family1);
+        font-weight: 600;
+    }
+
+    &--textSpecial {
+        margin: 0 5px;
+    }
+}

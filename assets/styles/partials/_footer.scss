@@ -9,6 +9,10 @@
     background-color: var(--vert2);
     position: absolute;
 
+    @include mixins.s {
+        height: auto;
+    }
+
     &__text {
         font-family: var(--font-family1);
         font-size: 12px;
@@ -18,12 +22,30 @@
         padding: 0 15px;
 
         @include mixins.s {
-            font-size: 12px;
+            padding: 5px;
         }
     }
 
     &__container {
-        text-align: center;
-        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+
+        @include mixins.s {
+            padding: 5px;
+        }
+
+        @include mixins.s-xs {
+            display: block;
+            text-align: center;
+        }
+
+        .iubenda {
+            padding: 5px;
+
+            @include mixins.s-xs {
+                text-align: center;
+                padding: 5px;
+            }
+        }
     }
 }

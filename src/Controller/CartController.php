@@ -59,7 +59,7 @@ class CartController extends AbstractController
             $panier[$id] = 1; // Si le produit n'est pas encore dans le panier, on l'ajoute avec la quantité de 1
         } else {
             if ($panier[$id] < $stock) {
-                //dd($panier[$id]);
+
                 $panier[$id]++;
             } else {
                 $this->addFlash('danger', 'La quantité maximale en stock est atteinte.');

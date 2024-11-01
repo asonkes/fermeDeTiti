@@ -35,6 +35,10 @@ section {
     padding: 10px 0;
 }
 
+.paddingAll10 {
+    padding: 10px;
+}
+
 .paddingTop5 {
     padding-top: 5px;
 }
@@ -83,12 +87,24 @@ section {
     font-size: 18px;
 }
 
+.size20 {
+    font-size: 20px;
+}
+
+.size22 {
+    font-size: 22px;
+}
+
 .red {
     color: red;
 }
 
 .vert {
     color: var(--vert);
+}
+
+.vert2 {
+    color: var(--vert2);
 }
 
 .vert3 {

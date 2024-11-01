@@ -1,0 +1,26 @@
+@use "../mixins/mixins";
+
+.arrayDetailsOrders {
+    margin-top: 20px;
+
+    &__container {
+        display: flex;
+        border: 1px solid var(--black);
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    &__image {
+        width: 150px;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+.detailsOrdersJS--container {
+    display: none;
+
+    &.active {
+        display: flex;
+    }
+}

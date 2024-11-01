@@ -45,6 +45,18 @@
 		</ul>
 	</nav>
 	<div class="header__icon">
+		<div class="header__account">
+			{% if app.user %}
+				<a href="{{ path('orders_details')}}">
+					<img class="header__account-image" src="{{ asset('images/icons/User-Profile-256.png')}}" alt="icone représentant le compte de l'utilisateur en blanc">
+				</a>
+			{% else %}
+				<a href="{{ path('app_login')}}">
+					<img class="header__account-image" src="{{ asset('images/icons/User-Profile-256.png')}}" alt="icone représentant le compte de l'utilisateur en blanc">
+				</a>
+			{% endif %}
+		</div>
+
 		<div class="header__cart">
 			<a class="cart__number" href="{{ path('cart_index')}}">
 				<img class="header__cart-image" src="{{ asset('images/icons/Shopping-Cart-01-256.png')}}" alt="icone représentant un panier en blanc">
@@ -63,22 +75,32 @@
 				{% endif %}
 			</a>
 		</div>
-		<div class="header__account">
+		<div class="header__connexion">
 			<a href="{{ path('app_login')}}">
-				<img class="header__account-image" src="{{ asset('images/icons/Business-Man-Add-02-256.png')}}" alt="icone représentant le compte de l'utilisateur en blanc">
+				<img class="header__connexion-image" src="{{ asset('images/icons/Business-Man-Add-02-256.png')}}" alt="icone représentant la possibilité de se connecter ou de s'inscrire en blanc">
 			</a>
 		</div>
 	</div>
 </header>
-
 <header class="burger">
 	<div class="burger2">
-		<a href=" #" class=" burger__link">
+		<a href="#" class=" burger__link">
 			<span class="burger__icon">
 				<span class="burger__span"></span>
 			</span>
 		</a>
 		<div class="burger__cart-parent">
+			<div class="burger__account">
+				{% if app.user %}
+					<a class="account__block" href=" {{ path('orders_details')}} ">
+						<img class="burger__account-image" src="{{ asset('images/icons/User-Profile-256.png')}}" alt="icone représentant le compte de l'utilisateur en blanc">
+					</a>
+				{% else %}
+					<a class="account__block" href=" {{ path('app_login')}} ">
+						<img class="burger__account-image" src="{{ asset('images/icons/User-Profile-256.png')}}" alt="icone représentant le compte de l'utilisateur en blanc">
+					</a>
+				{% endif %}
+			</div>
 			<div class="burger__cart">
 				<a class="cart__number" href="{{ path('cart_index')}}">
 					<img class="burger__cart-image" src="{{ asset('images/icons/Shopping-Cart-01-256.png')}}" alt="icone représentant un panier en blanc">
@@ -97,9 +119,9 @@
 					{% endif %}
 				</a>
 			</div>
-			<div class="burger__account">
-				<a class="account__block" href=" {{ path('app_login')}} ">
-					<img class="burger__account-image" src="{{ asset('images/icons/Business-Man-Add-02-256.png')}}" alt="icone représentant le compte de l'utilisateur en blanc">
+			<div class="burger__connexion">
+				<a class="connexion__block" href=" {{ path('app_login')}} ">
+					<img class="burger__connexion-image" src="{{ asset('images/icons/Business-Man-Add-02-256.png')}}" alt="icone représentant la possibilité de se connecter ou de s'inscrire en blanc">
 				</a>
 			</div>
 		</div>

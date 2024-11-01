@@ -16,11 +16,20 @@
 		</div>
 
 		<div class="simpleBox simpleBox--column">
+
 			{% if favoris_total_quantity() > 0 %}
 				<h3 class="simpleBox__text">Vous avez
 					{{ favoris_total_quantity() }}
 					produit(s) dans vos "Coups de Coeur".
 				</h3>
+				{% if not app.user %}
+					<div class="favoris__banner">
+						<a class="favoris__banner--text vert2" href="{{ path('app_login')}}">Connectez-vous</a>
+						<p class="favoris__banner--text favoris__banner--textSpecial">ou</p>
+						<a class="favoris__banner--text vert2" href="{{ path('app_register')}}">créez un compte</a>
+						<p class="favoris__banner--text favoris__banner--textSpecial">pour sauvegarder votre liste de favoris</p>
+					</div>
+				{% endif %}
 			{% endif %}
 
 			<div class="grid">
@@ -61,18 +70,33 @@
 						<div class="card__portrait-content--enfant">
 							<h2 class="padding20 txtAlign vert">Vous n'avez pas de coups de Coeur sélectionné</h2>
 							<div class="cart__container2">
-								<div class="cart__container3-image">
-									<img class="width100 image3" src="{{ asset('images/backgroundImages/coeur-forme-de-legumes-et-de-fruits-1024x1024.webp') }}" alt="coeur formé avec différentes sortes de légumes">
-									<p class="txtAlign padding10">Encore une petite envie de shopping ?</p>
-									<div class="button button--padding">
-										<button class="button__container button__container--large">
-											<a class="button__link button__link--textSmall" href="{{ path('home')}}#categories">
-												Je découvre
-												<i class="fa-solid fa-chevron-right home__button-icon"></i>
-											</a>
-										</button>
+								{% if app.user %}
+									<div class="cart__container3-image">
+										<img class="width100 image3" src="{{ asset('images/backgroundImages/coeur-forme-de-legumes-et-de-fruits-1024x1024.webp') }}" alt="coeur formé avec différentes sortes de légumes">
+										<p class="txtAlign padding10">Encore une petite envie de shopping ?</p>
+										<div class="button button--padding">
+											<button class="button__container button__container--large">
+												<a class="button__link button__link--textSmall" href="{{ path('home')}}#categories">
+													Je découvre
+													<i class="fa-solid fa-chevron-right home__button-icon"></i>
+												</a>
+											</button>
+										</div>
 									</div>
-								</div>
+								{% else %}
+									<div class="cart__container3-image">
+										<img class="width100 image3" src="{{ asset('images/backgroundImages/coeur-forme-de-legumes-et-de-fruits-1024x1024.webp') }}" alt="coeur formé avec différentes sortes de légumes">
+										<p class="txtAlign padding10">Merci de vous connecter pour accéder à votre liste d'articles favoris !</p>
+										<div class="button button--padding">
+											<button class="button__container button__container--large">
+												<a class="button__link button__link--textSmall" href="{{ path('app_login')}}">
+													Je me connecte
+													<i class="fa-solid fa-chevron-right home__button-icon"></i>
+												</a>
+											</button>
+										</div>
+									</div>
+								{% endif %}
 							</div>
 						</div>
 					{% endif %}
