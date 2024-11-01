@@ -130,6 +130,10 @@
             }
         }
 
+        .dualbox__item-left2 {
+            height: 650px !important;
+        }
+
         .dualbox__item-left--history {
             background-image: url('/public/images/backgroundImages/conception-papier-vierge_1176-318.webp');
             background-size: cover;
@@ -156,6 +160,10 @@
                 width: 100%;
                 height: 550px;
             }
+        }
+
+        .dualbox__item-right2 {
+            height: 650px !important;
         }
     }
 
