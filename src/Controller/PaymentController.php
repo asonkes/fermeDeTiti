@@ -9,17 +9,27 @@ use App\Entity\Orders;
 use App\Entity\Products;
 use Stripe\Checkout\Session;
 use App\Entity\OrdersDetails;
+use App\Service\SendEmailService;
 use App\Repository\OrdersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\mailer;
 
 #[Route('/paiement', name: 'payment_')]
 class PaymentController extends AbstractController
 {
+    private $mailer;
+
+    // Injectez le service d'envoi d'emails dans le constructeur
+    public function __construct(SendEmailService $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+
     #[Route('/{reference}', name: 'index')]
     public function index(string $reference, Orders $order, Products $product, Ordersdetails $ordersDetails, OrdersRepository $ordersRepository): RedirectResponse
     {
@@ -63,7 +73,7 @@ class PaymentController extends AbstractController
         ];
 
         // Configuration de Stripe avec votre clé secrète
-        Stripe::setApiKey($_ENV['STRIPE_SECRETKEY']);
+        Stripe::setApiKey($_ENV['STRIPE_PUBLISHABLE_KEY']);
 
         $checkout_session = Session::create([
             'customer_email' => $this->getUser()->getEmail(),
@@ -105,16 +115,34 @@ class PaymentController extends AbstractController
 
                 $product->setStock($stock - $quantity);
 
+                $user = $this->getUser();
+
                 $em->persist($product);
                 $em->flush();
             }
+
+            $context = [
+                'order' => $order,
+                'user' => $user
+            ];
+
+
+            // On envoie un e-mail
+            $this->mailer->send(
+                'no-reply@fermeDeWarelles.be',
+                $this->getUser()->getEmail(),
+                'Confirmation de votre commande',
+                'order_confirmation',
+                $context
+            );
         }
 
         $this->addFlash('success', 'Votre paiement a été effectué avec succès, un grand merci pour votre confiance. Un mail vous a été envoyé.');
 
         return $this->redirectToRoute('home', [
             'order' => $order,
-            'ordersDetails' => $ordersDetails
+            'ordersDetails' => $ordersDetails,
+            'user' => $user
         ]);
     }
 

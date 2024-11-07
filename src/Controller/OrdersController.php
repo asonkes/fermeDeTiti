@@ -68,6 +68,7 @@ class OrdersController extends AbstractController
         // Vérifiez si les coordonnées ont été récupérées avec succès
         if ($userCoordinates === null) {
             $this->addFlash('danger', "Erreur lors de la récupération des coordonnées. Vérifiez l'adresse, le code postal et la ville.");
+            return $this->redirectToRoute('orders_index');
         }
 
         // Informations de la ferme (fixes)

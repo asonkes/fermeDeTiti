@@ -1,0 +1,28 @@
+<h1>Confirmation de votre commande</h1>
+<p>Bonjour
+	{{ user.lastname }}
+	{{ user.firstname }}</p>
+
+<p>Votre commande du
+	{{ order.createdAt|date('d/m/Y') }}
+	sera prête 24h00(jour(s) ouvrable(s)) après votre commande.</p>
+
+<p>Cette commande est de :
+	{{order.total}}</p>
+
+<div>
+	<p>Détails de la commande :</p>
+	<p>Votre livraison est de :
+		{{ order.deliveryFee }}
+	</p>
+</div>
+
+<p>Vous pouvez retrouver tous les détails de votre commande, si vous le souhaitez, sur votre compte, sur notre site.</p>
+
+<p>Nous vous remercions pour votre confiance.</p>
+
+<p>À très vite, encore milles merci.</p>
+
+<p>La Ferme de Warelles</p>
+
+<p>Bien à vous</p>

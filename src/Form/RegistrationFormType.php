@@ -154,9 +154,13 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Entrez votre mot de passe',
                     ]),
                     new Length([
-                        'min' => 2,
+                        'min' => 12,
                         'minMessage' => 'Votre mot de passe doit faire {{ limit }} caractères',
-                        'max' => 4096,
+                        'max' => 128,
+                    ]),
+                    new Regex([
+                        'pattern' => '/[!@#$%^&*(),.?":{}|<>]/',
+                        'message' => 'Votre mot de passe doit contenir au moins un caractère spécial.',
                     ]),
                 ],
             ])
