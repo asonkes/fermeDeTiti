@@ -37,8 +37,8 @@ class HomeController extends AbstractController
 
             // Envoi de l'e-mail
             $this->sendEmail(
-                $contactFormData['email'],
-                'infos_warelles@gmail.com',
+                'contact@fermedetiphaine.audrey-sonkes.be', 
+                'infos_tiphaine@gmail.com', 
                 'Question client',
                 [
                     'firstname' => $contactFormData['firstname'],
@@ -77,6 +77,7 @@ class HomeController extends AbstractController
         $email = (new TemplatedEmail())
             ->from($from)
             ->to($to)
+            ->replyTo($context['user_email'])
             ->subject($subject)
             ->text($emailContent);
 

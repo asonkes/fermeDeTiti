@@ -65,7 +65,7 @@ class RegistrationController extends AbstractController
 
             // On envoie un e-mail
             $mailer->send(
-                'no-reply@fermeDeWarelles.be',
+                'contact@fermedetiphaine.audrey-sonkes.be',
                 $user->getEmail(),
                 'Activation de votre compte sur le site e-commerce',
                 'register',
@@ -146,7 +146,7 @@ class RegistrationController extends AbstractController
 
         // On envoie un e-mail
         $mailer->send(
-            'no-reply@fermeDeWarelles.be',
+            'contact@fermedetiphaine.audrey-sonkes.be',
             $user->getEmail(),
             'Activation de votre compte sur le site e-commerce',
             'register',

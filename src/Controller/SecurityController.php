@@ -81,7 +81,7 @@ class SecurityController extends AbstractController
 
                 // Envoi du mail
                 $mailer->send(
-                    'no-reply@fermeDeWarelles.com',
+                    'contact@fermedetiphaine.audrey-sonkes.be',
                     $user->getEmail(),
                     'Réinitialisation du mot de passe',
                     'password_reset',

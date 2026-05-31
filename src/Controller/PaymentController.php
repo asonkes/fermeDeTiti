@@ -129,7 +129,7 @@ class PaymentController extends AbstractController
 
             // On envoie un e-mail
             $this->mailer->send(
-                'no-reply@fermeDeWarelles.be',
+                'contact@fermedetiphaine.audrey-sonkes.be',
                 $this->getUser()->getEmail(),
                 'Confirmation de votre commande',
                 'order_confirmation',
@@ -150,7 +150,7 @@ class PaymentController extends AbstractController
     #[Route('/annulation/{reference}', name: 'cancel')]
     public function stripeCancel(string $reference, Orders $order): Response
     {
-        $this->addFlash('danger', "Votre paiement ne s'est pas effectuée correctement. Veuillez réessayer. Si vous rencontrer encore un problème, veuillez nous contacter à l'adresse : 'infos_warelles@gmail.com. Merci' ");
+        $this->addFlash('danger', "Votre paiement ne s'est pas effectuée correctement. Veuillez réessayer. Si vous rencontrer encore un problème, veuillez nous contacter à l'adresse : 'infos_tiphaine@gmail.com. Merci' ");
 
         return $this->redirectToRoute('orders_index', [
             'order' => $order

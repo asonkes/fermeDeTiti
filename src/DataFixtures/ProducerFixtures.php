@@ -22,7 +22,7 @@ class ProducerFixtures extends Fixture
             ],
             [
                 'name' => 'Stadnik Tiphaine',
-                'society' => 'Ferme de Warelles',
+                'society' => 'Ferme de Tiphaine',
                 'description' => "Agricultrice raisonnée et aimant son travail, système de biométhanisation, accueil d'école maternelles et primaire, stages à la ferme durant l'été.",
                 'zipcode' => '7850',
                 'city' => 'Enghien'

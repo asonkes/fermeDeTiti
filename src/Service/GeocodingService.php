@@ -24,7 +24,7 @@ class GeocodingService
         $response = $this->client->request('GET', $url, [
             'verify' => true,
             'headers' => [
-                'User-Agent' => 'MonApplication/1.0 (https://fermedewarelles.audrey-sonkes.be)'
+                'User-Agent' => 'MonApplication/1.0 (https://fermedetiphaine.audrey-sonkes.be)'
             ],
         ]);
 
