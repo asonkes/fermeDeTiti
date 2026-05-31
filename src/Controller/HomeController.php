@@ -30,7 +30,7 @@ class HomeController extends AbstractController
             $client = HttpClient::create();
             $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
                 'query' => [
-                    'secret' => ($_ENV['reCAPTCHA_SECRET_KEY']),
+                    'secret' => ($_ENV['RECAPTCHA_SECRET_KEY']),
                     'response' => $recaptchaResponse,
                 ],
             ]);
@@ -58,6 +58,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'categories' => $categories,
             'form' => $form->createView(),
+            'recaptcha_site_key' => $_ENV['RECAPTCHA_SITE_KEY'],
         ]);
     }
 
